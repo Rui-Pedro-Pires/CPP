@@ -14,11 +14,11 @@ bool    ft_isdigit(std::string str)
     return (true);
 }
 
-bool    ft_isaplhanum(std::string str)
+bool    ft_isalpha(std::string str)
 {
     std::string:: iterator itr;
     for (itr = str.begin(); itr < str.end(); itr++) {
-        if (!isalnum(*itr))
+        if (!isalpha(*itr))
             return (false);
     }
     return (true);
@@ -26,7 +26,7 @@ bool    ft_isaplhanum(std::string str)
 
 void    PhoneBook::print_error()
 {
-    std::cout << "Invalid input, try again" << std::endl;
+    std::cout << "Invalid input, try again!" << std::endl;
 }
 
 void    PhoneBook::add_contact()
@@ -39,105 +39,121 @@ void    PhoneBook::add_contact()
     std::cout << "First Name: ";
     while (std::getline(std::cin, str))
     {
-        system("clear");
-        if (ft_isaplhanum(str))
+        if (!ft_isalpha(str) || str.empty())
         {
-            contacts_list[i].set_first_name(str);
-            break;
+            system("clear");
+            std::cout << "Invalid input, try again!" << std::endl;
+            std::cout << "First Name: ";
+            continue;
         }
-        else
-            print_error();
+        contacts_list[i].set_first_name(str);
+        break;
     }
+    system("clear");
     std::cout << "Last Name: ";
     while (std::getline(std::cin, str))
     {
-        system("clear");
-        if (ft_isaplhanum(str))
+        if (!ft_isalpha(str) || str.empty())
         {
-            contacts_list[i].set_last_name(str);
-            break;
+            system("clear");
+            std::cout << "Invalid input, try again!" << std::endl;
+            std::cout << "Last Name: ";
+            continue;
         }
-        else
-        {
-            print_error();
-        }
+        contacts_list[i].set_last_name(str);
+        break;
     }
+    system("clear");
     std::cout << "Nickname: ";
     while (std::getline(std::cin, str))
     {
-        system("clear");
-        if (ft_isaplhanum(str))
+        if (!ft_isalpha(str) || str.empty())
         {
-            contacts_list[i].set_nick_name(str);
-            break;
+            system("clear");
+            std::cout << "Invalid input, try again!" << std::endl;
+            std::cout << "Nickname: ";
+            continue;
         }
-        else
-            print_error();
+        contacts_list[i].set_nick_name(str);
+        break;
     }
+    system("clear");
     std::cout << "Darkest secret: ";
     while (std::getline(std::cin, str))
     {
-        system("clear");
-        if (ft_isaplhanum(str))
+        if (!ft_isalpha(str) || str.empty())
         {
-            contacts_list[i].set_darkest_secret(str);
-            break;
+            system("clear");
+            std::cout << "Invalid input, try again!" << std::endl;
+            std::cout << "Darkest secret: ";
+            continue;
         }
-        else
-            print_error();
+        contacts_list[i].set_darkest_secret(str);
+        break;
     }
+    system("clear");
     std::cout << "Phonenumber: ";
     while (std::getline(std::cin, str))
     {
-        system("clear");
-        if (ft_isdigit(str) && str.length() == 9)
+        if (!ft_isdigit(str) && str.length() == 9)
         {
-            contacts_list[i].set_phone_number(atoi(str.c_str()));
-            break;
-        }
-        else
+            system("clear");
             print_error();
+            std::cout << "Phonenumber: ";
+            continue;
+        }
+        contacts_list[i].set_phone_number(atoi(str.c_str()));
+        break;
     }
-    if (contacts_total < 8)
-        contacts_total++;
+    if (total_contacts < 8)
+        total_contacts++;
     i++;
 }
 
 void    PhoneBook::search_contacts()
 {
-    int x = 0;
+    int x;
     int num;
     std::string str;
 
-    std::cout << " ________________________________________" << std::endl;
-    std::cout << "|       |          |          |          |" << std::endl;
-    std::cout << "| Index |Firstname | Lastname | Nickname |" << std::endl;
-    std::cout << "|_______|__________|__________|__________|" << std::endl;
-    while (x < contacts_total)
+    while (true)
     {
+        std::cout << " ________________________________________" << std::endl;
         std::cout << "|       |          |          |          |" << std::endl;
-        std::cout << "|   " << x << "   |";
-        std::cout << trim_string(contacts_list[x].get_first_name()) << "|";
-        std::cout << trim_string(contacts_list[x].get_last_name()) << "|";
-        std::cout << trim_string(contacts_list[x].get_nick_name()) << "|" << std::endl;
+        std::cout << "| Index |Firstname | Lastname | Nickname |" << std::endl;
         std::cout << "|_______|__________|__________|__________|" << std::endl;
-        x++;
-    }
-    std::cout << "Introduce the index of the search: ";
-    while (getline(std::cin, str))
-    {
-        if (ft_isdigit(str) && atoi(str.c_str()) < contacts_total)
+        x = 0;
+        while (x < total_contacts)
         {
-            num = atoi(str.c_str());
-            std::cout << "First name: " << contacts_list[num].get_first_name() << std::endl;
-            std::cout << "Last name: " << contacts_list[num].get_last_name() << std::endl;
-            std::cout << "Nickname: " << contacts_list[num].get_nick_name() << std::endl;
-            std::cout << "Darkest secret: " << contacts_list[num].get_darkest_secret() << std::endl;
-            std::cout << "Phonenumber: " << contacts_list[num].get_phone_number() << std::endl;
-            break;
+            std::cout << "|       |          |          |          |" << std::endl;
+            std::cout << "|   " << x << "   |";
+            std::cout << trim_string(contacts_list[x].get_first_name()) << "|";
+            std::cout << trim_string(contacts_list[x].get_last_name()) << "|";
+            std::cout << trim_string(contacts_list[x].get_nick_name()) << "|" << std::endl;
+            std::cout << "|_______|__________|__________|__________|" << std::endl << std::endl;
+            x++;
         }
-        else
-            std::cout << "Invalid index, try again: ";
+        std::cout << "Introduce the index of the search or ENTER to exit: ";
+        while (getline(std::cin, str))
+        {
+            if (str.empty())
+                return ;
+            if (ft_isdigit(str) && atoi(str.c_str()) < total_contacts)
+            {
+                num = atoi(str.c_str());
+                std::cout << "First name: " << contacts_list[num].get_first_name() << std::endl;
+                std::cout << "Last name: " << contacts_list[num].get_last_name() << std::endl;
+                std::cout << "Nickname: " << contacts_list[num].get_nick_name() << std::endl;
+                std::cout << "Darkest secret: " << contacts_list[num].get_darkest_secret() << std::endl;
+                std::cout << "Phonenumber: " << contacts_list[num].get_phone_number() << std::endl;
+                break;
+            }
+            else
+            {
+                std::cout << "Invalid index, try again!" << std::endl;
+                std::cout << "Introduce the index of the search or ENTER to exit: ";
+            }
+        }
     }
 }
 

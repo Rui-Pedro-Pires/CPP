@@ -8,7 +8,7 @@ int main()
     PhoneBook   phonebook;
 
     phonebook.i = 0;
-    phonebook.contacts_total = 0;
+    phonebook.total_contacts = 0;
     system("clear");
     std::cout << "Please introduce a command: ";
     while (std::getline(std::cin, str))
@@ -19,10 +19,15 @@ int main()
             phonebook.search_contacts();
         else if (str == "EXIT")
             break;
-        else
-            phonebook.print_error();
+        else if (!str.empty())
+        {
+            system("clear");
+            std::cout << "Invalid input, try again!" << std::endl;
+            std::cout << "Please introduce a command: ";
+            continue;
+        }
         system("clear");
         std::cout << "Please introduce a command: ";
     }
-    std::cout << std::endl;
+    system("clear");
 }

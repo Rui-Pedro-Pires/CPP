@@ -7,8 +7,8 @@ private:
     Contact         contacts_list[8];
 
 public:
-    int             contacts_total;
     int             i;
+    int             total_contacts;
     void            add_contact();
     void            search_contacts();
     void            print_error();
