@@ -1,4 +1,4 @@
-#include "./includes/Contact.hpp"
+#include "../includes/Contact.hpp"
 
 std::string Contact::get_first_name()
 {

@@ -19,9 +19,7 @@ SDIR := src
 ODIR := obj
 
 # Source files
-SOURCES := PhoneBook.cpp\
-			main.cpp\
-			Contact.cpp\
+SOURCES := PhoneBook.cpp main.cpp Contact.cpp\
 
 # Object files
 OBJECTS := $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCES))
