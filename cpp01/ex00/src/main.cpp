@@ -7,5 +7,10 @@ int main(void)
     zombie1 = Zombie("ZEE");
     zombie1.announce();
     zombie2 = newZombie( "fds");
+
+
+
+
+    
     zombie2->announce();
 }
