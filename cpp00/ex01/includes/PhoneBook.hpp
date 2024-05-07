@@ -14,8 +14,11 @@ private:
 public:
     PhoneBook();
     ~PhoneBook();
-    void            add_contact();
-    void            search_contacts();
+    void            render_add_menu(std::string str);
+    void            render_main_menu(void);
+    void            render_search_menu(void);
+    void            add_contact(void);
+    void            search_contacts(void);
     std::string     trim_string(std::string str);
 };
 
