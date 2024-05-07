@@ -7,11 +7,13 @@
 class PhoneBook
 {
 private:
-    Contact         contacts_list[8];
+    Contact         _contacts_list[8];
+    int             _i;
+    int             _total_contacts;
 
 public:
-    int             i;
-    int             total_contacts;
+    PhoneBook();
+    ~PhoneBook();
     void            add_contact();
     void            search_contacts();
     std::string     trim_string(std::string str);

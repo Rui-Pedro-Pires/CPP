@@ -7,8 +7,6 @@ int main()
     std::string     str;
     PhoneBook   phonebook;
 
-    phonebook.i = 0;
-    phonebook.total_contacts = 0;
     system("clear");
     std::cout << "Please introduce a command: ";
     while (std::getline(std::cin, str))

@@ -2,50 +2,50 @@
 
 std::string Contact::get_first_name()
 {
-    return (first_name);
+    return (_first_name);
 }
 
 std::string Contact::get_last_name()
 {
-    return (last_name);
+    return (_last_name);
 }
 
 std::string Contact::get_nick_name()
 {
-    return (nick_name);
+    return (_nick_name);
 }
 
 std::string Contact::get_darkest_secret()
 {
-    return (darkest_secret);
+    return (_darkest_secret);
 }
 
 int Contact::get_phone_number()
 {
-    return (phone_number);
+    return (_phone_number);
 }
 
-void Contact::set_first_name(std::string name_to_add)
+void Contact::set_first_name(std::string firstname)
 {
-    first_name = name_to_add;
+    _first_name = firstname;
 }
 
-void Contact::set_last_name(std::string name_to_add)
+void Contact::set_last_name(std::string last_name)
 {
-    last_name = name_to_add;
+    _last_name = last_name;
 }
 
-void Contact::set_nick_name(std::string name_to_add)
+void Contact::set_nick_name(std::string nick_name)
 {
-    nick_name = name_to_add;
+    _nick_name = nick_name;
 }
 
-void Contact::set_darkest_secret(std::string secret_to_add)
+void Contact::set_darkest_secret(std::string darkest_secret)
 {
-    darkest_secret = secret_to_add;
+    _darkest_secret = darkest_secret;
 }
 
-void Contact::set_phone_number(int number_to_add)
+void Contact::set_phone_number(int phone_number)
 {
-    phone_number = number_to_add;
+    _phone_number = phone_number;
 }
