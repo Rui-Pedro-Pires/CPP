@@ -11,6 +11,5 @@ public:
     int             total_contacts;
     void            add_contact();
     void            search_contacts();
-    void            print_error();
     std::string     trim_string(std::string str);
 };
