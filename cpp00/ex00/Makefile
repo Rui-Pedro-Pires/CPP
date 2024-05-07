@@ -51,6 +51,6 @@ clean :
 
 fclean : clean
 	@${RM} ${NAME}
-	@echo "${RED}➾ megaphone deleted${RES}"
+	@echo "${RED}➾ ${NAME} deleted${RES}"
 
 re : fclean all
