@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+#include <iomanip>
 #include "../includes/PhoneBook.hpp"
 #include "../includes/Contact.hpp"
 
@@ -23,8 +24,6 @@ bool    ft_isalpha(std::string str)
     }
     return (true);
 }
-
-
 
 void    PhoneBook::add_contact()
 {
@@ -78,7 +77,7 @@ void    PhoneBook::add_contact()
     std::cout << "Darkest secret: ";
     while (std::getline(std::cin, str))
     {
-        if (!ft_isalpha(str) || str.empty())
+        if (str.empty())
         {
             system("clear");
             std::cout << "Invalid input, try again!" << std::endl;
@@ -92,7 +91,7 @@ void    PhoneBook::add_contact()
     std::cout << "Phonenumber: ";
     while (std::getline(std::cin, str))
     {
-        if (!ft_isdigit(str) && str.length() == 9)
+        if (!ft_isdigit(str) || str.length() != 9)
         {
             system("clear");
             std::cout << "Invalid input, try again!" << std::endl;
@@ -115,19 +114,19 @@ void    PhoneBook::search_contacts()
 
     while (true)
     {
-        std::cout << " ________________________________________" << std::endl;
-        std::cout << "|       |          |          |          |" << std::endl;
-        std::cout << "| Index |Firstname | Lastname | Nickname |" << std::endl;
-        std::cout << "|_______|__________|__________|__________|" << std::endl;
+        std::cout << " __________________________________________" << std::endl;
+        std::cout << "|          |          |          |          |" << std::endl;
+        std::cout << "|  Index   |Firstname | Lastname | Nickname |" << std::endl;
+        std::cout << "|__________|__________|__________|__________|" << std::endl;
         x = 0;
         while (x < total_contacts)
         {
-            std::cout << "|       |          |          |          |" << std::endl;
-            std::cout << "|   " << x + 1 << "   |";
-            std::cout << trim_string(contacts_list[x].get_first_name()) << "|";
-            std::cout << trim_string(contacts_list[x].get_last_name()) << "|";
-            std::cout << trim_string(contacts_list[x].get_nick_name()) << "|" << std::endl;
-            std::cout << "|_______|__________|__________|__________|" << std::endl << std::endl;
+            std::cout << "|          |          |          |          |" << std::endl;
+            std::cout << "|" << std::right << std::setw(10) << x + 1 << "|";
+            std::cout << std::right << std::setw(10) << trim_string(contacts_list[x].get_first_name()) << "|";
+            std::cout << std::right << std::setw(10) << trim_string(contacts_list[x].get_last_name()) << "|";
+            std::cout << std::right << std::setw(10) << trim_string(contacts_list[x].get_nick_name()) << "|" << std::endl;
+            std::cout << "|__________|__________|__________|__________|" << std::endl << std::endl;
             x++;
         }
         std::cout << "Introduce the index of the search or ENTER to exit: ";
@@ -135,7 +134,7 @@ void    PhoneBook::search_contacts()
         {
             if (str.empty())
                 return ;
-            if (ft_isdigit(str) && atoi(str.c_str()) < total_contacts && atoi(str.c_str()) > 0)
+            if (ft_isdigit(str) && atoi(str.c_str()) - 1 < total_contacts && atoi(str.c_str()) - 1 >= 0)
             {
                 num = atoi(str.c_str());
                 std::cout << "First name: " << contacts_list[num - 1].get_first_name() << std::endl;
@@ -154,21 +153,14 @@ void    PhoneBook::search_contacts()
     }
 }
 
-std::string PhoneBook::trim_string(std::string name)
+std::string PhoneBook::trim_string(std::string str)
 {
-    std::string str = "          ";
-    int lenght = name.length();
+    int lenght = str.length();
     if (lenght > 10)
     {
-        str.replace(0, 9, name, 0, 9);
-        str.replace(9, 1, ".");
-        return (str);
+        std::string trimmed = str.substr(0, 9) + ".";
+        return (trimmed);
     }
-    if (lenght < 10)
-    {
-        str.replace((10 - lenght), lenght, name);
-        return (str);
-    }
-    return (name);
+    return (str);
 }
 
