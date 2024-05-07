@@ -27,8 +27,8 @@ OBJECTS := $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCES))
 TOTAL_FILES := $(words $(SOURCES))
 COMPILED_FILES := $(shell if [ -d "$(ODIR)" ]; then find $(ODIR) -name "*.o" | wc -l; else echo 0; fi)
 
-# Targets
-#all : ${NAME}
+Targets
+all : ${NAME}
 
 ${NAME} : ${OBJECTS}
 	@${C++} ${CPPFLAGS} ${OBJECTS} -o ${NAME}
