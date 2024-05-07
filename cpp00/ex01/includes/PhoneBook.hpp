@@ -1,5 +1,8 @@
-#include <iostream>
-#include "Contact.hpp"
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+
+# include <iostream>
+# include "Contact.hpp"
 
 class PhoneBook
 {
@@ -13,3 +16,5 @@ public:
     void            search_contacts();
     std::string     trim_string(std::string str);
 };
+
+#endif

@@ -1,5 +1,5 @@
 #include <iostream>
-#include <locale>
+
 void    ft_toupper(std::string &str)
 {
     int size = str.length();
