@@ -1,6 +1,6 @@
 #! bin/bash
 
-n=0
+n=5
 
 if [ "$#" -lt 1 ]
 then
