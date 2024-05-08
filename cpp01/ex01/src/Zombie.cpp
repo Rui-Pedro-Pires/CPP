@@ -6,7 +6,7 @@
 /*   By: ruiolive <ruiolive@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:27:00 by ruiolive          #+#    #+#             */
-/*   Updated: 2024/05/08 11:36:10 by ruiolive         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:25:47 by ruiolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,9 @@ Zombie::~Zombie()
 void    Zombie::announce( void )
 {
     std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+void    Zombie::setName( std::string name )
+{
+    this->_name = name;
 }

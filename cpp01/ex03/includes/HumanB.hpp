@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruiolive <ruiolive@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 11:11:50 by ruiolive          #+#    #+#             */
-/*   Updated: 2024/05/08 14:26:04 by ruiolive         ###   ########.fr       */
+/*   Created: 2024/05/08 12:49:26 by ruiolive          #+#    #+#             */
+/*   Updated: 2024/05/08 13:56:50 by ruiolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Zombie.hpp"
+#pragma once
+#ifndef __HUMAN2_HPP__
+#define __HUMAN2_HPP__
 
-Zombie* zombieHorde( int N, std::string name )
+#include "Weapon.hpp"
+
+class HumanB
 {
-    Zombie  *arrayZombies = new Zombie[N];
-    for (int i = 0; i < N; i++) {
-        arrayZombies[i].setName(name);
-    }
-    return (arrayZombies);
-}
+    
+public:
+
+    HumanB( std::string name );
+    ~HumanB();
+    void    attack( void );
+    void    setWeapon( Weapon &weapon );
+    
+private:
+
+    std::string _name;
+    Weapon  *_weapon;
+
+};
+
+#endif
