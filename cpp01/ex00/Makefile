@@ -20,7 +20,9 @@ ODIR := obj
 
 # Source files
 SOURCES := main.cpp\
-			tests.cpp\
+			Zombie.cpp\
+			randomChump.cpp\
+			newZombie.cpp\
 
 # Object files
 OBJECTS := $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCES))
