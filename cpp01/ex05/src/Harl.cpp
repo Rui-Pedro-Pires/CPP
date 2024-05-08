@@ -12,27 +12,26 @@
 
 #include "../includes/Harl.hpp"
 
-void    Harl::complain( std::string level )
+void Harl::complain( std::string level )
 {
-
 }
 
-void    Harl::debug( void )
+void Harl::debug( void )
 {
-    LOG("debug");
+    LOG( "debug" );
 }
 
-void    Harl::info( void )
+void Harl::info( void )
 {
-    LOG("info");
+    LOG( "info" );
 }
 
-void    Harl::warning( void )
+void Harl::warning( void )
 {
-    LOG("warning");
+    LOG( "warning" );
 }
 
-void    Harl::error( void )
+void Harl::error( void )
 {
-    LOG("error");
+    LOG( "error" );
 }
