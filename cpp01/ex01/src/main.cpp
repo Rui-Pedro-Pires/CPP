@@ -15,8 +15,10 @@
 int main(void)
 {
     Zombie  *arrayZombies;
-    arrayZombies = zombieHorde(10, "ze");
-    for (int i = 0; i < 10; i++) {
+    arrayZombies = zombieHorde(212313123, "ze");
+    if (!arrayZombies)
+        return (0);
+    for (int i = 0; i < 212313123; i++) {
         arrayZombies[i].announce();
     }
     delete [] arrayZombies;

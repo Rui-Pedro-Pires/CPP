@@ -14,7 +14,14 @@
 
 Zombie* zombieHorde( int N, std::string name )
 {
-    Zombie  *arrayZombies = new Zombie[N];
+    Zombie  *arrayZombies;
+    try {
+        arrayZombies = new Zombie[N];
+    }
+    catch(std::bad_alloc&) {
+        std::cerr << "Error allocating memory!" << std::endl;
+        return (NULL);
+    }
     for (int i = 0; i < N; i++) {
         arrayZombies[i].setName(name);
     }

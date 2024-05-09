@@ -15,31 +15,43 @@
 int main(int argc, char **argv)
 {
     Harl harl;
-    int level;
+    std::string str;
     if (argc != 2)
         return (std::cerr << "Error missing arguments: syntax <./harlFilter <number>>"<< std::endl, 1);
-    level = atoi(argv[1]);
-    if (std::string(argv[1]).length() != 1 || !isdigit(*argv[1]) || level > 3 || level < 0)
-        return (std::cerr << "Invalid level: please introduce a number between 0 and 3" << std::endl, 1);
-    switch(level) {
-        case 0:
-            harl.complain("DEBUG");
-        break ;
-        case 1:
-            harl.complain("DEBUG");
-            harl.complain("INFO");
-        break ;
-        case 2:
-            harl.complain("DEBUG");
-            harl.complain("INFO");
-            harl.complain("WARNING");
-            
-        break ;
-        case 3:
-            harl.complain("DEBUG");
-            harl.complain("INFO");
-            harl.complain("WARNING");
+    str = argv[1];
+    if (str != "DEBUG" && str != "WARNING" && str != "ERROR" && str != "INFO")
+    {
+        LOG("[ Probably complaining about insignificant problems ]");
+        return (0);
+    }
+    switch(argv[1][0]) {
+        case 'E':
             harl.complain("ERROR");
+            std::cout << std::endl;
+        break ;
+        case 'W':
+            harl.complain("WARNING");
+            std::cout << std::endl;
+            harl.complain("ERROR");
+            std::cout << std::endl;
+        break ;
+        case 'I':
+            harl.complain("INFO");
+            std::cout << std::endl;
+            harl.complain("WARNING");
+            std::cout << std::endl;
+            harl.complain("ERROR");
+            std::cout << std::endl;
+        break ;
+        case 'D':
+            harl.complain("DEBUG");
+            std::cout << std::endl;
+            harl.complain("INFO");
+            std::cout << std::endl;
+            harl.complain("WARNING");
+            std::cout << std::endl;
+            harl.complain("ERROR");
+            std::cout << std::endl;
         break ;
     }
     return (0);
