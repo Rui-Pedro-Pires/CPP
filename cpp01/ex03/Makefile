@@ -13,7 +13,7 @@ C++ = c++
 CPPFLAGS = -Werror -Wall -Wextra -g -std=c++98
 
 # File-related variables
-NAME = zombie
+NAME = war
 RM = rm -rf
 SDIR := src
 ODIR := obj

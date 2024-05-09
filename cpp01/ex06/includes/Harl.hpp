@@ -15,6 +15,8 @@
 #define __HARL_HPP__
 
 #include <iostream>
+#include <stdlib.h>
+#include <string>
 #define LOG( x ) std::cout << x << std::endl;
 
 class Harl
