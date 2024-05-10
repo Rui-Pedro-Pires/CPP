@@ -13,13 +13,14 @@ C++ = c++
 CPPFLAGS = -Werror -Wall -Wextra -g -std=c++98
 
 # File-related variables
-NAME = fileReplacer
+NAME = sed
 RM = rm -rf
 SDIR := src
 ODIR := obj
 
 # Source files
 SOURCES := main.cpp\
+			Sed.cpp\
 
 # Object files
 OBJECTS := $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCES))
