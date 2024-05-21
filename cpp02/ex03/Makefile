@@ -13,14 +13,14 @@ C++ = c++
 CPPFLAGS = -Werror -Wall -Wextra -g -std=c++98
 
 # File-related variables
-NAME = harlFilter
+NAME = fixed2
 RM = rm -rf
 SDIR := src
 ODIR := obj
 
 # Source files
 SOURCES := main.cpp\
-			Harl.cpp\
+			Fixed.cpp\
 
 # Object files
 OBJECTS := $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCES))

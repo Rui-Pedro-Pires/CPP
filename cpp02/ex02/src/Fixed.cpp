@@ -41,12 +41,6 @@ Fixed::Fixed( const Fixed& other )
     *this = other;
 }
 
-void Fixed::operator=( const Fixed& other )
-{
-    LOG( "Copy assignment operator called" );
-    setRawBits(other.getRawBits());
-}
-
 int Fixed::getRawBits( void ) const
 {
     LOG( "getRawBits member function called" );
@@ -74,3 +68,84 @@ std::ostream& operator<<( std::ostream& stream, const Fixed& fixed )
     stream << fixed.toFloat();
     return (stream);
 }
+
+void Fixed::operator=( const Fixed& other )
+{
+    LOG( "Copy assignment operator called" );
+    setRawBits(other.getRawBits());
+}
+
+bool Fixed::operator<(const Fixed& other )
+{
+    return this->fixedPoint < other.fixedPoint;
+}
+
+bool Fixed::operator>(const Fixed& other )
+{
+    return this->fixedPoint > other.fixedPoint;
+}
+
+bool Fixed::operator<=(const Fixed& other )
+{
+    return this->fixedPoint <= other.fixedPoint;
+}
+
+bool Fixed::operator>=(const Fixed& other )
+{
+    return this->fixedPoint >= other.fixedPoint;
+}
+
+bool Fixed::operator==(const Fixed& other )
+{
+    return this->fixedPoint == other.fixedPoint;
+}
+
+bool Fixed::operator!=(const Fixed& other )
+{
+    return !(*this == other);
+}
+
+Fixed Fixed::operator+(const Fixed& other)
+{
+    return Fixed(this->fixedPoint + other.getRawBits());
+}
+
+void Fixed::operator++(int)
+{
+    this->fixedPoint++;
+}
+
+void Fixed::operator--(int)
+{
+    this->fixedPoint--;
+}
+
+Fixed Fixed::operator-(const Fixed& other)
+{
+    return Fixed(this->fixedPoint - other.getRawBits());
+}
+
+Fixed Fixed::operator*(const Fixed& other)
+{
+    return Fixed(this->fixedPoint * other.getRawBits());
+}
+
+Fixed Fixed::operator/(const Fixed& other)
+{
+    return Fixed(this->fixedPoint / other.getRawBits());
+}
+
+
+// Fixed& Fixed::max(const Fixed& ref1, const Fixed& ref2)
+// {
+//     if (ref1 > ref2)
+//         return (ref1);
+//     return (ref2);
+// }
+
+// Fixed& Fixed::max(const Fixed& ref1, const Fixed& ref2)
+// {
+//     if (ref1 > ref2)
+//         return (ref1);
+//     return (ref2);
+// }
