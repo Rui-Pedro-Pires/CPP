@@ -52,5 +52,7 @@
         "iomanip": "cpp",
         "sstream": "cpp",
         "fstream": "cpp"
-    }
+    },
+    "clang-format.style": "LLVM",
+    "clang-format.executable": ".clang-format"
 }
