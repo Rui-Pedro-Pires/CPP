@@ -14,26 +14,23 @@
 
 Fixed::Fixed()
 {
-    setRawBits(0);
+    setRawBits( 0 );
     LOG( "Default constructor called" );
 }
 
 Fixed::Fixed( const int integerNumber )
 {
-    setRawBits(integerNumber << this->fractionBits);
+    setRawBits( integerNumber << this->fractionBits );
     LOG( "Int constructor called" );
 }
 
 Fixed::Fixed( const float floatNumber )
 {
-    setRawBits(floatNumber * (float)(1 << this->fractionBits));
+    setRawBits( roundf( floatNumber * (float)( 1 << this->fractionBits ) ) );
     LOG( "Float constructor called" );
 }
 
-Fixed::~Fixed()
-{
-    LOG( "Destructor called" );
-}
+Fixed::~Fixed() { LOG( "Destructor called" ); }
 
 Fixed::Fixed( const Fixed& other )
 {
@@ -44,13 +41,13 @@ Fixed::Fixed( const Fixed& other )
 void Fixed::operator=( const Fixed& other )
 {
     LOG( "Copy assignment operator called" );
-    setRawBits(other.getRawBits());
+    setRawBits( other.getRawBits() );
 }
 
 int Fixed::getRawBits( void ) const
 {
     LOG( "getRawBits member function called" );
-    return (this->fixedPoint);
+    return ( this->fixedPoint );
 }
 
 void Fixed::setRawBits( int const raw )
@@ -61,16 +58,16 @@ void Fixed::setRawBits( int const raw )
 
 float Fixed::toFloat( void ) const
 {
-    return ((float)this->fixedPoint / (float)(1 << this->fractionBits));
+    return ( (float)this->fixedPoint / (float)( 1 << this->fractionBits ) );
 }
 
 int Fixed::toInt( void ) const
 {
-    return (this->fixedPoint >> this->fractionBits);
+    return ( this->fixedPoint >> this->fractionBits );
 }
 
 std::ostream& operator<<( std::ostream& stream, const Fixed& fixed )
 {
     stream << fixed.toFloat();
-    return (stream);
+    return ( stream );
 }

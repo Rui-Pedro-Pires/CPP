@@ -8,8 +8,8 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/cpp01/ex04/fileReplacer",
-            "args": ["../cpp01/ex04/test", "a", "e"],
+            "program": "${workspaceFolder}/cpp02/ex03/fixed3",
+            "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
@@ -28,6 +28,5 @@
                 }
             ]
         }
-
     ]
 }

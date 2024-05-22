@@ -11,32 +11,20 @@
 /* ************************************************************************** */
 
 #include "../includes/Fixed.hpp"
+#include "../includes/Point.hpp"
 
-int main(void)
+int main( void )
 {
-    Fixed a;
-    Fixed d;
-    Fixed const b(Fixed(5.05f) * Fixed(2));
-    Fixed c(5.5f);
-    bool diff;
-    std::cout << a << std::endl;
-    std::cout << ++a << std::endl;
-    std::cout << a << std::endl;
-    std::cout << a++ << std::endl;
-    std::cout << a << std::endl;
-    std::cout << b << std::endl;
-    std::cout << Fixed::max(a, b) << std::endl;
-    diff = a != c;
-    std::cout << diff << std::endl;
-    diff = a == c;
-    std::cout << diff << std::endl;
-    diff = a < c;
-    std::cout << diff << std::endl;
-    diff = a > c;
-    std::cout << diff << std::endl;
-    diff = a >= d;
-    std::cout << diff << std::endl;
-    diff = a <= d;
-    std::cout << diff << std::endl;
+    Point pointA( 0.0, 0.0 );
+    Point pointB( 0.0, 4.0 );
+    Point pointC( 4.0, 0.0 );
+    Point midPoint( 2.0, 1.0);
+
+    if ( bsp( pointA, pointB, pointC, midPoint ) )
+    {
+        LOG( "True" );
+        return (0);
+    }
+    LOG("False");
     return 0;
 }

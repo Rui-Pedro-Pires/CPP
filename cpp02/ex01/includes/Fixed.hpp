@@ -29,7 +29,6 @@ public:
     Fixed( const Fixed& other );
     ~Fixed();
     void operator=( const Fixed& other );
-    friend std::ostream& operator<<( std::ostream& stream, const Fixed& fixed );
     int getRawBits( void ) const;
     void setRawBits( int const raw );
     float toFloat( void ) const;

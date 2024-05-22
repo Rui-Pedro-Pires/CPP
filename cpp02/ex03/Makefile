@@ -13,7 +13,7 @@ C++ = c++
 CPPFLAGS = -Werror -Wall -Wextra -g -std=c++98
 
 # File-related variables
-NAME = fixed2
+NAME = fixed3
 RM = rm -rf
 SDIR := src
 ODIR := obj
@@ -21,6 +21,8 @@ ODIR := obj
 # Source files
 SOURCES := main.cpp\
 			Fixed.cpp\
+			Point.cpp\
+			bsp.cpp\
 
 # Object files
 OBJECTS := $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCES))
