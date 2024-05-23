@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/cpp02/ex03/fixed3",
+            "program": "${workspaceFolder}/cpp02/ex02/fixed2",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

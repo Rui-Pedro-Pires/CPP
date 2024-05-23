@@ -16,21 +16,20 @@
 
 #include <cmath>
 #include <iostream>
-
 #include "Fixed.hpp"
 
 class Point
 {
    private:
-    Fixed const FixedX;
-    Fixed const FixedY;
+    const Fixed FixedX;
+    const Fixed FixedY;
 
    public:
     Point();
     Point( const float FixedX, const float FixedY );
     Point( const Point &point );
     ~Point();
-    const Point &operator=( const Point &other );
+    Point &operator=( const Point &other );
     const Fixed &getFixedPointX() const;
     const Fixed &getFixedPointY() const;
 };

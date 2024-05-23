@@ -14,19 +14,19 @@
 
 Fixed::Fixed()
 {
-    setRawBits( 0 );
+    this->fixedPoint = 0;
     LOG( "Default constructor called" );
 }
 
 Fixed::Fixed( const int integerNumber )
 {
-    setRawBits( integerNumber << this->fractionBits );
+    this->fixedPoint = integerNumber << this->fractionBits;
     LOG( "Int constructor called" );
 }
 
 Fixed::Fixed( const float floatNumber )
 {
-    setRawBits( roundf( floatNumber * (float)( 1 << this->fractionBits ) ) );
+    this->fixedPoint = roundf( floatNumber * (float)( 1 << this->fractionBits ) );
     LOG( "Float constructor called" );
 }
 
@@ -60,15 +60,9 @@ void Fixed::setRawBits( int const raw )
     this->fixedPoint = raw;
 }
 
-float Fixed::toFloat( void ) const
-{
-    return ( (float)this->fixedPoint / (float)( 1 << this->fractionBits ) );
-}
+float Fixed::toFloat( void ) const { return ( (float)this->fixedPoint / (float)( 1 << this->fractionBits ) ); }
 
-int Fixed::toInt( void ) const
-{
-    return ( this->fixedPoint >> this->fractionBits );
-}
+int Fixed::toInt( void ) const { return ( this->fixedPoint >> this->fractionBits ); }
 
 std::ostream& operator<<( std::ostream& stream, const Fixed& fixed )
 {

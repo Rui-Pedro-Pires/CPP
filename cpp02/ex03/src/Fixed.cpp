@@ -12,16 +12,13 @@
 
 #include "../includes/Fixed.hpp"
 
-Fixed::Fixed() { setRawBits( 0 ); }
+Fixed::Fixed() { this->fixedPoint = 0; }
 
-Fixed::Fixed( const int integerNumber )
-{
-    setRawBits( integerNumber << this->fractionBits );
-}
+Fixed::Fixed( const int integerNumber ) { this->fixedPoint = integerNumber << this->fractionBits; }
 
 Fixed::Fixed( const float floatNumber )
 {
-    setRawBits( roundf( floatNumber * (float)( 1 << this->fractionBits ) ) );
+    this->fixedPoint = roundf( floatNumber * (float)( 1 << this->fractionBits ) );
 }
 
 Fixed::~Fixed() {}
@@ -32,15 +29,9 @@ int Fixed::getRawBits( void ) const { return ( this->fixedPoint ); }
 
 void Fixed::setRawBits( int const raw ) { this->fixedPoint = raw; }
 
-float Fixed::toFloat( void ) const
-{
-    return ( (float)this->fixedPoint / (float)( 1 << this->fractionBits ) );
-}
+float Fixed::toFloat( void ) const { return ( (float)this->fixedPoint / (float)( 1 << this->fractionBits ) ); }
 
-int Fixed::toInt( void ) const
-{
-    return ( this->fixedPoint >> this->fractionBits );
-}
+int Fixed::toInt( void ) const { return ( this->fixedPoint >> this->fractionBits ); }
 
 std::ostream &operator<<( std::ostream &stream, const Fixed &fixed )
 {
@@ -48,98 +39,87 @@ std::ostream &operator<<( std::ostream &stream, const Fixed &fixed )
     return ( stream );
 }
 
-Fixed& Fixed::operator=( const Fixed& other )
+Fixed &Fixed::operator=( const Fixed &other )
 {
     if ( this != &other )
     {
-        LOG( "Copy assignment operator called" );
         this->fixedPoint = other.getRawBits();
     }
     return *this;
 }
-bool Fixed::operator<( const Fixed &other )
-{
-    return this->fixedPoint < other.fixedPoint;
-}
 
-bool Fixed::operator>( const Fixed &other )
-{
-    return this->fixedPoint > other.fixedPoint;
-}
+bool Fixed::operator<( const Fixed &other ) { return this->fixedPoint < other.getRawBits(); }
 
-bool Fixed::operator<=( const Fixed &other )
-{
-    return this->fixedPoint <= other.fixedPoint;
-}
+bool Fixed::operator>( const Fixed &other ) { return this->fixedPoint > other.getRawBits(); }
 
-bool Fixed::operator>=( const Fixed &other )
-{
-    return this->fixedPoint >= other.fixedPoint;
-}
+bool Fixed::operator<=( const Fixed &other ) { return this->fixedPoint <= other.getRawBits(); }
 
-bool Fixed::operator==( const Fixed &other )
-{
-    return this->fixedPoint == other.fixedPoint;
-}
+bool Fixed::operator>=( const Fixed &other ) { return this->fixedPoint >= other.getRawBits(); }
+
+bool Fixed::operator==( const Fixed &other ) { return this->fixedPoint == other.getRawBits(); }
 
 bool Fixed::operator!=( const Fixed &other ) { return !( *this == other ); }
 
-Fixed Fixed::operator++()
+Fixed &Fixed::operator++()
 {
     this->fixedPoint++;
     return ( *this );
 }
 
-Fixed Fixed::operator--()
+Fixed &Fixed::operator--()
 {
     this->fixedPoint--;
     return ( *this );
 }
 
-Fixed Fixed::operator++( int )
+Fixed &Fixed::operator++( int )
 {
-    Fixed temp = *this;
+    Fixed &temp = *this;
     ++*this;
     return ( temp );
 }
 
-Fixed Fixed::operator--( int )
+Fixed &Fixed::operator--( int )
 {
-    Fixed temp = *this;
+    Fixed &temp = *this;
     --*this;
     return ( temp );
 }
 
-Fixed Fixed::operator+( const Fixed &other )
+Fixed &Fixed::operator+( const Fixed &other )
 {
-    return Fixed( toFloat() + other.toFloat() );
+    this->fixedPoint += other.toFloat();
+    return *this;
 }
 
-Fixed Fixed::operator-( const Fixed &other )
+Fixed &Fixed::operator-( const Fixed &other )
 {
-    return Fixed( toFloat() - other.toFloat() );
+    this->fixedPoint -= other.toFloat();
+    return *this;
 }
 
-Fixed Fixed::operator*( const Fixed &other )
+Fixed &Fixed::operator*( const Fixed &other )
 {
-    return Fixed( toFloat() * other.toFloat() );
+    this->fixedPoint *= other.toFloat();
+    return *this;
 }
 
-Fixed Fixed::operator/( const Fixed &other )
+Fixed &Fixed::operator/( const Fixed &other )
 {
-    return Fixed( toFloat() / other.toFloat() );
+    this->fixedPoint /= other.toFloat();
+    return *this;
 }
 
 const Fixed &Fixed::max( const Fixed &ref1, const Fixed &ref2 )
 {
-    if ( (Fixed)ref1 > (Fixed)ref2 )
+    if ( ref1.getRawBits() > ref2.getRawBits() )
         return ( ref1 );
     return ( ref2 );
 }
 
 const Fixed &Fixed::min( const Fixed &ref1, const Fixed &ref2 )
 {
-    if ( (Fixed)ref1 > (Fixed)ref2 )
+    if ( ref1.getRawBits() > ref2.getRawBits() )
         return ( ref1 );
     return ( ref2 );
 }

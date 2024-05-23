@@ -34,11 +34,17 @@ bool bsp( Point const a, Point const b, Point const c, Point const point )
     float bTriangulo = area( a, point, c );
     float cTriangulo = area( a, b, point );
 
-    LOG( mainArea );
-    LOG( aTriangulo );
-    LOG( bTriangulo );
-    LOG( cTriangulo );
     if ( aTriangulo == 0 || bTriangulo == 0 || cTriangulo == 0 )
         return ( false );
     return ( mainArea == ( aTriangulo + bTriangulo + cTriangulo ) );
+}
+
+void    pointInsideTriangle(const Point a, const Point b, const Point c, const Point point)
+{
+    if ( bsp( a, b, c, point ) )
+    {
+        LOG( "True" );
+        return ;
+    }
+    LOG("False");
 }

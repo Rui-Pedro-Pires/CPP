@@ -14,15 +14,17 @@
 #ifndef __FIXED_H__
 #define __FIXED_H__
 
-#include <iostream>
 #include <cmath>
+#include <iostream>
 #define LOG( x ) std::cout << x << std::endl;
 
-class Fixed {
-private:
+class Fixed
+{
+   private:
     int fixedPoint;
     static const int fractionBits = 8;
-public:
+
+   public:
     Fixed();
     Fixed( const int integerNumber );
     Fixed( const float floatNumber );
