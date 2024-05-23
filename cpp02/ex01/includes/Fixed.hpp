@@ -28,7 +28,7 @@ public:
     Fixed( const float floatNumber );
     Fixed( const Fixed& other );
     ~Fixed();
-    void operator=( const Fixed& other );
+    Fixed& operator=( const Fixed& other );
     int getRawBits( void ) const;
     void setRawBits( int const raw );
     float toFloat( void ) const;

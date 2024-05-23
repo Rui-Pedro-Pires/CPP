@@ -48,11 +48,15 @@ std::ostream &operator<<( std::ostream &stream, const Fixed &fixed )
     return ( stream );
 }
 
-void Fixed::operator=( const Fixed &other )
+Fixed& Fixed::operator=( const Fixed& other )
 {
-    setRawBits( other.getRawBits() );
+    if ( this != &other )
+    {
+        LOG( "Copy assignment operator called" );
+        this->fixedPoint = other.getRawBits();
+    }
+    return *this;
 }
-
 bool Fixed::operator<( const Fixed &other )
 {
     return this->fixedPoint < other.fixedPoint;

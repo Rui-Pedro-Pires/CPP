@@ -38,7 +38,7 @@ class Fixed
     static Fixed& max(Fixed& ref1, Fixed& ref2);
     static const Fixed& min(const Fixed& ref1, const Fixed& ref2);
     static const Fixed& max(const Fixed& ref1, const Fixed& ref2);
-    void operator=(const Fixed& other);
+    Fixed& operator=(const Fixed& other);
     bool operator>(const Fixed& other);
     bool operator>=(const Fixed& other);
     bool operator<=(const Fixed& other);

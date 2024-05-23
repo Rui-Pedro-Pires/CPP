@@ -18,10 +18,7 @@ Fixed::Fixed()
     LOG( "Default constructor called" );
 }
 
-Fixed::~Fixed()
-{
-    LOG( "Destructor called" );
-}
+Fixed::~Fixed() { LOG( "Destructor called" ); }
 
 Fixed::Fixed( const Fixed& other )
 {
@@ -29,16 +26,20 @@ Fixed::Fixed( const Fixed& other )
     *this = other;
 }
 
-void Fixed::operator=( const Fixed& other )
+Fixed& Fixed::operator=( const Fixed& other )
 {
-    LOG( "Copy assignment operator called" );
-    this->fixedPoint = other.getRawBits();
+    if ( this != &other )
+    {
+        LOG( "Copy assignment operator called" );
+        this->fixedPoint = other.getRawBits();
+    }
+    return *this;
 }
 
 int Fixed::getRawBits( void ) const
 {
     LOG( "getRawBits member function called" );
-    return (this->fixedPoint);
+    return ( this->fixedPoint );
 }
 
 void Fixed::setRawBits( int const raw )
@@ -46,4 +47,3 @@ void Fixed::setRawBits( int const raw )
     LOG( "setRawBits member function called" );
     this->fixedPoint = raw;
 }
-

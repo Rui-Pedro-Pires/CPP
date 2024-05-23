@@ -38,10 +38,14 @@ Fixed::Fixed( const Fixed& other )
     *this = other;
 }
 
-void Fixed::operator=( const Fixed& other )
+Fixed& Fixed::operator=( const Fixed& other )
 {
-    LOG( "Copy assignment operator called" );
-    setRawBits( other.getRawBits() );
+    if ( this != &other )
+    {
+        LOG( "Copy assignment operator called" );
+        this->fixedPoint = other.getRawBits();
+    }
+    return *this;
 }
 
 int Fixed::getRawBits( void ) const
