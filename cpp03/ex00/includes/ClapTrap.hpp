@@ -20,8 +20,8 @@ class ClapTrap
 {
 private:
     std::string _name;
-    unsigned int _health;
-    unsigned int _energy;
+    int _health;
+    int _energy;
     unsigned int _attackDamage;
 
 public:
