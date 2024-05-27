@@ -14,10 +14,6 @@
 
 ClapTrap::ClapTrap()
 {
-    this->_name = "No name";
-    this->_health = 10;
-    this->_energy = 10;
-    this->_attackDamage = 0;
     std::cout << "ClapTrap " << this->_name << " created!" << std::endl;
 }
 
