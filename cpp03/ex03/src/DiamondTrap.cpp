@@ -14,26 +14,20 @@
 
 DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap()
 {
-    this->_name = "Bino";
-    this->_health = FragTrap::_health;
-    this->_energy = ScavTrap::_health;
-    this->_attackDamage = FragTrap::_attackDamage;
-    std::cout << "DiamondTrap " << this->_name << " was created" << std::endl;
+    this->_name = "Unknown";
+    std::cout << "🤖 DiamondTrap " << this->_name << " was created" << std::endl;
 }
 
 DiamondTrap::DiamondTrap( const std::string _name )
     : FragTrap( _name + "_clap_name" ), ScavTrap( _name + "_clap_name" )
 {
     this->_name = _name;
-    this->_health = FragTrap::_health;
-    this->_energy = ScavTrap::_health;
-    this->_attackDamage = FragTrap::_attackDamage;
-    std::cout << "DiamondTrap " << this->_name << " was created" << std::endl;
+    std::cout << "🤖 DiamondTrap " << this->_name << " was created" << std::endl;
 }
 
 DiamondTrap::~DiamondTrap()
 {
-    std::cout << "DiamondTrap " << this->_name << " was destroyed" << std::endl;
+    std::cout << "🤖 DiamondTrap " << this->_name << " was destroyed" << std::endl;
 }
 
 DiamondTrap::DiamondTrap( const DiamondTrap& other )
@@ -66,4 +60,7 @@ void DiamondTrap::whoiam( void )
 {
     std::cout << "My ClapTrap name is " << ClapTrap::_name << std::endl;
     std::cout << "My DiamondTrap name is " << this->_name << std::endl;
+    std::cout << "My DiamondTrap health " << this->_health << std::endl;
+    std::cout << "My DiamondTrap energy " << this->_energy << std::endl;
+    std::cout << "My DiamondTrap attack " << this->_attackDamage << std::endl;
 }

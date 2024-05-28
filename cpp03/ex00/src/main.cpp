@@ -12,52 +12,46 @@
 
 #include "../includes/ClapTrap.hpp"
 #include <stdlib.h>
+#include <unistd.h>
 
 int main(void)
 {
+    system("clear");
     ClapTrap clapTrap1("John");
     ClapTrap clapTrap2("Mick");
-    ClapTrap clapTrap3("Bino");
 
-    system("clear");
+    sleep(2);
     clapTrap1.setAttackDamage(3);
-    system("sleep 1");
+    sleep(2);
     clapTrap1.attackTarget(clapTrap2);
-    system("sleep 2");
-    clapTrap2.attackTarget(clapTrap3);
-    system("sleep 2");
+    sleep(2);
     clapTrap2.setAttackDamage(10);
-    system("sleep 1");
+    sleep(2);
     clapTrap2.attackTarget(clapTrap1);
-    system("sleep 2");
+    sleep(2);
     clapTrap2.attackTarget(clapTrap1);
-    system("sleep 2");
+    sleep(2);
     clapTrap1.beRepaired(10);
-    system("sleep 1");
+    sleep(2);
     clapTrap1.attackTarget(clapTrap2);
-    system("sleep 2");
+    sleep(2);
     clapTrap1.attackTarget(clapTrap2);
-    system("sleep 2");
+    sleep(2);
     clapTrap1.attackTarget(clapTrap2);
-    system("sleep 2");
+    sleep(2);
     clapTrap1.attackTarget(clapTrap2);
-    system("sleep 2");
+    sleep(2);
     clapTrap1.attackTarget(clapTrap2);
-    system("sleep 2");
+    sleep(2);
     clapTrap1.attackTarget(clapTrap2);
-    system("sleep 2");
+    sleep(2);
     clapTrap1.attackTarget(clapTrap2);
-    system("sleep 2");
+    sleep(2);
     clapTrap1.attackTarget(clapTrap2);
-    system("sleep 2");
+    sleep(2);
     clapTrap1.attackTarget(clapTrap2);
-    system("sleep 2");
-    clapTrap1.attackTarget(clapTrap2);
-    system("sleep 2");
-    clapTrap1.attackTarget(clapTrap2);
-
+    sleep(2);
     std::cout << "End of game!!!!" << std::endl;
-    std::cin.get();
     
     return (0);
 }

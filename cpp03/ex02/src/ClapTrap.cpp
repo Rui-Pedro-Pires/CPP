@@ -18,7 +18,7 @@ ClapTrap::ClapTrap()
     this->_health = 10;
     this->_energy = 10;
     this->_attackDamage = 0;
-    std::cout << "ClapTrap " << this->_name << " created!" << std::endl;
+    std::cout << "🤖 ClapTrap " << this->_name << " created!" << std::endl;
 }
 
 ClapTrap::ClapTrap( std::string _name )
@@ -27,7 +27,7 @@ ClapTrap::ClapTrap( std::string _name )
     this->_health = 10;
     this->_energy = 10;
     this->_attackDamage = 0;
-    std::cout << "ClapTrap " << this->_name << " created!" << std::endl;
+    std::cout << "🤖 ClapTrap " << this->_name << " created!" << std::endl;
 }
 
 ClapTrap::ClapTrap( const ClapTrap& other )
@@ -52,7 +52,7 @@ ClapTrap& ClapTrap::operator=( const ClapTrap& other )
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "ClapTrap " << this->_name << " destroyed!" << std::endl;
+    std::cout << "🤖 ClapTrap " << this->_name << " destroyed!" << std::endl;
 }
 
 void ClapTrap::attack( const std::string& target )
@@ -60,11 +60,11 @@ void ClapTrap::attack( const std::string& target )
     if ( this->_energy )
     {
         this->_energy--;
-        std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing "
+        std::cout << "⚔️ ClapTrap " << this->_name << " attacks " << target << ", causing "
                   << this->_attackDamage << " points of damage!" << std::endl;
     }
     else
-        std::cout << "No energy points left!" << std::endl;
+        std::cout << "🪫 No energy points left!" << std::endl;
 }
 
 void ClapTrap::attackTarget( ClapTrap& target )
@@ -75,10 +75,10 @@ void ClapTrap::attackTarget( ClapTrap& target )
             this->_energy--;
         else
         {
-            std::cout << "No energy points left!" << std::endl;
+            std::cout << "🪫 No energy points left!" << std::endl;
             return;
         }
-        std::cout << this->_name << " tried to attack " << target._name << " but ";
+        std::cout << "⚔️ " << this->_name << " tried to attack " << target._name << " but ";
         std::cout << target._name << " is already dead!" << std::endl;
     }
     else if ( !this->_attackDamage )
@@ -87,10 +87,11 @@ void ClapTrap::attackTarget( ClapTrap& target )
             this->_energy--;
         else
         {
-            std::cout << "No energy points left!" << std::endl;
+            std::cout << "🪫 No energy points left!" << std::endl;
             return;
         }
-        std::cout << this->_name << " tried to attack but as missed the shot!" << std::endl;
+        std::cout << "⚔️ " << this->_name << " tried to attack but as missed the shot!"
+                  << std::endl;
         std::cout << "No damage made!" << std::endl;
     }
     else
@@ -103,9 +104,14 @@ void ClapTrap::attackTarget( ClapTrap& target )
 void ClapTrap::takeDamage( unsigned int amount )
 {
     this->_health -= amount;
-    std::cout << this->_name << " lost " << amount << " of health" << std::endl;
+    std::cout << "🤕 " << this->_name << " lost " << amount << " of health and has now ";
     if ( this->_health <= 0 )
-        std::cout << this->_name << " is dead!" << std::endl;
+    {
+        std::cout << 0 << " of health ⛨ !" << std::endl;
+        std::cout << "☠️ " << this->_name << " is dead!" << std::endl;
+    }
+    else
+        std::cout << this->_health << " of health ⛨ !" << std::endl;
 }
 
 void ClapTrap::beRepaired( unsigned int amount )
@@ -114,14 +120,15 @@ void ClapTrap::beRepaired( unsigned int amount )
     {
         this->_energy--;
         this->_health += amount;
-        std::cout << this->_name << " gained " << amount << " of health!" << std::endl;
+        std::cout << " ❤️‍🩹 " << this->_name << " gained " << amount << " of health!"
+                  << std::endl;
     }
     else
-        std::cout << "No energy points left!" << std::endl;
+        std::cout << "🪫 No energy points left!" << std::endl;
 }
 
 void ClapTrap::setAttackDamage( unsigned int amount )
 {
     this->_attackDamage = amount;
-    std::cout << this->_name << " is reloading the weapon " << std::endl;
+    std::cout << "🔫 " << this->_name << " is reloading the weapon " << std::endl;
 }

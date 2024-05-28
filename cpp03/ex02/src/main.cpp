@@ -10,21 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <unistd.h>
+
 #include "../includes/FragTrap.hpp"
 
 int main( void )
 {
+    system( "clear" );
     FragTrap FragTrap1( "John" );
     FragTrap FragTrap2( "Mick" );
-    FragTrap FragTrap3( "Bino" );
 
-    FragTrap1.setAttackDamage( 3 );
+    sleep( 2 );
     FragTrap1.attackTarget( FragTrap2 );
-    FragTrap2.attackTarget( FragTrap3 );
-    FragTrap2.setAttackDamage( 10 );
-    FragTrap2.highFivesGuys();
+    sleep( 2 );
     FragTrap2.attackTarget( FragTrap1 );
+    sleep( 2 );
+    FragTrap2.highFivesGuys();
+    sleep( 2 );
+    FragTrap2.attackTarget( FragTrap1 );
+    sleep( 2 );
     FragTrap1.beRepaired( 10 );
+    sleep( 2 );
+    std::cout << "End of game!!!!" << std::endl;
 
     return ( 0 );
 }

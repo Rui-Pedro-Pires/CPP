@@ -18,14 +18,16 @@ int main( void )
     DiamondTrap DiamondTrap2( "Mick" );
     DiamondTrap DiamondTrap3( "Bino" );
 
-    DiamondTrap1.setAttackDamage( 3 );
-    DiamondTrap1.attackTarget( DiamondTrap2 );
-    DiamondTrap2.attackTarget( DiamondTrap3 );
-    DiamondTrap2.setAttackDamage( 10 );
-    DiamondTrap2.highFivesGuys();
     DiamondTrap1.whoiam();
-    DiamondTrap2.attackTarget( DiamondTrap1 );
-    DiamondTrap1.beRepaired( 10 );
+    DiamondTrap2.whoiam();
+    DiamondTrap3.whoiam();
+    /*  DiamondTrap1.attackTarget( DiamondTrap2 );
+     DiamondTrap2.attackTarget( DiamondTrap3 );
+     DiamondTrap2.setAttackDamage( 10 );
+     DiamondTrap2.highFivesGuys();
+     DiamondTrap1.whoiam();
+     DiamondTrap2.attackTarget( DiamondTrap1 );
+     DiamondTrap1.beRepaired( 10 ); */
 
     return ( 0 );
 }

@@ -14,11 +14,11 @@
 
 ScavTrap::ScavTrap()
 {
-    this->_name = "No name";
+    this->_name = "Unknown";
     this->_health = 100;
     this->_energy = 50;
     this->_attackDamage = 20;
-    std::cout << "ScavTrap " << this->_name << " was created" << std::endl;
+    std::cout << "🤖 ScavTrap " << this->_name << " was created" << std::endl;
 }
 
 ScavTrap::ScavTrap( std::string _name ) : ClapTrap( _name )
@@ -27,7 +27,7 @@ ScavTrap::ScavTrap( std::string _name ) : ClapTrap( _name )
     this->_health = 100;
     this->_energy = 50;
     this->_attackDamage = 20;
-    std::cout << "ScavTrap " << this->_name << " was created" << std::endl;
+    std::cout << "🤖 ScavTrap " << this->_name << " was created" << std::endl;
 }
 
 ScavTrap& ScavTrap::operator=( const ScavTrap& other )
@@ -52,12 +52,12 @@ ScavTrap::ScavTrap( const ScavTrap& other ) : ClapTrap( other )
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << "ScavTrap " << this->_name << " was destroyed" << std::endl;
+    std::cout << "🤖 ScavTrap " << this->_name << " was destroyed" << std::endl;
 }
 
 void ScavTrap::guardGate( void )
 {
-    std::cout << this->_name << " is now in gatekeeper mode!" << std::endl;
+    std::cout << "🛡️ " << this->_name << " is now in gatekeeper mode!" << std::endl;
 }
 
 void ScavTrap::attack( const std::string& target )
@@ -65,9 +65,9 @@ void ScavTrap::attack( const std::string& target )
     if ( this->_energy )
     {
         this->_energy--;
-        std::cout << "ScavTrap " << this->_name << " attacks " << target << ", causing "
+        std::cout << "⚔️ ScavTrap " << this->_name << " attacks " << target << ", causing "
                   << this->_attackDamage << " points of damage!" << std::endl;
         return;
     }
-    std::cout << "No energy points left!" << std::endl;
+    std::cout << "🪫 No energy points left!" << std::endl;
 }

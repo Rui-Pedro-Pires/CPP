@@ -14,11 +14,15 @@
 #ifndef __SCAVTRAP_H__
 #define __SCAVTRAP_H__
 
-
 #include "ClapTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap
 {
+protected:
+    int _health;
+    unsigned int _energy;
+    unsigned int _attackDamage;
+
 public:
     ScavTrap();
     ScavTrap( std::string _name );

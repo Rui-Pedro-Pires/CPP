@@ -14,11 +14,11 @@
 
 FragTrap::FragTrap()
 {
-    this->_name = "No name";
+    this->_name = "Unknown";
     this->_health = 100;
     this->_energy = 100;
     this->_attackDamage = 30;
-    std::cout << "FragTrap " << this->_name << " was created" << std::endl;
+    std::cout << "🤖 FragTrap " << this->_name << " was created" << std::endl;
 }
 
 FragTrap::FragTrap( std::string _name ) : ClapTrap( _name )
@@ -27,7 +27,7 @@ FragTrap::FragTrap( std::string _name ) : ClapTrap( _name )
     this->_health = 100;
     this->_energy = 100;
     this->_attackDamage = 30;
-    std::cout << "FragTrap " << this->_name << " was created" << std::endl;
+    std::cout << "🤖 FragTrap " << this->_name << " was created" << std::endl;
 }
 
 FragTrap& FragTrap::operator=( const FragTrap& other )
@@ -52,7 +52,7 @@ FragTrap::FragTrap( const FragTrap& other ) : ClapTrap( other )
 
 FragTrap::~FragTrap()
 {
-    std::cout << "FragTrap " << this->_name << " was destroyed" << std::endl;
+    std::cout << "🤖 FragTrap " << this->_name << " was destroyed" << std::endl;
 }
 
 void FragTrap::attack( const std::string& target )
@@ -60,14 +60,14 @@ void FragTrap::attack( const std::string& target )
     if ( this->_energy )
     {
         this->_energy--;
-        std::cout << "FragTrap " << this->_name << " attacks " << target << ", causing "
+        std::cout << "⚔️ FragTrap " << this->_name << " attacks " << target << ", causing "
                   << this->_attackDamage << " points of damage!" << std::endl;
         return;
     }
-    std::cout << "No energy points left!" << std::endl;
+    std::cout << "🪫 No energy points left!" << std::endl;
 }
 
 void FragTrap::highFivesGuys( void )
 {
-    std::cout << "FragTrap " << this->_name << " highfive" << std::endl;
+    std::cout << "🙏 FragTrap " << this->_name << " highfive" << std::endl;
 }

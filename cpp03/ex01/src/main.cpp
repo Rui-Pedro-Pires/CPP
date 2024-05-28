@@ -10,21 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <unistd.h>
+
 #include "../includes/ScavTrap.hpp"
 
 int main( void )
 {
+    system( "clear" );
     ScavTrap ScavTrap1( "John" );
     ScavTrap ScavTrap2( "Mick" );
-    ScavTrap ScavTrap3( "Bino" );
 
-    ScavTrap1.setAttackDamage( 3 );
+    sleep( 2 );
     ScavTrap1.attackTarget( ScavTrap2 );
-    ScavTrap2.attackTarget( ScavTrap3 );
+    sleep( 2 );
     ScavTrap2.guardGate();
-    ScavTrap2.setAttackDamage( 10 );
+    sleep( 2 );
     ScavTrap2.attackTarget( ScavTrap1 );
+    sleep( 2 );
     ScavTrap1.beRepaired( 10 );
+    sleep( 2 );
+    std::cout << "End of game!!!!" << std::endl;
 
     return ( 0 );
 }
