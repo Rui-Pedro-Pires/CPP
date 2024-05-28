@@ -19,7 +19,7 @@
 
 class DiamondTrap : public FragTrap, public ScavTrap
 {
-private:
+protected:
     std::string _name;
     using FragTrap::_attackDamage;
     using FragTrap::_health;

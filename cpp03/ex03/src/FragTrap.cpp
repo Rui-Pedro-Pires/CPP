@@ -61,7 +61,7 @@ void FragTrap::attack( const std::string& target )
     {
         this->_energy--;
         std::cout << "⚔️ FragTrap " << this->_name << " attacks " << target << ", causing "
-                  << this->_attackDamage << " points of damage!" << std::endl;
+                  << ClapTrap::_attackDamage << " points of damage!" << std::endl;
         return;
     }
     std::cout << "🪫 No energy points left!" << std::endl;
