@@ -15,22 +15,26 @@
 #define __ANIMAL_H__
 
 #include <iostream>
-#define LOG(x) std::cout << x << std::endl;
+#define LOG( x ) std::cout << x << std::endl;
 
 class Animal
 {
 protected:
     std::string _type;
 
-public:
+protected:
     Animal();
+
+public:
     Animal( std::string type );
     virtual ~Animal();
     Animal( const Animal& other );
     Animal& operator=( const Animal& other );
-    
+
     std::string getType() const;
-    virtual void makeSound() const;
+    virtual void makeSound() const = 0;
+    virtual void addIdea( std::string idea ) = 0;
+    virtual void printIdeas() const = 0;
 };
 
 #endif

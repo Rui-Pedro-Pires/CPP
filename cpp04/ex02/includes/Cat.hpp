@@ -29,6 +29,8 @@ public:
     Cat& operator=( const Cat& other );
 
     void makeSound() const;
+    void addIdea( std::string idea );
+    void printIdeas() const;
 };
 
 #endif

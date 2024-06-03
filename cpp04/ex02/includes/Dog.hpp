@@ -29,6 +29,8 @@ public:
     Dog& operator=( const Dog& other );
 
     void makeSound() const;
+    void addIdea( std::string idea );
+    void printIdeas() const;
 };
 
 #endif

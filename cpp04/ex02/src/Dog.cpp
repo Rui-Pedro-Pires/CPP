@@ -51,3 +51,14 @@ void Dog::makeSound() const
     std::cout << " ███ ███   ██████   ██████  ██      " << std::endl;
     std::cout << std::endl;
 }
+
+void Dog::addIdea( std::string idea )
+{
+    this->_brain->createIdea( idea );
+}
+
+void Dog::printIdeas() const
+{
+    std::cout << "These are my " << this->getType() << " ideas: " << std::endl;
+    this->_brain->printIdeas();
+}
