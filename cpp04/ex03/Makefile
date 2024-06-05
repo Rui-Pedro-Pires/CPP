@@ -13,17 +13,18 @@ C++ = c++
 CPPFLAGS = -Werror -Wall -Wextra -g -std=c++98
 
 # File-related variables
-NAME = DiamondTrap
+NAME = material
 RM = rm -rf
 SDIR := src
 ODIR := obj
 
 # Source files
 SOURCES := main.cpp\
-			ClapTrap.cpp\
-			FragTrap.cpp\
-			ScavTrap.cpp\
-			DiamondTrap.cpp\
+			AMateria.cpp\
+			Cure.cpp\
+			Ice.cpp\
+			Character.cpp\
+			MateriaSource.cpp\
 
 # Object files
 OBJECTS := $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCES))

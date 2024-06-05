@@ -14,14 +14,26 @@
 #ifndef __AMATERIA_H__
 #define __AMATERIA_H__
 
+#include <iostream>
+
+#include "ICharacter.hpp"
+
+class ICharacter;
 class AMateria
 {
-private:
+protected:
+    std::string _type;
 
 public:
     AMateria();
-    ~AMateria();
-    AMateria(const AMateria& originalAMateria);
-    AMateria& operator=(const AMateria& originalAMateria);
+    AMateria( std::string const& type );
+    virtual ~AMateria();
+    AMateria( const AMateria& originalAMateria );
+    AMateria& operator=( const AMateria& originalAMateria );
+
+    std::string const& getType() const;
+    virtual AMateria* clone() const = 0;
+    virtual void use( ICharacter& target );
 };
+
 #endif
