@@ -14,12 +14,12 @@
 
 Character::Character()
 {
-    std::cout << "Character created!" << std::endl;
+    std::cout << "Character constructed!" << std::endl;
 }
 
 Character::Character( std::string const& name )
 {
-    std::cout << "Character created!" << std::endl;
+    std::cout << "Character constructed!" << std::endl;
     this->_name = name;
     this->_idx = 0;
     for ( int i = 0; i < 4; i++ )

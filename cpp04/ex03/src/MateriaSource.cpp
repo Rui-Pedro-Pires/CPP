@@ -14,7 +14,7 @@
 
 MateriaSource::MateriaSource()
 {
-    std::cout << "Materia Created!" << std::endl;
+    std::cout << "MateriaSource constructed!" << std::endl;
     this->_idx = 0;
     for ( int i = 0; i < 4; i++ )
     {
@@ -24,7 +24,7 @@ MateriaSource::MateriaSource()
 
 MateriaSource::~MateriaSource()
 {
-    std::cout << "Materia destruted!" << std::endl;
+    std::cout << "MateriaSource destruted!" << std::endl;
     for ( int i = 0; i <= this->_idx; i++ )
     {
         delete this->materials[i];
