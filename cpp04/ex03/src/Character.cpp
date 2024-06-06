@@ -34,7 +34,7 @@ Character::Character( const Character& originalCharacter )
     this->_idx = originalCharacter._idx;
     for ( int i = 0; i <= originalCharacter._idx; i++ )
     {
-        if ( this->materials[i] )
+        if ( originalCharacter.materials[i] )
             this->materials[i] = originalCharacter.materials[i]->clone();
     }
 }
@@ -55,7 +55,7 @@ Character& Character::operator=( const Character& originalCharacter )
         }
         for ( int i = 0; i <= originalCharacter._idx; i++ )
         {
-            if ( this->materials[i] )
+            if ( originalCharacter.materials[i] )
                 this->materials[i] = originalCharacter.materials[i]->clone();
         }
     }

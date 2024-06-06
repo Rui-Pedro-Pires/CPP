@@ -30,6 +30,18 @@ int main( void )
     ICharacter* bob = new Character( "bob" );
     me->use( 0, *bob );
     me->use( 1, *bob );
+
+    Character ze( "ze" );
+    Character bino( "bino");
+
+    ze.equip(src->createMateria("ice"));
+    ze.equip(src->createMateria("cure"));
+
+    bino = ze;
+    bino.use(1, *bob);
+    bino.use(0, *bob);
+
+
     delete bob;
     delete me;
     delete src;

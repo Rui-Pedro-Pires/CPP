@@ -37,7 +37,7 @@ MateriaSource::MateriaSource( const MateriaSource& originalMateralSource )
     this->_idx = originalMateralSource._idx;
     for ( int i = 0; i <= originalMateralSource._idx; i++ )
     {
-        if ( this->materials[i] )
+        if ( originalMateralSource.materials[i] )
             this->materials[i] = originalMateralSource.materials[i]->clone();
     }
 }
@@ -57,7 +57,7 @@ MateriaSource& MateriaSource::operator=( const MateriaSource& originalMateralSou
         }
         for ( int i = 0; i <= originalMateralSource._idx; i++ )
         {
-            if ( this->materials[i] )
+            if ( originalMateralSource.materials[i] )
                 this->materials[i] = originalMateralSource.materials[i]->clone();
         }
     }
