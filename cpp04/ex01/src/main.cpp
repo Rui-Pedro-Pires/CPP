@@ -17,9 +17,11 @@
 int main()
 {
     Dog dog;
+    Dog dog1;
     Cat cat;
     Animal* animals[] = { new Dog(), new Dog( dog ), new Cat(), new Cat( cat ) };
 
+    dog = dog1;
     for ( int i = 0; i < 4; i++ )
     {
         delete animals[i];
