@@ -22,10 +22,8 @@ class Animal
 protected:
     std::string _type;
 
-protected:
-    Animal();
-
 public:
+    Animal();
     Animal( std::string type );
     virtual ~Animal();
     Animal( const Animal& other );
