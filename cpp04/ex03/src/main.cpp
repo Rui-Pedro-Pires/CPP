@@ -42,8 +42,15 @@ int main( void )
     bino.use(0, *bob);
     bino.use(1, *bob);
     bino.unequip(0);
-    bino.unequip(3);
-
+    bino.use(0, *bob);
+    bino.unequip(1);
+    bino.equip(src->createMateria("cure"));
+    bino.equip(src->createMateria("cure"));
+    bino.equip(src->createMateria("cure"));
+    bino.unequip(0);
+    bino.unequip(1);
+    bino.unequip(2);
+    
 
     delete bob;
     delete me;

@@ -98,7 +98,7 @@ void Character::use( int idx, ICharacter& target )
 
 void Character::unequip( int idx )
 {
-    if ( idx > 0 && idx < 4 )
+    if ( idx >= 0 && idx < 4 )
     {
         if ( this->_inventory[idx] )
         {
@@ -109,9 +109,10 @@ void Character::unequip( int idx )
             }
             else
             {
-                if ( this->_garbage[3] )
-                    delete this->_garbage[3];
-                this->_garbage[3] = this->_inventory[idx];
+                this->_garbageIdx = 0;
+                cleanGarbage();
+                this->_garbage[_garbageIdx] = this->_inventory[idx];
+                this->_garbageIdx++;
             }
             this->_inventory[idx] = NULL;
         }
@@ -132,4 +133,15 @@ void Character::equip( AMateria* m )
 std::string const& Character::getName() const
 {
     return this->_name;
+}
+
+void Character::cleanGarbage()
+{
+    for (int i = 0; i < 4; i++) {
+        if (this->_garbage[i])
+        {
+            delete this->_garbage[i];
+            this->_garbage[i] = NULL;
+        }
+    }
 }

@@ -36,6 +36,7 @@ public:
     void unequip( int idx );
     void equip( AMateria* m );
     std::string const& getName() const;
+    void cleanGarbage();
 };
 
 #endif
