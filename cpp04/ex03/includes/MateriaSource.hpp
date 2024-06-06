@@ -19,7 +19,7 @@
 class MateriaSource : public IMateriaSource
 {
 private:
-    AMateria* materials[4];
+    AMateria* _inventory[4];
     int _idx;
 
 public:

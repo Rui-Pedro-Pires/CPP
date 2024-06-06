@@ -22,9 +22,11 @@ Character::Character( std::string const& name )
     std::cout << "Character constructed!" << std::endl;
     this->_name = name;
     this->_idx = 0;
+    this->_garbageIdx = 0;
     for ( int i = 0; i < 4; i++ )
     {
-        this->materials[i] = NULL;
+        this->_inventory[i] = NULL;
+        this->_garbage[i] = NULL;
     }
 }
 
@@ -32,10 +34,13 @@ Character::Character( const Character& originalCharacter )
 {
     this->_name = originalCharacter._name;
     this->_idx = originalCharacter._idx;
+    this->_garbageIdx = 0;
     for ( int i = 0; i <= originalCharacter._idx; i++ )
     {
-        if ( originalCharacter.materials[i] )
-            this->materials[i] = originalCharacter.materials[i]->clone();
+        if ( originalCharacter._inventory[i] )
+            this->_inventory[i] = originalCharacter._inventory[i]->clone();
+        if ( originalCharacter._garbage[i] )
+            this->_garbage[i] = originalCharacter._garbage[i]->clone();
     }
 }
 
@@ -45,18 +50,26 @@ Character& Character::operator=( const Character& originalCharacter )
     {
         this->_name = originalCharacter._name;
         this->_idx = originalCharacter._idx;
-        for ( int i = 0; i <= this->_idx; i++ )
+        this->_garbageIdx = originalCharacter._garbageIdx;
+        for ( int i = 0; i < 4; i++ )
         {
-            if ( this->materials[i] )
+            if ( this->_inventory[i] )
             {
-                delete this->materials[i];
-                this->materials[i] = NULL;
+                delete this->_inventory[i];
+                this->_inventory[i] = NULL;
+            }
+            if ( this->_garbage[i] )
+            {
+                delete this->_garbage[i];
+                this->_garbage[i] = NULL;
             }
         }
-        for ( int i = 0; i <= originalCharacter._idx; i++ )
+        for ( int i = 0; i < 4; i++ )
         {
-            if ( originalCharacter.materials[i] )
-                this->materials[i] = originalCharacter.materials[i]->clone();
+            if ( originalCharacter._inventory[i] )
+                this->_inventory[i] = originalCharacter._inventory[i]->clone();
+            if ( originalCharacter._garbage[i] )
+                this->_garbage[i] = originalCharacter._garbage[i]->clone();
         }
     }
     return *this;
@@ -65,10 +78,12 @@ Character& Character::operator=( const Character& originalCharacter )
 Character::~Character()
 {
     std::cout << "Character destructed!" << std::endl;
-    for ( int i = 0; i <= this->_idx; i++ )
+    for ( int i = 0; i < 4; i++ )
     {
-        if ( this->materials[i] )
-            delete this->materials[i];
+        if ( this->_inventory[i] )
+            delete this->_inventory[i];
+        if ( this->_garbage[i] )
+            delete this->_garbage[i];
     }
 }
 
@@ -76,8 +91,8 @@ void Character::use( int idx, ICharacter& target )
 {
     if ( idx >= 0 && idx < 4 )
     {
-        if ( this->materials[idx] )
-            this->materials[idx]->use( target );
+        if ( this->_inventory[idx] )
+            this->_inventory[idx]->use( target );
     }
 }
 
@@ -85,10 +100,20 @@ void Character::unequip( int idx )
 {
     if ( idx > 0 && idx < 4 )
     {
-        if ( this->materials[idx] )
+        if ( this->_inventory[idx] )
         {
-            delete this->materials[idx];
-            this->materials[idx] = NULL;
+            if ( this->_garbageIdx < 4 )
+            {
+                this->_garbage[_garbageIdx] = this->_inventory[idx];
+                this->_garbageIdx++;
+            }
+            else
+            {
+                if ( this->_garbage[3] )
+                    delete this->_garbage[3];
+                this->_garbage[3] = this->_inventory[idx];
+            }
+            this->_inventory[idx] = NULL;
         }
     }
 }
@@ -97,9 +122,11 @@ void Character::equip( AMateria* m )
 {
     if ( this->_idx < 4 )
     {
-        this->materials[this->_idx] = m;
+        this->_inventory[this->_idx] = m;
         this->_idx++;
     }
+    else
+        delete m;
 }
 
 std::string const& Character::getName() const
