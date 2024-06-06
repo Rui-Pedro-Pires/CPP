@@ -30,26 +30,6 @@ ScavTrap::ScavTrap( std::string _name ) : ClapTrap( _name )
     std::cout << "🤖 ScavTrap " << this->_name << " was created" << std::endl;
 }
 
-ScavTrap& ScavTrap::operator=( const ScavTrap& other )
-{
-    if ( this != &other )
-    {
-        this->_name = other._name;
-        this->_health = other._health;
-        this->_energy = other._energy;
-        this->_attackDamage = other._attackDamage;
-    }
-    return *this;
-}
-
-ScavTrap::ScavTrap( const ScavTrap& other ) : ClapTrap( other )
-{
-    this->_name = other._name;
-    this->_health = other._health;
-    this->_energy = other._energy;
-    this->_attackDamage = other._attackDamage;
-}
-
 ScavTrap::~ScavTrap()
 {
     std::cout << "🤖 ScavTrap " << this->_name << " was destroyed" << std::endl;
