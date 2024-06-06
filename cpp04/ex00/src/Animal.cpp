@@ -15,7 +15,6 @@
 Animal::Animal()
 {
     LOG("Animal constructed!");
-    this->_type = "Animal";
 }
 
 Animal::Animal( std::string type )
@@ -31,6 +30,7 @@ Animal::~Animal()
 
 Animal::Animal( const Animal& other )
 {
+    std::cout << "copy constructer from animal called!" << std::endl;
     this->_type = other._type;
 }
 

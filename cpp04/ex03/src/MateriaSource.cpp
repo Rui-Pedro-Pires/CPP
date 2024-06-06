@@ -27,7 +27,8 @@ MateriaSource::~MateriaSource()
     std::cout << "MateriaSource destruted!" << std::endl;
     for ( int i = 0; i <= this->_idx; i++ )
     {
-        delete this->materials[i];
+        if ( this->materials[i] )
+            delete this->materials[i];
     }
 }
 
@@ -48,8 +49,11 @@ MateriaSource& MateriaSource::operator=( const MateriaSource& originalMateralSou
         this->_idx = originalMateralSource._idx;
         for ( int i = 0; i <= this->_idx; i++ )
         {
-            delete this->materials[i];
-            this->materials[i] = NULL;
+            if ( this->materials[i] )
+            {
+                delete this->materials[i];
+                this->materials[i] = NULL;
+            }
         }
         for ( int i = 0; i <= originalMateralSource._idx; i++ )
         {

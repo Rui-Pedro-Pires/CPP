@@ -16,8 +16,8 @@
 
 Dog::Dog() : Animal( "Dog" )
 {
-    this->_brain = new Brain();
     LOG( "Dog constructed!" );
+    this->_brain = new Brain();
 }
 
 Dog::~Dog()

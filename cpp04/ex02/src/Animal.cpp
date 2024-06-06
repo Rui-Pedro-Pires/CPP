@@ -38,6 +38,7 @@ Animal& Animal::operator=( const Animal& other )
 {
     if ( this != &other )
     {
+        std::cout << "animal copy" << std::endl;
         this->_type = other._type;
     }
     return *this;

@@ -24,6 +24,7 @@ Cat::~Cat()
 
 Cat::Cat( const Cat& other ) : Animal( other )
 {
+    std::cout << "copy constructer from cat called!" << std::endl;
     this->_type = other._type;
 }
 

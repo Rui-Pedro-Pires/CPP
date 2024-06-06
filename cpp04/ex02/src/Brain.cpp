@@ -34,6 +34,7 @@ Brain& Brain::operator=( const Brain& other )
 {
     if ( this != &other )
     {
+        std::cout << "copy constructer operator called in brain!" << std::endl;
         std::copy( other._ideas, other._ideas + 100, this->_ideas );
     }
     return *this;

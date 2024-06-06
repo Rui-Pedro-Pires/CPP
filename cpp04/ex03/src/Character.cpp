@@ -47,8 +47,11 @@ Character& Character::operator=( const Character& originalCharacter )
         this->_idx = originalCharacter._idx;
         for ( int i = 0; i <= this->_idx; i++ )
         {
-            delete this->materials[i];
-            this->materials[i] = NULL;
+            if ( this->materials[i] )
+            {
+                delete this->materials[i];
+                this->materials[i] = NULL;
+            }
         }
         for ( int i = 0; i <= originalCharacter._idx; i++ )
         {
@@ -64,21 +67,29 @@ Character::~Character()
     std::cout << "Character destructed!" << std::endl;
     for ( int i = 0; i <= this->_idx; i++ )
     {
-        delete this->materials[i];
+        if ( this->materials[i] )
+            delete this->materials[i];
     }
 }
 
 void Character::use( int idx, ICharacter& target )
 {
-    this->materials[idx]->use( target );
+    if ( idx >= 0 && idx < 4 )
+    {
+        if ( this->materials[idx] )
+            this->materials[idx]->use( target );
+    }
 }
 
 void Character::unequip( int idx )
 {
-    if ( this->materials[idx] )
+    if ( idx > 0 && idx < 4 )
     {
-        delete this->materials[idx];
-        this->materials[idx] = NULL;
+        if ( this->materials[idx] )
+        {
+            delete this->materials[idx];
+            this->materials[idx] = NULL;
+        }
     }
 }
 

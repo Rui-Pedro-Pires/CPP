@@ -23,5 +23,12 @@ int main()
         animals[i]->makeSound();
         delete animals[i];
     }
+
+    Dog dog1;
+    Animal* dog2 = new Dog(dog1);
+
+    LOG(dog2->getType());
+    dog2->makeSound();
+    delete dog2;
     return 0;
 }

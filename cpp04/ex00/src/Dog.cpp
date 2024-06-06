@@ -14,16 +14,17 @@
 
 Dog::Dog() : Animal( "Dog" )
 {
-    LOG("Dog constructed!");
+    LOG( "Dog constructed!" );
 }
 
 Dog::~Dog()
 {
-    LOG("Dog destructed!");
+    LOG( "Dog destructed!" );
 }
 
 Dog::Dog( const Dog& other ) : Animal( other )
 {
+    std::cout << "copy constructer from dog called!" << std::endl;
     this->_type = other._type;
 }
 

@@ -18,7 +18,7 @@
 
 class Brain
 {
-public:
+private:
     std::string _ideas[100];
 
 public:

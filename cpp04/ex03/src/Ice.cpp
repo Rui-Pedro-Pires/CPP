@@ -22,7 +22,7 @@ Ice::~Ice()
     std::cout << "Ice material destructed!" << std::endl;
 }
 
-Ice::Ice( const Ice& originalIce ) : AMateria( originalIce._type )
+Ice::Ice( const Ice& originalIce ) : AMateria( originalIce )
 {
 }
 

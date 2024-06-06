@@ -20,6 +20,7 @@
 #include "ICharacter.hpp"
 
 class AMateria;
+
 class ICharacter
 {
 public:

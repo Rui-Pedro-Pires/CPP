@@ -21,13 +21,14 @@ class MateriaSource : public IMateriaSource
 private:
     AMateria* materials[4];
     int _idx;
+
 public:
     MateriaSource();
     ~MateriaSource();
-    MateriaSource(const MateriaSource& originalMateriaSource);
-    MateriaSource& operator=(const MateriaSource& originalMateriaSource);
-    void learnMateria( AMateria* materia);
-    AMateria* createMateria(std::string const & type); 
+    MateriaSource( const MateriaSource& originalMateriaSource );
+    MateriaSource& operator=( const MateriaSource& originalMateriaSource );
+    void learnMateria( AMateria* materia );
+    AMateria* createMateria( std::string const& type );
 };
 
 #endif

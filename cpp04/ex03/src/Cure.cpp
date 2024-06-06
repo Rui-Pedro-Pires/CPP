@@ -22,7 +22,7 @@ Cure::~Cure()
     std::cout << "Ice material destructed!" << std::endl;
 }
 
-Cure::Cure( const Cure& originalIce ) : AMateria( originalIce._type )
+Cure::Cure( const Cure& originalIce ) : AMateria( originalIce )
 {
 }
 

@@ -34,6 +34,7 @@ Cat& Cat::operator=( const Cat& other )
 {
     if ( this != &other )
     {
+        std::cout << "copy constructer operator called in cat!" << std::endl;
         this->_type = other._type;
         *this->_brain = *other._brain;
     }
