@@ -20,7 +20,6 @@ class Brain
 {
 private:
     int ideaNumber;
-public:
     std::string* _ideas;
 
 public:
