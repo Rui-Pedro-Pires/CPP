@@ -21,10 +21,11 @@ int main()
     Cat cat;
     Animal* animals[] = { new Dog(), new Dog( dog ), new Cat(), new Cat( cat ) };
 
-    dog = dog1;
     for ( int i = 0; i < 4; i++ )
     {
         delete animals[i];
     }
+    std::cout << "----------------" << std::endl;
+    dog = dog1;
     return 0;
 }
