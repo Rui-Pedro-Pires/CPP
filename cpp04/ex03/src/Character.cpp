@@ -114,6 +114,8 @@ void Character::unequip( int idx )
                 this->_garbage[_garbageIdx] = this->_inventory[idx];
                 this->_garbageIdx++;
             }
+            if (this->idx != 0)
+                this->idx--;
             this->_inventory[idx] = NULL;
         }
     }
