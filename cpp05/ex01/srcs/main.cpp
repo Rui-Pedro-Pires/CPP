@@ -11,26 +11,11 @@
 /* ************************************************************************** */
 
 #include "../includes/Bureaucrat.hpp"
+#include "../includes/Form.hpp"
 
 int main()
 {
     Bureaucrat ze("ze", 130);
-    std::cout << ze << std::endl;
-    try
-    {
-        Bureaucrat manuel("manuel", 160);
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    try
-    {
-        Bureaucrat miguel("miguel", 0);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    
+    Form man("man", 50, 50);
+    ze.signForm(man);
 }
