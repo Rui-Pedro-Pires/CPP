@@ -15,7 +15,7 @@
 
 int main()
 {
-    Bureaucrat ze("ze", 130);
+    Bureaucrat ze("ze", 30);
     Form man("man", 50, 50);
     ze.signForm(man);
 }
