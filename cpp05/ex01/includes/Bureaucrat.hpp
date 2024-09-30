@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 15:10:14 by ruiolive          #+#    #+#             */
-/*   Updated: 2024/09/30 15:26:11 by ruiolive         ###   ########.fr       */
+/*   Created: 2024/09/30 15:25:00 by ruiolive          #+#    #+#             */
+/*   Updated: 2024/09/30 16:22:09 by ruiolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 #define Bureaucrat_HPP
 
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
 private:
-    const std::string _name;
+    std::string _name;
     int _grade;
 
 public:
@@ -31,6 +34,7 @@ public:
     void decrementgrade();
     std::string getname() const;
     int getgrade() const;
+    void signForm(Form &form);
     class GradeTooHighException : public std::exception
     {
     public:
