@@ -18,9 +18,9 @@ Form::Form() : _name("noname"), _gradeToSign(1), _gradeToExecute(1)
 
 Form::Form(std::string name, const int gradeToSign, const int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
-    if (gradeToExecute < 1 != gradeToSign < 1)
+    if (gradeToExecute < 1 || gradeToSign < 1)
         throw Form::GradeTooHighException();
-    else if (gradeToExecute > 150 != gradeToSign > 150)
+    else if (gradeToExecute > 150 || gradeToSign > 150)
         throw Form::GradeTooLowException();
     this->_isSigned = false;
 }

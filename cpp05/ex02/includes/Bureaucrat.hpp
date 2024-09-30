@@ -17,6 +17,8 @@
 #include "AForm.hpp"
 #include <iostream>
 
+class AForm;
+
 class Bureaucrat {
 private:
   std::string _name;

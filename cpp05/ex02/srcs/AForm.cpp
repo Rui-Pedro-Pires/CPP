@@ -16,9 +16,9 @@ AForm::AForm() : _name("noname"), _gradeToSign(1), _gradeToExecute(1) {}
 
 AForm::AForm(std::string name, std::string target, const int gradeToSign, const int gradeToExecute)
     : _name(name), _target(target), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
-  if ((gradeToExecute < 1) != (gradeToSign < 1))
+  if (gradeToExecute < 1 || gradeToSign < 1)
     throw AForm::GradeTooHighException();
-  else if ((gradeToExecute > 150) != (gradeToSign > 150))
+  else if (gradeToExecute > 150 || gradeToSign > 150)
     throw AForm::GradeTooLowException();
   this->_isSigned = false;
 }
@@ -59,6 +59,10 @@ const char *AForm::GradeTooHighException::what() const throw() {
 
 const char *AForm::GradeTooLowException::what() const throw() {
   return "Grade too low!";
+}
+
+const char *AForm::NotSignedException::what() const throw() {
+  return "Form not signed!";
 }
 
 std::ostream &operator<<(std::ostream &stream, const AForm &form) {

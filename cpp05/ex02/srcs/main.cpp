@@ -14,8 +14,8 @@
 #include "../includes/ShrubberyCreationForm.hpp"
 
 int main() {
-  Bureaucrat ze("ze", 147);
-  ShrubberyCreationForm zezio("manuel");
-
-  zezio.execute(ze);
+  Bureaucrat ze("ze", 135);
+  ShrubberyCreationForm man("manuel");
+  man.beSigned(ze);
+  ze.executeForm(man);
 }

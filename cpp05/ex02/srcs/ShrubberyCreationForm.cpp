@@ -33,17 +33,13 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
     return *this;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor)
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-    try {
-        this->beSigned(executor);
-        std::cout << executor.getname() << " signed " << this->getName() << std::endl;
-        std::string filename = executor.getname() + "_shrubbery";
-        std::ofstream filestream(filename.c_str());
-        std::cout << filename << " created" << std::endl;
-        filestream << "hello gato" << std::endl;
-    } catch (const std::exception &e) {
-        std::cerr << executor.getname() << " couldn’t sign " << this->getName()
-                << " because " << e.what() << std::endl;
-    }
+  if (!this->getIsSigned())
+    throw AForm::NotSignedException();
+  if (executor.getgrade() > this->getGradeToExecute())
+    throw AForm::GradeTooLowException();
+  std::string filename = executor.getname() + "_shrubbery";
+  std::ofstream outfile(filename.c_str());
+  outfile << "hello mae" << std::endl;
 }
