@@ -51,7 +51,9 @@
         "span": "cpp",
         "iomanip": "cpp",
         "sstream": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "hash_map": "cpp",
+        "list": "cpp"
     },
     "clang-format.style": "file",
     "clang-format.executable": "/bin/clang-format"
