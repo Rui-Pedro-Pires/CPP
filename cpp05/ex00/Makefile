@@ -16,7 +16,7 @@ CPPFLAGS = -Werror -Wall -Wextra -g -std=c++98
 NAME = Bureaucrat
 RM = rm -rf
 SDIR := srcs
-ODIR := obj
+ODIR := objs
 
 # Source files
 SOURCES := main.cpp\
