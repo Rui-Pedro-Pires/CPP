@@ -14,17 +14,24 @@
 #include "../includes/ShrubberyCreationForm.hpp"
 #include "../includes/RobotomyRequestForm.hpp"
 #include "../includes/PresidentialPardonForm.hpp"
+#include "../includes/Intern.hpp"
 
 int main() {
   Bureaucrat ze("ze", 70);
   ShrubberyCreationForm f1("manuel");
   RobotomyRequestForm f2("miguel");
-  PresidentialPardonForm f3("zezinho");
+  AForm *pres;
+  Intern  zezita;
 
+  try {
+    pres = zezita.makeform("ddd", "manel");
+    ze.signForm(*pres);
+    ze.executeForm(*pres);
+  } catch (std::exception & e) {
+    std::cerr << e.what() << std::endl;
+  }
   ze.signForm(f1);
   ze.signForm(f2);
-  ze.signForm(f3);
   ze.executeForm(f1);
   ze.executeForm(f2);
-  ze.executeForm(f3);
 }

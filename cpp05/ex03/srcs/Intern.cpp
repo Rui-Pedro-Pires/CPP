@@ -46,6 +46,11 @@ AForm* Intern::makeform(std::string name, std::string target)
             return formMenu[i];
         }
     }
-    std::cout << "There is no form with this name!" << std::endl;
-    return nullptr;
+    throw NoFormException();
+    return (NULL);
+}
+
+const char* Intern::NoFormException::what() const throw()
+{
+    return "No form with this name founded!";
 }

@@ -30,6 +30,12 @@ public:
     Intern& operator=(const Intern& other);
 
     AForm*  makeform(std::string name, std::string target);
+
+    class NoFormException : public std::exception
+    {
+    public:
+        const char *what() const throw();
+    };
 };
 
 #endif
