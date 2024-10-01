@@ -16,23 +16,26 @@
 #include "../includes/PresidentialPardonForm.hpp"
 #include "../includes/Intern.hpp"
 
-int main() {
-  Bureaucrat ze("ze", 70);
+int main()
+{
+  AForm *pres;
+  Intern zezita;
   ShrubberyCreationForm f1("manuel");
   RobotomyRequestForm f2("miguel");
-  AForm *pres;
-  Intern  zezita;
-
-  try {
+  try
+  {
+    Bureaucrat ze("ze", 70);
     pres = zezita.makeform("PresidentialPardonForm", "manel");
     ze.signForm(*pres);
+    ze.signForm(f1);
+    ze.signForm(f2);
     ze.executeForm(*pres);
+    ze.executeForm(f1);
+    ze.executeForm(f2);
     delete pres;
-  } catch (std::exception & e) {
+  }
+  catch (std::exception &e)
+  {
     std::cerr << e.what() << std::endl;
   }
-  ze.signForm(f1);
-  ze.signForm(f2);
-  ze.executeForm(f1);
-  ze.executeForm(f2);
 }
