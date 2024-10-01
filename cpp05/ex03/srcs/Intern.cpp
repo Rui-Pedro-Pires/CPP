@@ -25,12 +25,28 @@ Intern& Intern::operator=(const Intern& other) {
     return *this;
 }
 
+AForm* Intern::ShrubberyCreationFormCreate(std::string target)
+{
+    return new ShrubberyCreationForm(target);
+}
+
+AForm* Intern::RobotomyRequestFormCreate(std::string target)
+{
+    return new RobotomyRequestForm(target);
+}
+
+AForm* Intern::PresidentialPardonFormCreate(std::string target)
+{
+    return new PresidentialPardonForm(target);
+}
+
+
 AForm* Intern::makeform(std::string name, std::string target)
 {
-    AForm* formMenu[] = {
-        new ShrubberyCreationForm(target),
-        new RobotomyRequestForm(target),
-        new PresidentialPardonForm(target),
+    FORMS formMenu[] = {
+        &Intern::ShrubberyCreationFormCreate,
+        &Intern::RobotomyRequestFormCreate,
+        &Intern::PresidentialPardonFormCreate,
     };
 
     std::string actionsMenu[] = {
@@ -43,7 +59,7 @@ AForm* Intern::makeform(std::string name, std::string target)
         if (actionsMenu[i] == name)
         {
             std::cout << "Intern creates " << name << std::endl;
-            return formMenu[i];
+            return (this->*formMenu[i])(target);
         }
     }
     throw NoFormException();

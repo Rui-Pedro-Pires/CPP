@@ -22,13 +22,14 @@
 
 class Intern {
 private:
-
+    AForm*  ShrubberyCreationFormCreate(std::string target);
+    AForm*  RobotomyRequestFormCreate(std::string target);
+    AForm*  PresidentialPardonFormCreate(std::string target);
 public:
     Intern();
     ~Intern();
     Intern(const Intern& other);
     Intern& operator=(const Intern& other);
-
     AForm*  makeform(std::string name, std::string target);
 
     class NoFormException : public std::exception
@@ -37,5 +38,7 @@ public:
         const char *what() const throw();
     };
 };
+
+typedef AForm*(Intern::*FORMS)(std::string target);
 
 #endif

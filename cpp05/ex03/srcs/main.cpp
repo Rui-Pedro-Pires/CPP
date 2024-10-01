@@ -24,9 +24,10 @@ int main() {
   Intern  zezita;
 
   try {
-    pres = zezita.makeform("ddd", "manel");
+    pres = zezita.makeform("PresidentialPardonForm", "manel");
     ze.signForm(*pres);
     ze.executeForm(*pres);
+    delete pres;
   } catch (std::exception & e) {
     std::cerr << e.what() << std::endl;
   }
