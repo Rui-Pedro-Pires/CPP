@@ -15,7 +15,10 @@
 #define ScalarConverter_HPP
 
 #include <iostream>
-#include<bits/stdc++.h> 
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
+#include <cctype>
 
 class ScalarConverter
 {

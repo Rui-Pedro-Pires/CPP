@@ -12,10 +12,11 @@
 
 #include "../includes/ScalarConverter.hpp"
 
-int main(void)
+int main(int argc, char **argv)
 {
+    if (argc != 2)
+        return (1);
     ScalarConverter converter;
 
-    char str[] = "54";
-    converter.convert(str);
+    converter.convert(argv[1]);
 }
