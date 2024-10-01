@@ -6,7 +6,7 @@
 /*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 09:29:58 by ruiolive          #+#    #+#             */
-/*   Updated: 2024/10/01 11:23:26 by ruiolive         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:35:15 by ruiolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void Bureaucrat::executeForm(AForm const &form)
   try
   {
     form.execute(*this);
-    form.action();
     std::cout << this->getname() << " executed " << form.getName() << std::endl;
   }
   catch (std::exception &e)

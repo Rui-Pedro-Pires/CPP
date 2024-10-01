@@ -33,7 +33,8 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
-    (void) other;
+    if (this != &other)
+        *this = other;
     return *this;
 }
 
@@ -41,6 +42,8 @@ void ShrubberyCreationForm::action() const
 {
   std::string filename = this->getTarget() + "_shrubbery";
   std::ofstream outfile(filename.c_str());
+  if (!outfile)
+    throw std::exception();
   outfile << "\
               v .   ._, |_  .,\n\
              `-._\\/  .  \\ /    |/_\n\

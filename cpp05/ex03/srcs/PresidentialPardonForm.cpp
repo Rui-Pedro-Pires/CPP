@@ -26,18 +26,19 @@ PresidentialPardonForm::~PresidentialPardonForm()
     std::cout << this->getName() << " destroyed" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm(other.getName(), other.getTarget(), other.getGradeToSign(), other.getGradeToExecute())
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other.getName(), other.getTarget(), other.getGradeToSign(), other.getGradeToExecute())
 {
     std::cout << this->getName() << " copy created" << std::endl;
 }
 
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
+PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &other)
 {
-    (void) other;
-    return *this;    
+    if (this != &other)
+        *this = other;
+    return *this;
 }
 
 void PresidentialPardonForm::action() const
 {
-    std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox." <<  std::endl;
+    std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

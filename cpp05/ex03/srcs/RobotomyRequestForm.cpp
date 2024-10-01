@@ -33,7 +33,8 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AFo
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
 {
-    (void)other;
+    if (this != &other)
+        *this = other;
     return *this;
 }
 
@@ -44,7 +45,7 @@ void RobotomyRequestForm::action() const
     if (randomNum)
     {
         std::cout << "!!DRILLINGZZZZZZZZZZZZ!!" << std::endl;
-        std::cout <<  this->getTarget() <<" has been robotomized successfully 50%% of the time" << std::endl;
+        std::cout <<  this->getTarget() <<" has been robotomized successfully" << std::endl;
     }
     else
         std::cout << "The robotomy failed" << std::endl;
