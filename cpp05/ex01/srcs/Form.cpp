@@ -12,7 +12,7 @@
 
 #include "../includes/Form.hpp"
 
-Form::Form() : _name("noname"), _gradeToSign(1), _gradeToExecute(1)
+Form::Form() : _name("noname"), _gradeToSign(0), _gradeToExecute(0)
 {
 }
 
@@ -23,9 +23,13 @@ Form::Form(std::string name, const int gradeToSign, const int gradeToExecute) : 
     else if (gradeToExecute > 150 || gradeToSign > 150)
         throw Form::GradeTooLowException();
     this->_isSigned = false;
+    std::cout << "Form " << this->_name << " created!" << std::endl;
 }
 
-Form::~Form() {}
+Form::~Form()
+{
+    std::cout << "Form " << this->_name << " destroyed!" << std::endl;
+}
 
 Form::Form(const Form &other) : _name(other._name), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute) 
 {
@@ -78,6 +82,6 @@ const char* Form::GradeTooLowException::what() const throw()
 
 std::ostream& operator<<(std::ostream& stream, const Form& form)
 {
-    stream << "Information about the form: " << form.getName() << "\n - " << form.getGradeToSign() << "\n - " << form.getGradeToExecute() << "\n - " << form.getIsSigned();
-    return stream; 
+    stream << "Information about the form:" << "\n    Name: " << form.getName() << "\n    Grade to Sign: " << form.getGradeToSign() << "\n    Grade to Execute: " << form.getGradeToExecute() << "\n    Is Signed: " << form.getIsSigned();
+    return stream;
 }

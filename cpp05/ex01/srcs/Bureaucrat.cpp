@@ -26,7 +26,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "Bureaucrat " << this->_name << " Destroyed!" << std::endl;
+    std::cout << "Bureaucrat " << this->_name << " destroyed!" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade)
@@ -78,7 +78,7 @@ void Bureaucrat::decrementgrade()
 
 std::ostream &operator<<(std::ostream &stream, const Bureaucrat &Bureaucrat)
 {
-    stream << Bureaucrat.getname() << ", bureaucrat grade " << Bureaucrat.getgrade();
+    stream << Bureaucrat.getname() << ", bureaucrat grade " << Bureaucrat.getgrade() << ".";
     return stream;
 }
 

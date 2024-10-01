@@ -27,16 +27,22 @@ private:
     const int _gradeToSign;
     const int _gradeToExecute;
 
+private:
+    Form();
+
 public:
     Form(const std::string name, const int gradeToSign, int gradeToExecute);
     ~Form();
     Form(const Form &other);
     Form &operator=(const Form &other);
+
     std::string getName() const;
     int getGradeToSign() const;
     int getGradeToExecute() const;
     bool getIsSigned() const;
+
     void beSigned(Bureaucrat& bureaucrat);
+
     class GradeTooHighException : public std::exception
     {
     public:
@@ -47,9 +53,6 @@ public:
     public:
         const char *what() const throw();
     };
-
-private:
-    Form();
 };
 
 std::ostream &operator<<(std::ostream &stream, const Form &form);
