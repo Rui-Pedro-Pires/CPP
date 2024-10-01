@@ -67,6 +67,7 @@ void AForm::execute(Bureaucrat const &bureaucrat) const
     throw NotSignedException();
   else if (bureaucrat.getgrade() > this->getGradeToExecute())
     throw GradeTooLowException();
+  this->action();
 }
 
 const char *AForm::GradeTooHighException::what() const throw()
@@ -86,8 +87,6 @@ const char *AForm::NotSignedException::what() const throw()
 
 std::ostream &operator<<(std::ostream &stream, const AForm &form)
 {
-  stream << "Information about the form: " << form.getName() << "\n - "
-         << form.getGradeToSign() << "\n - " << form.getGradeToExecute()
-         << "\n - " << form.getIsSigned();
+  stream << "Information about the form:" << "\n    Name: " << form.getName() << "\n    Grade to Sign: " << form.getGradeToSign() << "\n    Grade to Execute: " << form.getGradeToExecute() << "\n    Is Signed: " << form.getIsSigned();
   return stream;
 }
