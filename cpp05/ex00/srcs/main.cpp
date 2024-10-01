@@ -14,8 +14,20 @@
 
 int main()
 {
-    Bureaucrat ze("ze", 130);
-    std::cout << ze << std::endl;
+    try
+    {
+        Bureaucrat ze("ze", 150);
+        std::cout << ze << std::endl;
+        ze.incrementGrade();
+        std::cout << ze << std::endl;
+        ze.decrementGrade();
+        std::cout << ze << std::endl;
+        ze.decrementGrade();
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     try
     {
         Bureaucrat manuel("manuel", 160);
@@ -32,5 +44,4 @@ int main()
     {
         std::cerr << e.what() << '\n';
     }
-    
 }
