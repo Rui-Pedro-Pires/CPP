@@ -31,7 +31,7 @@ Form::~Form()
     std::cout << "Form " << this->_name << " destroyed!" << std::endl;
 }
 
-Form::Form(const Form &other) : _name(other._name), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute) 
+Form::Form(const Form &other) : _name(other._name), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute)
 {
     this->_isSigned = other._isSigned;
 }
@@ -63,24 +63,24 @@ bool Form::getIsSigned() const
     return this->_isSigned;
 }
 
-void    Form::beSigned(Bureaucrat& bureaucrat)
+void Form::beSigned(Bureaucrat &bureaucrat)
 {
     if (bureaucrat.getgrade() > this->getGradeToSign())
         throw Form::GradeTooLowException();
     this->_isSigned = true;
 }
 
-const char* Form::GradeTooHighException::what() const throw()
+const char *Form::GradeTooHighException::what() const throw()
 {
     return "Grade too high!";
 }
 
-const char* Form::GradeTooLowException::what() const throw()
+const char *Form::GradeTooLowException::what() const throw()
 {
     return "Grade too low!";
 }
 
-std::ostream& operator<<(std::ostream& stream, const Form& form)
+std::ostream &operator<<(std::ostream &stream, const Form &form)
 {
     stream << "Information about the form:" << "\n    Name: " << form.getName() << "\n    Grade to Sign: " << form.getGradeToSign() << "\n    Grade to Execute: " << form.getGradeToExecute() << "\n    Is Signed: " << form.getIsSigned();
     return stream;
