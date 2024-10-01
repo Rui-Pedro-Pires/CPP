@@ -12,7 +12,7 @@
 
 #pragma once
 #ifndef Intern_HPP
-# define Intern_HPP
+#define Intern_HPP
 
 #include <iostream>
 #include "AForm.hpp"
@@ -20,17 +20,19 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-class Intern {
+class Intern
+{
 private:
-    AForm*  ShrubberyCreationFormCreate(std::string target);
-    AForm*  RobotomyRequestFormCreate(std::string target);
-    AForm*  PresidentialPardonFormCreate(std::string target);
+    AForm *ShrubberyCreationFormCreate(std::string target);
+    AForm *RobotomyRequestFormCreate(std::string target);
+    AForm *PresidentialPardonFormCreate(std::string target);
+
 public:
     Intern();
     ~Intern();
-    Intern(const Intern& other);
-    Intern& operator=(const Intern& other);
-    AForm*  makeform(std::string name, std::string target);
+    Intern(const Intern &other);
+    Intern &operator=(const Intern &other);
+    AForm *makeform(std::string name, std::string target);
 
     class NoFormException : public std::exception
     {
@@ -39,6 +41,6 @@ public:
     };
 };
 
-typedef AForm*(Intern::*FORMS)(std::string target);
+typedef AForm *(Intern::*FORMS)(std::string target);
 
 #endif
