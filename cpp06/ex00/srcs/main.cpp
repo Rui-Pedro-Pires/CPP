@@ -10,3 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/ScalarConverter.hpp"
+
+int main(void)
+{
+    ScalarConverter converter;
+
+    char str[] = "54";
+    converter.convert(str);
+}

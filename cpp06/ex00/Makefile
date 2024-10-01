@@ -20,7 +20,7 @@ ODIR := obj
 
 # Source files
 SOURCES := main.cpp\
-			Bureaucrat.cpp\
+			ScalarConverter.cpp\
 
 # Object files
 OBJECTS := $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCES))
