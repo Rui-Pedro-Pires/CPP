@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 1970/01/01 01:00:00 by ruiolive          #+#    #+#             */
-/*   Updated: 2024/09/30 20:05:02 by ruiolive         ###   ########.fr       */
+/*   Created: 2024/10/01 09:29:58 by ruiolive          #+#    #+#             */
+/*   Updated: 2024/10/01 10:28:00 by ruiolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,24 @@ void AForm::beSigned(Bureaucrat const &bureaucrat) {
   this->_isSigned = true;
 }
 
+void AForm::execute(Bureaucrat const &bureaucrat) const
+{
+  if (this->_isSigned == false)
+    throw NotSignedException();
+  else if (bureaucrat.getgrade() > this->getGradeToExecute())
+    throw GradeTooLowException();
+}
+
 const char *AForm::GradeTooHighException::what() const throw() {
-  return "Grade too high!";
+  return "grade is too high!";
 }
 
 const char *AForm::GradeTooLowException::what() const throw() {
-  return "Grade too low!";
+  return "grade is too low!";
 }
 
 const char *AForm::NotSignedException::what() const throw() {
-  return "Form not signed!";
+  return "form is not signed!";
 }
 
 std::ostream &operator<<(std::ostream &stream, const AForm &form) {

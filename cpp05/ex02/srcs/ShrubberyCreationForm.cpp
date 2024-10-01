@@ -12,6 +12,10 @@
 
 #include "../includes/ShrubberyCreationForm.hpp"
 
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("noname", "notarget", 0, 0)
+{
+}
+
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", target, 145, 137)
 {
     std::cout << this->getName() << " created" << std::endl;
@@ -33,13 +37,21 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
     return *this;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+void ShrubberyCreationForm::action() const
 {
-  if (!this->getIsSigned())
-    throw AForm::NotSignedException();
-  if (executor.getgrade() > this->getGradeToExecute())
-    throw AForm::GradeTooLowException();
-  std::string filename = executor.getname() + "_shrubbery";
+  std::string filename = this->getTarget() + "_shrubbery";
   std::ofstream outfile(filename.c_str());
-  outfile << "hello mae" << std::endl;
+  outfile << "\
+              v .   ._, |_  .,\n\
+             `-._\\/  .  \\ /    |/_\n\
+               \\  _\\, y | \\//\n\
+         _\\_.___\\, \\/ -.\\||\n\
+           `7-,--.`._||  / / ,\n\
+           /'     `-. `./ / |/_.'\n\
+                     |    |//\n\
+                     |_    /\n\
+                     |-   |\n\
+                     |   =|\n\
+                     |    |\n\
+--------------------/ ,  . \\--------._" << std::endl;
 }

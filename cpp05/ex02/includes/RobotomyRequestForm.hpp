@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 1970/01/01 01:00:00 by ruiolive          #+#    #+#             */
-/*   Updated: 2024/09/30 20:51:12 by ruiolive         ###   ########.fr       */
+/*   Created: 2024/10/01 10:23:14 by ruiolive          #+#    #+#             */
+/*   Updated: 2024/10/01 10:23:14 by ruiolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef RobotomyRequestForm_HPP
+# define RobotomyRequestForm_HPP
 
 # include <iostream>
-# include <fstream>
-# include <string>
+# include <cstdlib>
 # include "AForm.hpp"
 
-class ShrubberyCreationForm : public AForm
+class RobotomyRequestForm : public AForm
 {
 private:
-    ShrubberyCreationForm();
+    RobotomyRequestForm();
 public:
-    ShrubberyCreationForm(std::string target);
-    ~ShrubberyCreationForm();
-    ShrubberyCreationForm(const ShrubberyCreationForm& other);
-    ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
+    RobotomyRequestForm(std::string target);
+    ~RobotomyRequestForm();
+    RobotomyRequestForm(const RobotomyRequestForm& other);
+    RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 
     void action() const;
 };

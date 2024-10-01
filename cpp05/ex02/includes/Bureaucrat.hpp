@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 1970/01/01 01:00:00 by ruiolive          #+#    #+#             */
-/*   Updated: 2024/09/30 20:52:10 by ruiolive         ###   ########.fr       */
+/*   Created: 2024/10/01 09:29:58 by ruiolive          #+#    #+#             */
+/*   Updated: 2024/10/01 10:52:03 by ruiolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,23 @@ private:
   std::string _name;
   int _grade;
 
+private:
+  Bureaucrat();
+
 public:
   Bureaucrat(std::string _name, int grade);
   ~Bureaucrat();
   Bureaucrat(const Bureaucrat &other);
   Bureaucrat &operator=(const Bureaucrat &other);
-  void incrementgrade();
-  void decrementgrade();
+
   std::string getname() const;
   int getgrade() const;
+
+  void incrementgrade();
+  void decrementgrade();
+  void signForm(AForm & form);
   void executeForm(AForm const & form);
+
   class GradeTooHighException : public std::exception {
   public:
     const char *what() const throw();
@@ -42,9 +49,6 @@ public:
   public:
     const char *what() const throw();
   };
-
-private:
-  Bureaucrat();
 };
 
 std::ostream &operator<<(std::ostream &stream, const Bureaucrat &Bureaucrat);

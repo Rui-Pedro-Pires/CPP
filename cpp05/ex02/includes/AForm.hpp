@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 1970/01/01 01:00:00 by ruiolive          #+#    #+#             */
-/*   Updated: 2024/09/30 20:52:05 by ruiolive         ###   ########.fr       */
+/*   Created: 2024/10/01 09:29:58 by ruiolive          #+#    #+#             */
+/*   Updated: 2024/10/01 11:23:12 by ruiolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 #include "Bureaucrat.hpp"
 #include <iostream>
-
 
 class Bureaucrat;
 
@@ -28,18 +27,25 @@ private:
   const int _gradeToSign;
   const int _gradeToExecute;
 
+private:
+  AForm();
+
 public:
   AForm(const std::string name, const std::string target, const int gradeToSign, int gradeToExecute);
-  ~AForm();
+  virtual ~AForm();
   AForm(const AForm &other);
   AForm &operator=(const AForm &other);
+  
   std::string getName() const;
   std::string getTarget() const;
   int getGradeToSign() const;
   int getGradeToExecute() const;
   bool getIsSigned() const;
+  
   void beSigned(Bureaucrat const &bureaucrat);
-  virtual void execute(Bureaucrat const & executor) const = 0;
+  virtual void action() const = 0;
+  void execute(Bureaucrat const & executor) const;
+
   class GradeTooHighException : public std::exception {
   public:
     const char *what() const throw();
@@ -52,8 +58,6 @@ public:
   public:
     const char *what() const throw();
   };
-private:
-  AForm();
 };
 
 std::ostream &operator<<(std::ostream &stream, const AForm &form);

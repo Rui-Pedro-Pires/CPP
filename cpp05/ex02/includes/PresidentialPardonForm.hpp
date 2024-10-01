@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 1970/01/01 01:00:00 by ruiolive          #+#    #+#             */
-/*   Updated: 2024/09/30 20:51:12 by ruiolive         ###   ########.fr       */
+/*   Created: 2024/10/01 10:29:49 by ruiolive          #+#    #+#             */
+/*   Updated: 2024/10/01 11:22:57 by ruiolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef PresidentialPardonForm_HPP
+# define PresidentialPardonForm_HPP
 
-# include <iostream>
-# include <fstream>
-# include <string>
 # include "AForm.hpp"
+# include <iostream>
 
-class ShrubberyCreationForm : public AForm
+class PresidentialPardonForm : public AForm
 {
 private:
-    ShrubberyCreationForm();
+    PresidentialPardonForm();
 public:
-    ShrubberyCreationForm(std::string target);
-    ~ShrubberyCreationForm();
-    ShrubberyCreationForm(const ShrubberyCreationForm& other);
-    ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
+    PresidentialPardonForm(std::string target);
+    ~PresidentialPardonForm();
+    PresidentialPardonForm(const PresidentialPardonForm& other);
+    PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 
     void action() const;
 };
