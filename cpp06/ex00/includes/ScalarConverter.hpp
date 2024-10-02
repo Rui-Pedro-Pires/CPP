@@ -30,12 +30,12 @@ typedef struct s_sscanf {
 
 class ScalarConverter {
 private:
-public:
   ScalarConverter();
   ~ScalarConverter();
   ScalarConverter(const ScalarConverter &other);
   ScalarConverter &operator=(const ScalarConverter &other);
 
+public:
   static void convert(std::string &str);
   static bool ft_isdigit(std::string str);
   static int float_or_double(std::string str);

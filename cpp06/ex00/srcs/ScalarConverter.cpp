@@ -50,9 +50,13 @@ void ScalarConverter::convert(std::string &str) {
     str_int = static_cast<int>(str_double);
     str_char = static_cast<char>(str_int);
     str_float = static_cast<float>(str_double);
+  } else if (ScalarConverter::float_or_double(str) == 0) {
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+    std::cout << "float: impossible" << std::endl;
+    std::cout << "double: impossible" << std::endl;
+    return;
   }
-  else if (ScalarConverter::float_or_double(str) == 0)
-    return ;
   if (str_char > 32)
     std::cout << "char: " << str_char << std::endl;
   else
@@ -65,7 +69,7 @@ void ScalarConverter::convert(std::string &str) {
 bool ScalarConverter::ft_isdigit(std::string str) {
   std::string::iterator itr;
   for (itr = str.begin(); itr < str.end(); itr++) {
-    if (!isdigit(*itr))
+    if (!isdigit(*itr) && *itr != '+' && *itr != '-')
       return (false);
   }
   return (true);
@@ -76,25 +80,35 @@ int ScalarConverter::float_or_double(std::string str) {
   bool as_dot = false;
   size_t index_dot;
   size_t index_f;
+  size_t index_minus;
+  size_t index_plus;
   for (size_t i = 0; i < str.length(); i++) {
-    if (!isdigit(str[i]) && str[i] != '.' && str[i] != 'f')
+    if (!isdigit(str[i]) && !strchr(".f-+", str[i]))
       return (0);
   }
   index_dot = str.find('.');
   index_f = str.find('f');
-  if (index_dot == 0 || index_dot == (str.length() - 1))
+  index_minus = str.find('-');
+  index_plus = str.find('+');
+  if (index_minus != std::string::npos && index_minus != 0)
     return (0);
-  else
+  if (index_plus != std::string::npos && index_plus != 0)
+    return (0);
+  if (index_dot != std::string::npos) {
+    if (index_dot == 0 || index_dot == (str.length() - 1))
+      return (0);
     as_dot = true;
-  if (index_f == (str.length() - 1))
+  }
+  if (index_f != std::string::npos) {
+    if (index_f != (str.length() - 1))
+      return (0);
     as_f = true;
-  else
-    return (0);
-  if (!as_dot && as_f)
-    return 0;
-  else if (as_dot && !as_f)
+  }
+  if (as_dot && as_f) {
+    if (abs(index_dot - index_f) == 1)
+      return (0);
     return (1);
-  else if (as_dot && as_f)
+  } else if (as_dot && !as_f)
     return (2);
-  return (0);
+  return (1);
 }
