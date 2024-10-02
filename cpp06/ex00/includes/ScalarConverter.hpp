@@ -14,35 +14,31 @@
 #ifndef ScalarConverter_HPP
 #define ScalarConverter_HPP
 
-#include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <cstdlib>
 #include <cctype>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <iomanip>
+#include <iostream>
 
+typedef struct s_sscanf {
+  int sscanf_char;
+  int sscanf_int;
+  int sscanf_float;
+  int sscanf_double;
+} t_sscanf;
 
-typedef struct s_sscanf
-{
-    int sscanf_char;
-    int sscanf_int;
-    int sscanf_float;
-    int sscanf_double;
-}   t_sscanf;
-
-class ScalarConverter
-{
+class ScalarConverter {
 private:
-
 public:
-    ScalarConverter();
-    ~ScalarConverter();
-    ScalarConverter(const ScalarConverter &other);
-    ScalarConverter &operator=(const ScalarConverter &other);
+  ScalarConverter();
+  ~ScalarConverter();
+  ScalarConverter(const ScalarConverter &other);
+  ScalarConverter &operator=(const ScalarConverter &other);
 
-    static void convert(std::string &str);
+  static void convert(std::string &str);
+  static bool ft_isdigit(std::string str);
+  static int float_or_double(std::string str);
 };
-
-bool    ft_isdigit(std::string str);
 
 #endif
