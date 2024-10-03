@@ -46,6 +46,10 @@ int float_or_double(std::string str)
     size_t index_dot;
     size_t index_f;
     size_t i = 0;
+    if (str == "nanf" || str == "+inff" || str == "-inff" || str == "inff")
+        return (1);
+    if (str == "nan" || str == "+inf" || str == "-inf" || str == "inf")
+        return (2);
     if (str[i] == '-' || str[i] == '+')
         i++;
     if (i == str.length() - 1)

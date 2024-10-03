@@ -13,15 +13,15 @@ C++ = c++
 CPPFLAGS = -Werror -Wall -Wextra -g -std=c++98
 
 # File-related variables
-NAME = convert
+NAME = Bureaucrat
 RM = rm -rf
 SDIR := srcs
 ODIR := obj
 
 # Source files
 SOURCES := main.cpp\
-			ScalarConverter.cpp\
-			input_checkers.cpp\
+			Serializer.cpp\
+
 # Object files
 OBJECTS := $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCES))
 
@@ -55,4 +55,3 @@ fclean : clean
 	@echo "${RED}➾ ${NAME} deleted${RES}"
 
 re : fclean all
-

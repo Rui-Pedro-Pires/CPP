@@ -16,18 +16,20 @@
 
 #include <errno.h>
 #include <limits.h>
+#include <float.h>
 #include <stdlib.h>
 #include <cstring>
 #include <iomanip>
 #include <iostream>
 
-typedef struct s_sscanf
+enum Type
 {
-  int sscanf_char;
-  int sscanf_int;
-  int sscanf_float;
-  int sscanf_double;
-} t_sscanf;
+  C,
+  I,
+  F,
+  D,
+  ERR
+};
 
 class ScalarConverter
 {
@@ -44,7 +46,11 @@ public:
 bool ft_isdigit(std::string str);
 int float_or_double(std::string str);
 int check_if_int(std::string str);
-void num_information(char str_char, long str_int, float str_float, double str_double);
+int check_special_cases(std::string str);
+void character_case(std::string str);
+void int_case(std::string str);
+void float_case(std::string str);
+void double_case(std::string str);
 void error_information(void);
 
 #endif
