@@ -12,10 +12,10 @@
 
 #pragma once
 #ifndef Base_HPP
-# define Base_HPP
+#define Base_HPP
 
-# include <iostream>
-
+#include <iostream>
+#include <cstdlib>
 class Base
 {
 public:

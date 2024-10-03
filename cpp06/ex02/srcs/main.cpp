@@ -16,12 +16,16 @@
 #include "../includes/C.hpp"
 
 Base *generate(void);
+void identify(Base *p);
+void identify(Base &p);
 
 int main(void)
 {
     Base *base;
 
     base = generate();
+    identify(base);
+    identify(*base);
 }
 
 Base *generate(void)
@@ -31,20 +35,14 @@ Base *generate(void)
 
     srand(time(0));
     randomnum = rand() % 3;
-    switch (randomnum)
-    {
-    case 1:
+    if (randomnum == 0)
         base = new A;
-        break;
-    case 2:
+    else if (randomnum == 1)
         base = new B;
-        break;
-    case 3:
+    else if (randomnum == 2)
         base = new C;
-        break;
-    default:
-        break;
-    }
+    else
+        base = NULL;
     return base;
 }
 
@@ -52,10 +50,10 @@ void identify(Base *p)
 {
     if (dynamic_cast<A *>(p))
         std::cout << "A" << std::endl;
-    else if (dynamic_cast<A *>(p))
-        std::cout << "A" << std::endl;
-    else if (dynamic_cast<A *>(p))
-        std::cout << "A" << std::endl;
+    else if (dynamic_cast<B *>(p))
+        std::cout << "B" << std::endl;
+    else if (dynamic_cast<C *>(p))
+        std::cout << "C" << std::endl;
     else
         std::cout << "No type found!" << std::endl;
 }
@@ -64,10 +62,10 @@ void identify(Base &p)
 {
     if (dynamic_cast<A *>(&p))
         std::cout << "A" << std::endl;
-    else if (dynamic_cast<A *>(&p))
-        std::cout << "A" << std::endl;
-    else if (dynamic_cast<A *>(&p))
-        std::cout << "A" << std::endl;
+    else if (dynamic_cast<B *>(&p))
+        std::cout << "B" << std::endl;
+    else if (dynamic_cast<C *>(&p))
+        std::cout << "C" << std::endl;
     else
         std::cout << "No type found!" << std::endl;
 }
