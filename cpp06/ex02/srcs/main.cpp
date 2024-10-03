@@ -26,6 +26,8 @@ int main(void)
     base = generate();
     identify(base);
     identify(*base);
+    if (base)
+        delete base;
 }
 
 Base *generate(void)
@@ -64,6 +66,7 @@ void identify(Base &p)
     {
         p = dynamic_cast<A &>(p);
         std::cout << "A" << std::endl;
+        return;
     }
     catch (const std::exception &e)
     {
@@ -72,6 +75,7 @@ void identify(Base &p)
     {
         p = dynamic_cast<B &>(p);
         std::cout << "B" << std::endl;
+        return;
     }
     catch (const std::exception &e)
     {
@@ -80,10 +84,10 @@ void identify(Base &p)
     {
         p = dynamic_cast<C &>(p);
         std::cout << "C" << std::endl;
+        return;
     }
     catch (const std::exception &e)
     {
-        std::cout << "No type found!" << std::endl;
     }
-
+    std::cout << "No type found!" << std::endl;
 }
