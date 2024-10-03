@@ -28,8 +28,6 @@ int check_if_int(std::string str)
     size_t i = 0;
     if (str[i] == '-' || str[i] == '+')
         i++;
-    if (i == str.length() - 1)
-        return (0);
     while (i < str.length())
     {
         if (!isdigit(str[i]))
