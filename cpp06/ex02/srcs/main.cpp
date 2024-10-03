@@ -60,12 +60,30 @@ void identify(Base *p)
 
 void identify(Base &p)
 {
-    if (dynamic_cast<A *>(&p))
+    try
+    {
+        p = dynamic_cast<A &>(p);
         std::cout << "A" << std::endl;
-    else if (dynamic_cast<B *>(&p))
+    }
+    catch (const std::exception &e)
+    {
+    }
+    try
+    {
+        p = dynamic_cast<B &>(p);
         std::cout << "B" << std::endl;
-    else if (dynamic_cast<C *>(&p))
+    }
+    catch (const std::exception &e)
+    {
+    }
+    try
+    {
+        p = dynamic_cast<C &>(p);
         std::cout << "C" << std::endl;
-    else
+    }
+    catch (const std::exception &e)
+    {
         std::cout << "No type found!" << std::endl;
+    }
+
 }

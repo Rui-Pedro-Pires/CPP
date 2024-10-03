@@ -23,7 +23,6 @@ struct Data
     int y;
 };
 
-
 class Serializer {
 private:
   Serializer();

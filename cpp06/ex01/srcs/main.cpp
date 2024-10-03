@@ -15,12 +15,18 @@
 int main(void)
 {
     Data data;
-    Data* ptr = &data;
-    Data* copy;
+    data.x = 4;
+    data.y = 5;
+    Data *ptr = &data;
+    Data *copy;
     uintptr_t i;
 
+    std::cout << "Original x:" << data.x << std::endl;
+    std::cout << "Original y:" << data.y << std::endl;
     i = Serializer::serialize(ptr);
     copy = Serializer::deserialize(i);
+    std::cout << "Copy x:" << data.x << std::endl;
+    std::cout << "Copy y:" << data.y << std::endl;
     std::cout << ptr << std::endl;
     std::cout << copy << std::endl;
 }
