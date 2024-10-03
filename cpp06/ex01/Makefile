@@ -13,7 +13,7 @@ C++ = c++
 CPPFLAGS = -Werror -Wall -Wextra -g -std=c++98
 
 # File-related variables
-NAME = Bureaucrat
+NAME = serializer
 RM = rm -rf
 SDIR := srcs
 ODIR := obj

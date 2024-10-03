@@ -1,20 +1,18 @@
-#include "../includes/Base.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Base.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 11:02:30 by ruiolive          #+#    #+#             */
+/*   Updated: 2024/10/03 16:21:46 by ruiolive         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-Base::Base()
-{
-}
+#include "../includes/Base.hpp"
 
 Base::~Base()
 {
 }
 
-Base::Base(const Base &other)
-{
-	(void)other;
-}
-
-Base &Base::operator=(const Base &other)
-{
-	(void)other;
-	return *this;
-}
