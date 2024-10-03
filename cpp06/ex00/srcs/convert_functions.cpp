@@ -43,15 +43,21 @@ void intCase(std::string str)
     str_double = static_cast<double>(str_int);
     if (errno == ERANGE || str_int > INT_MAX || str_int < INT_MIN)
         return errorInformation();
-    if ((str_int < 32 && str_int >= 0) || (str_int < 256 && str_int > 126))
+    if ((str_int <= 32 && str_int >= 0) || (str_int < 256 && str_int > 126))
         std::cout << "char: Non displayable" << std::endl;
     else if (str_int < 0 || str_int > 255)
         std::cout << "char: impossible" << std::endl;
     else
         std::cout << "char: " << str_char << std::endl;
     std::cout << "int: " << str_int << std::endl;
-    std::cout << "float: " << str_float << ".0f" << std::endl;
-    std::cout << "double: " << str_double << ".0" << std::endl;
+    if (str_float < 1e5 && str_float > -1e5)
+        std::cout << "float: " << str_float << ".0f" << std::endl;
+    else
+        std::cout << "float: " << str_float << "f" << std::endl;
+    if (str_double < 1e5 && str_double > -1e5)
+        std::cout << "double: " << str_double << ".0" << std::endl;
+    else
+        std::cout << "double: " << str_double << std::endl;
 }
 
 void floatCase(std::string str)
@@ -68,7 +74,7 @@ void floatCase(std::string str)
     str_double = static_cast<double>(str_float);
     if (errno == ERANGE)
         return errorInformation();
-    if ((str_int < 32 && str_int >= 0) || (str_int < 256 && str_int > 126))
+    if ((str_int <= 32 && str_int >= 0) || (str_int < 256 && str_int > 126))
         std::cout << "char: Non displayable" << std::endl;
     else if (str_int < 0 || str_int > 255)
         std::cout << "char: impossible" << std::endl;
@@ -78,11 +84,11 @@ void floatCase(std::string str)
         std::cout << "int: " << str_int << std::endl;
     else
         std::cout << "int: impossible" << std::endl;
-    if (str_float - floor(str_float) < 1e-7)
+    if (str_float - floor(str_float) < 1e-7 && str_float < 1e5 && str_float > -1e5)
         std::cout << "float: " << str_float << ".0f" << std::endl;
     else
         std::cout << "float: " << str_float << "f" << std::endl;
-    if (str_double - floor(str_double) < 1e-7)
+    if (str_double - floor(str_double) < 1e-7 && str_double < 1e5 && str_double > -1e5)
         std::cout << "double: " << str_double << ".0" << std::endl;
     else
         std::cout << "double: " << str_double << std::endl;
@@ -102,7 +108,7 @@ void doubleCase(std::string str)
     str_float = static_cast<float>(str_double);
     if (errno == ERANGE)
         return errorInformation();
-    if ((str_int < 32 && str_int >= 0) || (str_int < 256 && str_int > 126))
+    if ((str_int <= 32 && str_int >= 0) || (str_int < 256 && str_int > 126))
         std::cout << "char: Non displayable" << std::endl;
     else if (str_int < 0 || str_int > 255)
         std::cout << "char: impossible" << std::endl;
@@ -114,11 +120,11 @@ void doubleCase(std::string str)
         std::cout << "int: impossible" << std::endl;
     if ((str_double > static_cast<double>(FLT_MAX) || str_double < static_cast<double>(-FLT_MAX)) && str_double != INFINITY && str_double != -INFINITY)
         std::cout << "float: impossible" << std::endl;
-    else if (str_float - floor(str_float) < 1e-7)
+    else if (str_float - floor(str_float) < 1e-7 && str_float < 1e5 && str_float > -1e5)
         std::cout << "float: " << str_float << ".0f" << std::endl;
     else
         std::cout << "float: " << str_float << "f" << std::endl;
-    if (str_double - floor(str_double) < 1e-7)
+    if (str_double - floor(str_double) < 1e-7 && str_double < 1e5 && str_double > -1e5)
         std::cout << "double: " << str_double << ".0" << std::endl;
     else
         std::cout << "double: " << str_double << std::endl;
