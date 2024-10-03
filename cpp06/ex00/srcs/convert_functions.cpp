@@ -78,11 +78,11 @@ void float_case(std::string str)
         std::cout << "int: " << str_int << std::endl;
     else
         std::cout << "int: impossible" << std::endl;
-    if (str_float - floor(str_float) > 1e-4)
+    if (str_float - floor(str_float) > 1e-7 || str_float == INFINITY || str_float == NAN)
         std::cout << "float: " << str_float << "f" << std::endl;
     else
         std::cout << "float: " << str_float << ".0f" << std::endl;
-    if (str_double - floor(str_double) > 1e-4)
+    if (str_double - floor(str_double) > 1e-7 || str_double == INFINITY || str_double == NAN)
         std::cout << "double: " << str_double << std::endl;
     else
         std::cout << "double: " << str_double << ".0" << std::endl;
@@ -112,13 +112,13 @@ void double_case(std::string str)
         std::cout << "int: " << str_int << std::endl;
     else
         std::cout << "int: impossible" << std::endl;
-    if (str_double > static_cast<double>(FLT_MAX) || str_double < static_cast<double>(FLT_MIN))
+    if (str_double > static_cast<double>(FLT_MAX) && str_double < static_cast<double>(FLT_MIN))
         std::cout << "float: impossible" << std::endl;
-    else if (str_float - floor(str_float) > 1e-4)
+    else if (str_float - floor(str_float) > 1e-7 || str_float == INFINITY || str_float == NAN)
         std::cout << "float: " << str_float << "f" << std::endl;
     else
         std::cout << "float: " << str_float << ".0f" << std::endl;
-    if (str_double - floor(str_double) > 1e-4)
+    if (str_double - floor(str_double) > 1e-7 || str_double == INFINITY || str_double == NAN)
         std::cout << "double: " << str_double << std::endl;
     else
         std::cout << "double: " << str_double << ".0" << std::endl;
