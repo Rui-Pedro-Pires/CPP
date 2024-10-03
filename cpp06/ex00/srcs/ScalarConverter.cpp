@@ -38,20 +38,20 @@ void ScalarConverter::convert(std::string &str)
   else if (float_or_double(str) == 2)
     type = D;
   else
-    return error_information();
+    return errorInformation();
   switch (type)
   {
   case C:
-    character_case(str);
+    characterCase(str);
     break;
   case I:
-    int_case(str);
+    intCase(str);
     break;
   case F:
-    float_case(str);
+    floatCase(str);
     break;
   case D:
-    double_case(str);
+    doubleCase(str);
     break;
   default:
     break;

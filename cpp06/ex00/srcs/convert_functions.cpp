@@ -12,7 +12,7 @@
 
 #include "../includes/ScalarConverter.hpp"
 
-void character_case(std::string str)
+void characterCase(std::string str)
 {
     float str_float;
     double str_double;
@@ -29,7 +29,7 @@ void character_case(std::string str)
     std::cout << "double: " << str_double << ".0" << std::endl;
 }
 
-void int_case(std::string str)
+void intCase(std::string str)
 {
     float str_float;
     double str_double;
@@ -42,7 +42,7 @@ void int_case(std::string str)
     str_float = static_cast<float>(str_int);
     str_double = static_cast<double>(str_int);
     if (errno == ERANGE || str_int > INT_MAX || str_int < INT_MIN)
-        return error_information();
+        return errorInformation();
     if ((str_int < 32 && str_int >= 0) || (str_int < 256 && str_int > 126))
         std::cout << "char: Non displayable" << std::endl;
     else if (str_int < 0 || str_int > 255)
@@ -54,7 +54,7 @@ void int_case(std::string str)
     std::cout << "double: " << str_double << ".0" << std::endl;
 }
 
-void float_case(std::string str)
+void floatCase(std::string str)
 {
     float str_float;
     double str_double;
@@ -67,7 +67,7 @@ void float_case(std::string str)
     str_char = static_cast<char>(str_int);
     str_double = static_cast<double>(str_float);
     if (errno == ERANGE)
-        return error_information();
+        return errorInformation();
     if ((str_int < 32 && str_int >= 0) || (str_int < 256 && str_int > 126))
         std::cout << "char: Non displayable" << std::endl;
     else if (str_int < 0 || str_int > 255)
@@ -88,7 +88,7 @@ void float_case(std::string str)
         std::cout << "double: " << str_double << std::endl;
 }
 
-void double_case(std::string str)
+void doubleCase(std::string str)
 {
     float str_float;
     double str_double;
@@ -101,7 +101,7 @@ void double_case(std::string str)
     str_char = static_cast<char>(str_int);
     str_float = static_cast<float>(str_double);
     if (errno == ERANGE)
-        return error_information();
+        return errorInformation();
     if ((str_int < 32 && str_int >= 0) || (str_int < 256 && str_int > 126))
         std::cout << "char: Non displayable" << std::endl;
     else if (str_int < 0 || str_int > 255)
@@ -112,7 +112,7 @@ void double_case(std::string str)
         std::cout << "int: " << str_int << std::endl;
     else
         std::cout << "int: impossible" << std::endl;
-    if ((str_double > static_cast<double>(FLT_MAX) || str_double < static_cast<double>(-FLT_MAX)) && str_double != INFINITY)
+    if ((str_double > static_cast<double>(FLT_MAX) || str_double < static_cast<double>(-FLT_MAX)) && str_double != INFINITY && str_double != -INFINITY)
         std::cout << "float: impossible" << std::endl;
     else if (str_float - floor(str_float) < 1e-7)
         std::cout << "float: " << str_float << ".0f" << std::endl;
@@ -124,7 +124,7 @@ void double_case(std::string str)
         std::cout << "double: " << str_double << std::endl;
 }
 
-void error_information(void)
+void errorInformation(void)
 {
     std::cout << "char: impossible" << std::endl;
     std::cout << "int: impossible" << std::endl;

@@ -47,11 +47,10 @@ public:
 bool ft_isdigit(std::string str);
 int float_or_double(std::string str);
 int check_if_int(std::string str);
-int check_special_cases(std::string str);
-void character_case(std::string str);
-void int_case(std::string str);
-void float_case(std::string str);
-void double_case(std::string str);
-void error_information(void);
+void characterCase(std::string str);
+void intCase(std::string str);
+void floatCase(std::string str);
+void doubleCase(std::string str);
+void errorInformation(void);
 
 #endif
