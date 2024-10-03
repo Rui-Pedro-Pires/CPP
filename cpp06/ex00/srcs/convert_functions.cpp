@@ -43,7 +43,7 @@ void int_case(std::string str)
   str_double = static_cast<double>(str_int);
   if (errno == ERANGE || str_int > INT_MAX || str_int < INT_MIN)
     return error_information();
-  if ((str_int < 32 && str_int > +0) || (str_int < 256 && str_int > 126))
+  if ((str_int < 32 && str_int > 0) || (str_int < 256 && str_int > 126))
     std::cout << "char: Non displayable" << std::endl;
   else if (str_int < 0 || str_int > 255)
     std::cout << "char: impossible" << std::endl;
@@ -68,7 +68,7 @@ void float_case(std::string str)
   str_double = static_cast<double>(str_float);
   if (errno == ERANGE)
     return error_information();
-  if ((str_int < 32 && str_int > +0) || (str_int < 256 && str_int > 126))
+  if ((str_int < 32 && str_int > 0) || (str_int < 256 && str_int > 126))
     std::cout << "char: Non displayable" << std::endl;
   else if (str_int < 0 || str_int > 255)
     std::cout << "char: impossible" << std::endl;
