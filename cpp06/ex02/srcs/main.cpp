@@ -56,6 +56,8 @@ void identify(Base *p)
         std::cout << "A" << std::endl;
     else if (dynamic_cast<A *>(p))
         std::cout << "A" << std::endl;
+    else
+        std::cout << "No type found!" << std::endl;
 }
 
 void identify(Base &p)
@@ -66,4 +68,6 @@ void identify(Base &p)
         std::cout << "A" << std::endl;
     else if (dynamic_cast<A *>(&p))
         std::cout << "A" << std::endl;
+    else
+        std::cout << "No type found!" << std::endl;
 }
