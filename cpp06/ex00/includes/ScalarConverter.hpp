@@ -19,6 +19,7 @@
 #include <float.h>
 #include <stdlib.h>
 #include <cstring>
+#include <cmath>
 #include <iomanip>
 #include <iostream>
 
