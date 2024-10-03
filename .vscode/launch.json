@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/cpp06/ex00/Bureaucrat",
-            "args": ["-42.0f"],
+            "args": ["12321321.234f"],
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],

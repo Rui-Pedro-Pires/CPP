@@ -14,21 +14,23 @@
 #ifndef ScalarConverter_HPP
 #define ScalarConverter_HPP
 
-#include <cctype>
-#include <cstdio>
-#include <cstdlib>
+#include <errno.h>
+#include <limits.h>
+#include <stdlib.h>
 #include <cstring>
 #include <iomanip>
 #include <iostream>
 
-typedef struct s_sscanf {
+typedef struct s_sscanf
+{
   int sscanf_char;
   int sscanf_int;
   int sscanf_float;
   int sscanf_double;
 } t_sscanf;
 
-class ScalarConverter {
+class ScalarConverter
+{
 private:
   ScalarConverter();
   ~ScalarConverter();
@@ -37,8 +39,12 @@ private:
 
 public:
   static void convert(std::string &str);
-  static bool ft_isdigit(std::string str);
-  static int float_or_double(std::string str);
 };
+
+bool ft_isdigit(std::string str);
+int float_or_double(std::string str);
+int check_if_int(std::string str);
+void num_information(char str_char, long str_int, float str_float, double str_double);
+void error_information(void);
 
 #endif

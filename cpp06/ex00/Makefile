@@ -21,7 +21,7 @@ ODIR := obj
 # Source files
 SOURCES := main.cpp\
 			ScalarConverter.cpp\
-
+			input_checkers.cpp\
 # Object files
 OBJECTS := $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCES))
 

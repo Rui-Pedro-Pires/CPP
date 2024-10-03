@@ -14,7 +14,8 @@
 
 int main(void)
 {
-    Data* ptr = new Data;
+    Data data;
+    Data* ptr = &data;
     Data* copy;
     uintptr_t i;
 
@@ -22,5 +23,4 @@ int main(void)
     copy = Serializer::deserialize(i);
     std::cout << ptr << std::endl;
     std::cout << copy << std::endl;
-    delete copy;
 }
