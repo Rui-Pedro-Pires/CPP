@@ -10,3 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+#ifndef TEMPLATE_HPP
+#define TEMPLATE_HPP
+
+#include <iostream>
+
+template <typename T>
+void   function(T &value)
+{
+    value++;
+}
+
+template <typename T, typename F>
+void iter( T *value, int N, F function)
+{
+    for (int i = 0; i < N; ++i)
+        function(value[i]);
+}
+
+#endif
