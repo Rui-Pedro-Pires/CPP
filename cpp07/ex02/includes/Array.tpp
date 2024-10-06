@@ -10,15 +10,50 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Array.hpp"
 
 template<typename T>
-Array::Array()
+Array<T>::Array()
 {
     this->array = new T;
 }
 
-Array::Array( unsigned int N )
+template<typename T>
+Array<T>::Array( unsigned int N )
 {
     array = new T[N];
-};
+}
+
+template<typename T>
+Array<T>::~Array()
+{
+    if (this->array)
+        delete[] this->array;
+}
+
+template<typename T>
+Array<T>::Array(const Array &other)
+{
+    (void) other;
+}
+
+template<typename T>
+Array<T>& Array<T>::operator=( const Array& other )
+{
+    (void) other;
+    return *this;
+}
+
+template<typename T>
+T& Array<T>::operator[]( int i )
+{
+    return array[i];
+}
+
+template<typename T>
+int Array<T>::size()
+{
+    int i = 0;
+    while (this->array[i])
+        i++;
+    return i;
+}

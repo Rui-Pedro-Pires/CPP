@@ -15,6 +15,7 @@
 #define TEMPLATE_HPP
 
 #include <bits/stdc++.h>
+
 #include <iostream>
 
 template <typename T>
@@ -32,5 +33,7 @@ public:
     T& operator[]( int i );
     int size();
 };
+
+#include "Array.tpp"
 
 #endif
