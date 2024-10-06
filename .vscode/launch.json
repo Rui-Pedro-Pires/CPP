@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/cpp06/ex00/convert",
+            "program": "${workspaceFolder}/cpp07/ex02/ex02",
             "args": ["1212312321312.123123213"],
             "stopAtEntry": true,
             "cwd": "${fileDirname}",

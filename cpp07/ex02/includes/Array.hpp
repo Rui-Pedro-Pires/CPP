@@ -14,21 +14,38 @@
 #ifndef TEMPLATE_HPP
 #define TEMPLATE_HPP
 
+#include <bits/stdc++.h>
+
 #include <iostream>
 
 template <typename T>
 class Array
 {
 private:
-    T array;
+    T* array;
+
 public:
-    Array();
-    Array(unsigned int N);
-    ~Array();
-    Array(const Array &other);
-    Array& operator=(const Array &other);
-    T* operator[]();
-    int size();
+    Array()
+    {
+        array = new T;
+    };
+    Array( unsigned int N )
+    {
+        array = new T[N];
+    };
+    ~Array(){};
+    Array( const Array& other ){ (void)other; };
+    Array& operator=( const Array& other );
+    T& operator[]( int i )
+    {
+        return array[i];
+    };
+    int size()
+    {
+        int i = 0;
+        while ( array[i] ) i++;
+        return i;
+    };
 };
 
 #endif
