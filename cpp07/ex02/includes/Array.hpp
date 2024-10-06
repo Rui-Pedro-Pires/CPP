@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.hpp                                       :+:      :+:    :+:   */
+/*   Array.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,7 +15,6 @@
 #define TEMPLATE_HPP
 
 #include <bits/stdc++.h>
-
 #include <iostream>
 
 template <typename T>
@@ -25,27 +24,13 @@ private:
     T* array;
 
 public:
-    Array()
-    {
-        array = new T;
-    };
-    Array( unsigned int N )
-    {
-        array = new T[N];
-    };
-    ~Array(){};
-    Array( const Array& other ){ (void)other; };
+    Array();
+    Array( unsigned int N );
+    ~Array();
+    Array( const Array& other );
     Array& operator=( const Array& other );
-    T& operator[]( int i )
-    {
-        return array[i];
-    };
-    int size()
-    {
-        int i = 0;
-        while ( array[i] ) i++;
-        return i;
-    };
+    T& operator[]( int i );
+    int size();
 };
 
 #endif
