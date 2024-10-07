@@ -22,10 +22,15 @@ MutantStack<T>::~MutantStack()
 }
 
 
-// template <typename T>
-// MutantStack::MutantStack(const MutantStack& other)
-// {
-// }
+template <typename T>
+MutantStack::MutantStack(const MutantStack& other)
+{
+    int size = other.size();
+    for (size_t i = 0; i < size; i++)
+    {
+        this->push(other[i]);
+    }
+}
 
 // template <typename T>
 // MutantStack& MutantStack::operator=(const MutantStack& other)
