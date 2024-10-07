@@ -21,9 +21,12 @@
 template <typename T>
 int easyfind(T container, int to_search)
 {
-    if (std::find(container.begin(), container.end(), to_search) == container.end())
+    typename T::iterator it;
+
+    it = std::find(container.begin(), container.end(), to_search);
+    if (it == container.end())
         throw std::exception(); 
-    return (0);
+    return (*it);
 }
 
 #endif

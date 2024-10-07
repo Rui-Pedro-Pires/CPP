@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 12:16:43 by ruiolive          #+#    #+#             */
-/*   Updated: 2024/10/07 12:16:43 by ruiolive         ###   ########.fr       */
+/*   Created: 2024/10/07 19:38:39 by ruiolive          #+#    #+#             */
+/*   Updated: 2024/10/07 19:39:17 by ruiolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/easyfind.hpp"
+#pragma once
+#ifndef SPAN_HPP
+# define SPAN_HPP
 
-int main( int, char** )
-{
-    int pos;
-    std::vector<int> vec( 10 );
-    for ( int i = 0; i < 10; i++ )
-    {
-        vec.push_back( i );
-    }
-    try
-    {
-        pos = easyfind( vec, 2 );
-        std::cout << pos << std::endl;
-    }
-    catch ( const std::exception& e )
-    {
-        std::cerr << e.what() << '\n';
-    }
+class Span {
+private:
+
+public:
+    Span();
+    ~Span();
+    Span(Span &other);
+    Span operator=(Span &other);
 }
+
+#endif
