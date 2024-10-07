@@ -14,16 +14,11 @@
 #ifndef TEMPLATE_HPP
 #define TEMPLATE_HPP
 
-#include <bits/stdc++.h>
-
 #include <iostream>
 
 template <typename T>
 class Array
 {
-private:
-    T* array;
-
 public:
     Array();
     Array( unsigned int N );
@@ -31,9 +26,20 @@ public:
     Array( const Array& other );
     Array& operator=( const Array& other );
     T& operator[]( int i );
-    int size();
+    const T& operator[]( int i ) const;
+    int size() const;
+
+private:
+    T* array;
+    int _size;
+
+    class OverflowIndexException : public std::exception
+    {
+    public:
+        const char* what() const throw();
+    };
 };
 
-#include "Array.tpp"
+#include "../srcs/Array.tpp"
 
 #endif

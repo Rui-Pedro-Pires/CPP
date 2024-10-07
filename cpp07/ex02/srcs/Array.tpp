@@ -10,50 +10,74 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/Array.hpp"
 
 template<typename T>
 Array<T>::Array()
 {
-    this->array = new T;
+    _size = 0;
+    array = new T;
 }
 
 template<typename T>
 Array<T>::Array( unsigned int N )
 {
+    _size = N;
     array = new T[N];
 }
 
 template<typename T>
 Array<T>::~Array()
 {
-    if (this->array)
-        delete[] this->array;
+    delete[] this->array;
 }
 
 template<typename T>
-Array<T>::Array(const Array &other)
+Array<T>::Array( const Array &other) : _size(other.size())
 {
-    (void) other;
+    this->array = new T[other.size()];
+    for (int i = 0; i < other.size(); i++)
+        this->array[i] = other.array[i];
 }
 
 template<typename T>
 Array<T>& Array<T>::operator=( const Array& other )
 {
-    (void) other;
+    if (this != &other)
+    {
+        delete[] this->array;
+        this->_size = other.size();
+        this->array = new T[other.size()];
+        for (int i = 0; i < other.size(); i++)
+            this->array[i] = other.array[i];
+    }
     return *this;
+}
+
+template<typename T>
+const T& Array<T>::operator[]( int i ) const
+{
+    if (i >= this->size() || i < 0)
+        throw OverflowIndexException();
+    return array[i];
 }
 
 template<typename T>
 T& Array<T>::operator[]( int i )
 {
+    if (i >= this->size() || i < 0)
+        throw OverflowIndexException();
     return array[i];
 }
 
 template<typename T>
-int Array<T>::size()
+int Array<T>::size() const
 {
-    int i = 0;
-    while (this->array[i])
-        i++;
-    return i;
+    return this->_size;
+}
+
+template<typename T>
+const char* Array<T>::OverflowIndexException::what() const throw() 
+{
+    return "Index is out of bounds";
 }

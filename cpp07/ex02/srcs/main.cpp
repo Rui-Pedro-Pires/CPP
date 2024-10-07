@@ -10,10 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Array.hpp"
+#include <cstdlib>
 #include <iostream>
 
-#define MAX_VAL 750
+#include "../includes/Array.hpp"
+
+#define MAX_VAL 10
 int main( int, char** )
 {
     Array<int> numbers( MAX_VAL );
@@ -26,10 +28,10 @@ int main( int, char** )
         mirror[i] = value;
     }
     // SCOPE
-    // {
-    //     Array<int> tmp = numbers;
-    //     Array<int> test( tmp );
-    // }
+    {
+        Array<int> tmp = numbers;
+        Array<int> test( tmp );
+    }
 
     for ( int i = 0; i < MAX_VAL; i++ )
     {
@@ -38,15 +40,17 @@ int main( int, char** )
             std::cerr << "didn't save the same value!!" << std::endl;
             return 1;
         }
+        std::cout << "number[" << i << "]:" << numbers[i] << std::endl;
+        std::cout << "mirror[" << i << "]:" << mirror[i] << std::endl;
     }
-    // try
-    // {
-    //     numbers[-2] = 0;
-    // }
-    // catch ( const std::exception& e )
-    // {
-    //     std::cerr << e.what() << '\n';
-    // }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch ( const std::exception& e )
+    {
+        std::cerr << e.what() << '\n';
+    }
     try
     {
         numbers[MAX_VAL] = 0;
