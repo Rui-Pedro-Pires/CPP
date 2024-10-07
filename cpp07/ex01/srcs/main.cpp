@@ -18,7 +18,7 @@ int main( void )
     for (int i = 0; i < 5; ++i)
         std::cout << array[i] << std::endl;
     std::cout << "------------" << std::endl;
-    ::iter(array, 5, ::function<int>);
+    iter(array, 5, ::function<int>);
     for (int i = 0; i < 5; ++i) {
         std::cout << array[i] << std::endl;
     }

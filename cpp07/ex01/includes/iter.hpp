@@ -25,6 +25,8 @@ void   function(T &value)
 template <typename T, typename F>
 void iter( T *value, int N, F function)
 {
+    if (value == NULL)
+        return ;
     for (int i = 0; i < N; ++i)
         function(value[i]);
 }
