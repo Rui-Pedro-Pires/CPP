@@ -10,3 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/easyfind.hpp"
+
+int main(int, char**)
+{
+    std::vector<int> vec{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    easyfind(vec, 8);
+}
