@@ -23,7 +23,7 @@ MutantStack<T>::~MutantStack()
 
 
 template <typename T>
-MutantStack::MutantStack(const MutantStack& other)
+MutantStack<T>::MutantStack(const MutantStack& other)
 {
     int size = other.size();
     for (size_t i = 0; i < size; i++)
