@@ -13,7 +13,7 @@ C++ = c++
 CPPFLAGS = -Werror -Wall -Wextra -g -std=c++98
 
 # File-related variables
-NAME = ex02
+NAME = ex01
 RM = rm -rf
 SDIR := srcs
 ODIR := obj
