@@ -90,7 +90,8 @@
         "typeindex": "cpp",
         "valarray": "cpp",
         "variant": "cpp",
-        "*.tpp": "c"
+        "*.tpp": "c",
+        "stack": "cpp"
     },
     "clang-format.style": "file",
     "clang-format.executable": "/bin/clang-format"
