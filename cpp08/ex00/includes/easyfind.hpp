@@ -16,15 +16,14 @@
 
 #include <iostream>
 #include <bits/stdc++.h>
+#include <algorithm>
 
 template <typename T>
 int easyfind(T container, int to_search)
 {
-    T<int>::iterator it;
-    it = container.find(container.begin(), container.end(), to_search);
-    if (!it)
-        return throw std::exception(); 
-    else return (0);
+    if (std::find(container.begin(), container.end(), to_search) == container.end())
+        throw std::exception(); 
+    return (0);
 }
 
 #endif

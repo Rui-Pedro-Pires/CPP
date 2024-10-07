@@ -12,8 +12,19 @@
 
 #include "../includes/easyfind.hpp"
 
-int main(int, char**)
+int main( int, char** )
 {
-    std::vector<int> vec{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    easyfind(vec, 8);
+    std::vector<int> vec( 10 );
+    for ( int i = 0; i < 10; i++ )
+    {
+        vec.push_back( i );
+    }
+    try
+    {
+        easyfind( vec, 12 );
+    }
+    catch ( const std::exception& e )
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
