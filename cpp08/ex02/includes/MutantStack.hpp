@@ -18,21 +18,36 @@
 #include <stack>
 
 template <typename T>
-class MutantStack
+class MutantStack : public std::stack<T>
 {
-private:
-    std::stack<T> stack;
-
 public:
     MutantStack();
     ~MutantStack();
-    MutantStack( const MutantStack& other );
-    MutantStack& operator=( const MutantStack& other );
-    int empty();
-    int size();
-    T& top();
-    void push(T toPush);
-    void pop();
+    MutantStack(const MutantStack &other);
+    MutantStack &operator=(const MutantStack &other);
+
+    class Iterator
+    {
+    private:
+        T &_pointer;
+        unsigned int _idx;
+
+    public:
+        Iterator(T &pointer, unsigned int idx);
+        ~Iterator();
+        Iterator(const Iterator &other);
+        Iterator &operator=(const Iterator &other);
+
+        Iterator &operator++();
+        Iterator &operator--();
+        Iterator &operator++(int);
+        Iterator &operator--(int);
+    };
+
+    Iterator begin();
+    Iterator end();
+
+    typedef typename MutantStack<T>::Iterator iterator;
 };
 
 #include "MutantStack.tpp"

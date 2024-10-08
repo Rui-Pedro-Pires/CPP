@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 template <typename T>
 MutantStack<T>::MutantStack()
 {
@@ -21,47 +20,81 @@ MutantStack<T>::~MutantStack()
 {
 }
 
-
 template <typename T>
-MutantStack<T>::MutantStack(const MutantStack& other)
+MutantStack<T>::MutantStack(const MutantStack &other) : std::stack<T>(other)
 {
-    int size = other.size();
-    for (size_t i = 0; i < size; i++)
-    {
-        this->push(other[i]);
-    }
-}
-
-// template <typename T>
-// MutantStack& MutantStack::operator=(const MutantStack& other)
-// {
-// }
-
-template <typename T>
-int MutantStack<T>::empty()
-{
-    return this->stack.empty();
-}
-template <typename T>
-int MutantStack<T>::size()
-{
-    return this->stack.size();
 }
 
 template <typename T>
-T& MutantStack<T>::top()
+MutantStack<T> &MutantStack<T>::operator=(const MutantStack &other)
 {
-    return this->stack.top();
+    (void)other;
+    return *this;
 }
 
 template <typename T>
-void MutantStack<T>::push(T toPush)
+Iterator MutantStack<T>::begin()
 {
-    this->stack.push(toPush);
+    Iterator it(this, 0);
+    return it;
 }
 
 template <typename T>
-void MutantStack<T>::pop()
+Iterator MutantStack<T>::end()
 {
-    this->stack.pop();
+    Iterator it(this, this->size());
+    return it;
+}
+
+template <typename T>
+MutantStack<T>::Iterator::Iterator(T &vec, unsigned int idx) : _vec(vec), _idx(idx)
+{
+}
+
+template <typename T>
+MutantStack<T>::Iterator::~Iterator()
+{
+}
+
+template <typename T>
+MutantStack<T>::Iterator::Iterator(const Iterator &other) : _vec(other._vec), _idx(other._idx)
+{
+}
+
+template <typename T>
+MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator=(const Iterator &other)
+{
+    this->_vec = other._vec;
+    this->_idx = other._idx;
+    return *this;
+}
+
+template <typename T>
+MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator++()
+{
+    this->_idx++;
+    return *this;
+}
+
+template <typename T>
+MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator--()
+{
+    this->_idx--;
+    return *this;
+}
+
+template <typename T>
+MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator++(int)
+{
+    Iterator tmp = *this;
+    this->_idx++;
+    return tmp;
+}
+
+template <typename T>
+MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator--(int)
+{
+    Iterator tmp = *this;
+    this->_idx--;
+    return tmp;
 }
