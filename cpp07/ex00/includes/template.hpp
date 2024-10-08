@@ -17,7 +17,7 @@
 #include <iostream>
 
 template <typename T>
-void swap( T& value1, T& value2 )
+void swap(T &value1, T &value2)
 {
     T temp;
 
@@ -27,22 +27,18 @@ void swap( T& value1, T& value2 )
 }
 
 template <typename T>
-T min( T& value1, T& value2 )
+T min(T &value1, T &value2)
 {
-    if ( value2 < value1 )
-        return value2;
-    else if ( value1 < value2 )
+    if (value1 < value2)
         return value1;
     else
         return value2;
 }
 
 template <typename T>
-T max( T& value1, T& value2 )
+T max(T &value1, T &value2)
 {
-    if ( value2 > value1 )
-        return value2;
-    else if ( value1 > value2 )
+    if (value1 > value2)
         return value1;
     else
         return value2;
