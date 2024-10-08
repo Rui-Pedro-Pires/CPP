@@ -15,7 +15,7 @@
 #define MUTANTSTACK_HPP
 
 #include <iostream>
-#include <stack>
+#include <bits/stdc++.h>
 
 template <typename T>
 class MutantStack : public std::stack<T>
@@ -23,28 +23,28 @@ class MutantStack : public std::stack<T>
 public:
     MutantStack();
     ~MutantStack();
-    MutantStack(const MutantStack &other);
-    MutantStack &operator=(const MutantStack &other);
+    MutantStack( const MutantStack &other );
+    MutantStack &operator=( const MutantStack &other );
 
     class Iterator
     {
     private:
-        MutantStack<T> &_stack;
+        MutantStack<T> &_mutantStack;
         unsigned int _idx;
 
     public:
-        Iterator(MutantStack<T> &vec, unsigned int idx);
+        Iterator( MutantStack<T> &mutantStack, unsigned int idx );
         ~Iterator();
-        Iterator(const Iterator &other);
-        Iterator &operator=(const Iterator &other);
+        Iterator( const Iterator &other );
+        Iterator &operator=( const Iterator &other );
 
         Iterator &operator++();
         Iterator &operator--();
-        Iterator &operator++(int);
-        Iterator &operator--(int);
+        Iterator &operator++( int );
+        Iterator &operator--( int );
         T &operator*();
-        bool operator==(const Iterator &other);
-        bool operator!=(const Iterator &other);
+        bool operator==( const Iterator &other );
+        bool operator!=( const Iterator &other );
     };
 
     Iterator begin();

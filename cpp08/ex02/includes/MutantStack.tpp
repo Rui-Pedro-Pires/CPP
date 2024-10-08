@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 template <typename T>
-MutantStack<T>::MutantStack()
+MutantStack<T>::MutantStack() : std::stack<T>()
 {
 }
 
@@ -21,33 +21,35 @@ MutantStack<T>::~MutantStack()
 }
 
 template <typename T>
-MutantStack<T>::MutantStack(const MutantStack &other) : std::stack<T>(other)
+MutantStack<T>::MutantStack( const MutantStack &other ) : std::stack<T>( other )
 {
 }
 
 template <typename T>
-MutantStack<T> &MutantStack<T>::operator=(const MutantStack &other)
+MutantStack<T> &MutantStack<T>::operator=( const MutantStack &other )
 {
-    (void)other;
+    if ( this != &other )
+        this->c = other.c;
     return *this;
 }
 
 template <typename T>
 typename MutantStack<T>::Iterator MutantStack<T>::begin()
 {
-    MutantStack<T>::Iterator it(*this, 0);
+    MutantStack<T>::Iterator it( *this, 0 );
     return it;
 }
 
 template <typename T>
 typename MutantStack<T>::Iterator MutantStack<T>::end()
 {
-    MutantStack<T>::Iterator it(*this, this->size());
+    MutantStack<T>::Iterator it( *this, this->size() );
     return it;
 }
 
 template <typename T>
-MutantStack<T>::Iterator::Iterator(MutantStack<T> &vec, unsigned int idx) : _stack(vec), _idx(idx)
+MutantStack<T>::Iterator::Iterator( MutantStack<T> &mutantStack, unsigned int idx )
+    : _mutantStack( mutantStack ), _idx( idx )
 {
 }
 
@@ -57,14 +59,16 @@ MutantStack<T>::Iterator::~Iterator()
 }
 
 template <typename T>
-MutantStack<T>::Iterator::Iterator(const MutantStack<T>::Iterator &other) : _stack(other._stack), _idx(other._idx)
+MutantStack<T>::Iterator::Iterator( const MutantStack<T>::Iterator &other )
+    : _mutantStack( other._mutantStack ), _idx( other._idx )
 {
 }
 
 template <typename T>
-typename MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator=(const MutantStack<T>::Iterator &other)
+typename MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator=(
+    const MutantStack<T>::Iterator &other )
 {
-    this->_stack = other._stack;
+    this->_mutantStack = other._mutantStack;
     this->_idx = other._idx;
     return *this;
 }
@@ -84,7 +88,7 @@ typename MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator--()
 }
 
 template <typename T>
-typename MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator++(int)
+typename MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator++( int )
 {
     Iterator tmp = *this;
     this->_idx++;
@@ -92,7 +96,7 @@ typename MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator++(int)
 }
 
 template <typename T>
-typename MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator--(int)
+typename MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator--( int )
 {
     Iterator tmp = *this;
     this->_idx--;
@@ -100,21 +104,21 @@ typename MutantStack<T>::Iterator &MutantStack<T>::Iterator::operator--(int)
 }
 
 template <typename T>
-T& MutantStack<T>::Iterator::operator*()
+T &MutantStack<T>::Iterator::operator*()
 {
-    return this->_stack.c.at(this->_idx);
+    return this->_mutantStack.c.at( this->_idx );
 }
 
 template <typename T>
-bool MutantStack<T>::Iterator::operator==(const MutantStack<T>::Iterator& other)
+bool MutantStack<T>::Iterator::operator==( const MutantStack<T>::Iterator &other )
 {
-    if (this->_stack == other._stack && this->_idx == other._idx)
+    if ( this->_mutantStack == other._mutantStack && this->_idx == other._idx )
         return true;
     return false;
 }
 
 template <typename T>
-bool MutantStack<T>::Iterator::operator!=(const MutantStack<T>::Iterator& other)
+bool MutantStack<T>::Iterator::operator!=( const MutantStack<T>::Iterator &other )
 {
-    return !(*this == other);
+    return !( *this == other );
 }
