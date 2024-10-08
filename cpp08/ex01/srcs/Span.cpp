@@ -57,7 +57,7 @@ void Span::addNumber( int toAdd )
 
 void Span::addManyNumbers( int* arr, int N )
 {
-    if ( this->vec.size() == this->maxSize )
+    if ( this->vec.size() == this->maxSize || this->vec.size() + N > this->maxSize )
         throw SizeOverflowException();
     this->vec.insert( this->vec.end(), arr, arr + N );
 }
