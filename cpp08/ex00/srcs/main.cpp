@@ -15,14 +15,11 @@
 int main( int, char** )
 {
     int pos;
-    std::vector<int> vec( 10 );
-    for ( int i = 0; i < 10; i++ )
-    {
-        vec.push_back( i );
-    }
+    int arr[] = {1, 4, 2, 5, 7, 3, 9, 10};
+    std::vector<int> vec(arr, arr + 8);
     try
     {
-        pos = easyfind( vec, 2 );
+        pos = easyfind( vec, 10 );
         std::cout << pos << std::endl;
     }
     catch ( const std::exception& e )

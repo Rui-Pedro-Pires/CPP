@@ -26,7 +26,7 @@ int easyfind(T container, int to_search)
     it = std::find(container.begin(), container.end(), to_search);
     if (it == container.end())
         throw std::exception(); 
-    return (*it);
+    return (it - container.begin());
 }
 
 #endif
