@@ -29,11 +29,11 @@ public:
     class Iterator
     {
     private:
-        T &_pointer;
+        MutantStack<T> &_stack;
         unsigned int _idx;
 
     public:
-        Iterator(T &pointer, unsigned int idx);
+        Iterator(MutantStack<T> &vec, unsigned int idx);
         ~Iterator();
         Iterator(const Iterator &other);
         Iterator &operator=(const Iterator &other);
@@ -42,6 +42,9 @@ public:
         Iterator &operator--();
         Iterator &operator++(int);
         Iterator &operator--(int);
+        T &operator*();
+        bool operator==(const Iterator &other);
+        bool operator!=(const Iterator &other);
     };
 
     Iterator begin();
