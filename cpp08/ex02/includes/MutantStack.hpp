@@ -14,11 +14,12 @@
 #ifndef MUTANTSTACK_HPP
 #define MUTANTSTACK_HPP
 
-#include <iostream>
 #include <bits/stdc++.h>
 
-template <typename T>
-class MutantStack : public std::stack<T>
+#include <iostream>
+
+template <typename T, typename ContainerType = std::deque<T> >
+class MutantStack : public std::stack<T, ContainerType>
 {
 public:
     MutantStack();
@@ -29,11 +30,11 @@ public:
     class Iterator
     {
     private:
-        MutantStack<T> &_mutantStack;
+        MutantStack<T, ContainerType> &_mutantStack;
         unsigned int _idx;
 
     public:
-        Iterator( MutantStack<T> &mutantStack, unsigned int idx );
+        Iterator( MutantStack<T, ContainerType> &mutantStack, unsigned int idx );
         ~Iterator();
         Iterator( const Iterator &other );
         Iterator &operator=( const Iterator &other );
@@ -50,7 +51,8 @@ public:
     Iterator begin();
     Iterator end();
 
-    typedef typename MutantStack<T>::Iterator iterator;
+    // typedef typename ContainerType::iterator iterator;
+    typedef typename MutantStack<T, ContainerType>::Iterator iterator;
 };
 
 #include "MutantStack.tpp"
