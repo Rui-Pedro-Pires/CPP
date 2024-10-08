@@ -27,32 +27,31 @@ public:
     MutantStack( const MutantStack &other );
     MutantStack &operator=( const MutantStack &other );
 
-    class Iterator
-    {
-    private:
-        MutantStack<T, ContainerType> &_mutantStack;
-        unsigned int _idx;
+    // class Iterator
+    // {
+    // private:
+    //     MutantStack<T, ContainerType> &_mutantStack;
+    //     unsigned int _idx;
 
-    public:
-        Iterator( MutantStack<T, ContainerType> &mutantStack, unsigned int idx );
-        ~Iterator();
-        Iterator( const Iterator &other );
-        Iterator &operator=( const Iterator &other );
+    // public:
+    //     Iterator( MutantStack<T, ContainerType> &mutantStack, unsigned int idx );
+    //     ~Iterator();
+    //     Iterator( const Iterator &other );
+    //     Iterator &operator=( const Iterator &other );
 
-        Iterator &operator++();
-        Iterator &operator--();
-        Iterator &operator++( int );
-        Iterator &operator--( int );
-        T &operator*();
-        bool operator==( const Iterator &other );
-        bool operator!=( const Iterator &other );
-    };
+    //     Iterator &operator++();
+    //     Iterator &operator--();
+    //     Iterator &operator++( int );
+    //     Iterator &operator--( int );
+    //     T &operator*();
+    //     bool operator==( const Iterator &other );
+    //     bool operator!=( const Iterator &other );
+    // };
 
-    Iterator begin();
-    Iterator end();
-
-    // typedef typename ContainerType::iterator iterator;
-    typedef typename MutantStack<T, ContainerType>::Iterator iterator;
+    typedef typename ContainerType::iterator iterator;
+    // typedef typename MutantStack<T, ContainerType>::Iterator iterator;
+    iterator begin();
+    iterator end();
 };
 
 #include "MutantStack.tpp"

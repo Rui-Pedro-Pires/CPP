@@ -14,6 +14,7 @@
 
 int main()
 {
+    std::cout << "-------Mstack-------" << std::endl;
     MutantStack<int, std::vector<int> > mstack;
     mstack.push( 5 );
     mstack.push( 17 );
@@ -25,7 +26,6 @@ int main()
     mstack.push( 5 );
     mstack.push( 737 );
     mstack.push( 0 );
-    std::cout << "-------Mstack-------" << std::endl;
     MutantStack<int, std::vector<int> >::iterator it = mstack.begin();
     MutantStack<int, std::vector<int> >::iterator ite = mstack.end();
     ++it;
@@ -37,17 +37,16 @@ int main()
         ++it;
     }
 
-
     ////////// MY TESTS //////////
     MutantStack<int, std::vector<int> > mstack1 = mstack;
-    MutantStack<int, std::vector<int> > mstack2(mstack1);
+    MutantStack<int, std::vector<int> > mstack2( mstack1 );
     mstack2.pop();
-    mstack2.push(200);
-    mstack2.push(234);
+    mstack2.push( 200 );
+    mstack2.push( 234 );
     std::cout << "-------Mstack1-------" << std::endl;
     MutantStack<int, std::vector<int> >::iterator it1 = mstack1.begin();
     MutantStack<int, std::vector<int> >::iterator ite1 = mstack1.end();
-     while ( it1 != ite1 )
+    while ( it1 != ite1 )
     {
         std::cout << *it1 << std::endl;
         ++it1;
@@ -60,6 +59,18 @@ int main()
         std::cout << *it2 << std::endl;
         ++it2;
     }
-    std::stack<int, std::vector<int> > s( mstack );
+
+    std::cout << "-------str_Stack-------" << std::endl;
+    MutantStack<std::string, std::list<std::string> > str_Stack;
+    str_Stack.push( "cao" );
+    str_Stack.push( "e" );
+    str_Stack.push( "gato" );
+    MutantStack<std::string, std::list<std::string> >::iterator it3 = str_Stack.begin();
+    MutantStack<std::string, std::list<std::string> >::iterator ite3 = str_Stack.end();
+    while ( it3 != ite3 )
+    {
+        std::cout << *it3 << std::endl;
+        ++it3;
+    }
     return 0;
 }
