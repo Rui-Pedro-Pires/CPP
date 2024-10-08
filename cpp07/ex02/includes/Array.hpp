@@ -37,13 +37,13 @@ public:
     ~Array();
     Array( const Array& other );
     Array& operator=( const Array& other );
-    T& operator[]( int i );
-    const T& operator[]( int i ) const;
-    int size() const;
+    T& operator[]( unsigned int i );
+    const T& operator[]( unsigned int i ) const;
+    unsigned int size() const;
 
 private:
     T* array;
-    int _size;
+    unsigned int _size;
 
     class OverflowIndexException : public std::exception
     {
@@ -52,6 +52,6 @@ private:
     };
 };
 
-#include "../srcs/Array.tpp"
+#include "Array.tpp"
 
 #endif

@@ -10,13 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Array.hpp"
-
 template<typename T>
 Array<T>::Array()
 {
     _size = 0;
-    array = new T;
+    array = new T[0];
 }
 
 template<typename T>
@@ -36,7 +34,7 @@ template<typename T>
 Array<T>::Array( const Array &other) : _size(other.size())
 {
     this->array = new T[other.size()];
-    for (int i = 0; i < other.size(); i++)
+    for (size_t i = 0; i < other.size(); i++)
         this->array[i] = other.array[i];
 }
 
@@ -48,30 +46,30 @@ Array<T>& Array<T>::operator=( const Array& other )
         delete[] this->array;
         this->_size = other.size();
         this->array = new T[other.size()];
-        for (int i = 0; i < other.size(); i++)
+        for (size_t i = 0; i < other.size(); i++)
             this->array[i] = other.array[i];
     }
     return *this;
 }
 
 template<typename T>
-const T& Array<T>::operator[]( int i ) const
+const T& Array<T>::operator[]( unsigned int i ) const
 {
-    if (i >= this->size() || i < 0)
+    if (i >= this->size())
         throw OverflowIndexException();
     return array[i];
 }
 
 template<typename T>
-T& Array<T>::operator[]( int i )
+T& Array<T>::operator[]( unsigned int i )
 {
-    if (i >= this->size() || i < 0)
+    if (i >= this->size())
         throw OverflowIndexException();
     return array[i];
 }
 
 template<typename T>
-int Array<T>::size() const
+unsigned int Array<T>::size() const
 {
     return this->_size;
 }

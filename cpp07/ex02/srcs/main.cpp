@@ -31,6 +31,8 @@ int main( int, char** )
     {
         Array<int> tmp = numbers;
         Array<int> test( tmp );
+        Array<int> t1;
+        t1 = test;
     }
 
     for ( int i = 0; i < MAX_VAL; i++ )
