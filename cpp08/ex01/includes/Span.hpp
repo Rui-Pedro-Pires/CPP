@@ -27,7 +27,6 @@
 #define SPAN_HPP
 
 #include <bits/stdc++.h>
-
 #include <algorithm>
 #include <iostream>
 
@@ -39,24 +38,24 @@ private:
 
 public:
     Span();
-    Span( unsigned int N );
+    Span(unsigned int N);
     ~Span();
-    Span( const Span& other );
-    Span& operator=( const Span& other );
+    Span(const Span &other);
+    Span &operator=(const Span &other);
 
-    void addNumber( int toAdd );
-    void addManyNumbers( int* toAdd, int N );
+    void addNumber(int toAdd);
+    void addManyNumbers(int *toAdd, int N);
     int shortestSpan();
     int longestSpan();
 
     class SizeOverflowException : public std::exception
     {
-        const char* what() const throw();
+        const char *what() const throw();
     };
 
     class NoElementsEnoughtException : public std::exception
     {
-        const char* what() const throw();
+        const char *what() const throw();
     };
 };
 
