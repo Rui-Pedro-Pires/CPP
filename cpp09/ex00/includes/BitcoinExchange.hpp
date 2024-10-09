@@ -16,12 +16,12 @@
 
 #include <iostream>
 #include <fstream>
-#include <map>
+#include <bits/stdc++.h>
 
 class BitcoinExchange
 {
 private:
-    std::multimap<std::string, int> _multimap;
+    std::map<std::string, long> _database;
 
 public:
     BitcoinExchange();
@@ -29,9 +29,9 @@ public:
     BitcoinExchange(const BitcoinExchange &other);
     BitcoinExchange &operator=(const BitcoinExchange &other);
 
-    typedef std::multimap<std::string, int>::iterator iterator;
+    typedef std::map<std::string, long>::iterator iterator;
 
-    void insertValue(std::string str, int i);
+    void readDataBase(void);
     void getValues();
 };
 
