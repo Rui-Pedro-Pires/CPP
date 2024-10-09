@@ -18,14 +18,28 @@
 
 #include <iostream>
 
-template <typename T, typename ContainerType = std::deque<T> >
+template <typename T, typename ContainerType = std::deque<T>>
 class MutantStack : public std::stack<T, ContainerType>
 {
 public:
     MutantStack();
     ~MutantStack();
-    MutantStack( const MutantStack &other );
-    MutantStack &operator=( const MutantStack &other );
+    MutantStack(const MutantStack &other);
+    MutantStack &operator=(const MutantStack &other);
+
+    typedef typename ContainerType::iterator iterator;
+    typedef typename ContainerType::const_iterator const_iterator;
+    typedef typename ContainerType::reverse_iterator reverse_iterator;
+    typedef typename ContainerType::const_reverse_iterator const_reverse_iterator;
+
+    iterator begin();
+    iterator end();
+    const_iterator cbegin();
+    const_iterator cend();
+    reverse_iterator rbegin();
+    reverse_iterator rend();
+    const_reverse_iterator crbegin();
+    const_reverse_iterator crend();
 
     // class Iterator
     // {
@@ -48,10 +62,7 @@ public:
     //     bool operator!=( const Iterator &other );
     // };
 
-    typedef typename ContainerType::iterator iterator;
     // typedef typename MutantStack<T, ContainerType>::Iterator iterator;
-    iterator begin();
-    iterator end();
 };
 
 #include "MutantStack.tpp"

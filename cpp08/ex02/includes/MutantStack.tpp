@@ -21,15 +21,15 @@ MutantStack<T, ContainerType>::~MutantStack()
 }
 
 template <typename T, typename ContainerType>
-MutantStack<T, ContainerType>::MutantStack( const MutantStack &other )
-    : std::stack<T, ContainerType>( other )
+MutantStack<T, ContainerType>::MutantStack(const MutantStack &other)
+    : std::stack<T, ContainerType>(other)
 {
 }
 
 template <typename T, typename ContainerType>
-MutantStack<T, ContainerType> &MutantStack<T, ContainerType>::operator=( const MutantStack &other )
+MutantStack<T, ContainerType> &MutantStack<T, ContainerType>::operator=(const MutantStack &other)
 {
-    if ( this != &other )
+    if (this != &other)
         this->c = other.c;
     return *this;
 }
@@ -44,6 +44,42 @@ template <typename T, typename ContainerType>
 typename MutantStack<T, ContainerType>::iterator MutantStack<T, ContainerType>::end()
 {
     return this->c.end();
+}
+
+template <typename T, typename ContainerType>
+typename MutantStack<T, ContainerType>::const_iterator MutantStack<T, ContainerType>::cbegin()
+{
+    return this->c.cbegin();
+}
+
+template <typename T, typename ContainerType>
+typename MutantStack<T, ContainerType>::const_iterator MutantStack<T, ContainerType>::cend()
+{
+    return this->c.cend();
+}
+
+template <typename T, typename ContainerType>
+typename MutantStack<T, ContainerType>::reverse_iterator MutantStack<T, ContainerType>::rbegin()
+{
+    return this->c.rbegin();
+}
+
+template <typename T, typename ContainerType>
+typename MutantStack<T, ContainerType>::reverse_iterator MutantStack<T, ContainerType>::rend()
+{
+    return this->c.rend();
+}
+
+template <typename T, typename ContainerType>
+typename MutantStack<T, ContainerType>::const_reverse_iterator MutantStack<T, ContainerType>::crbegin()
+{
+    return this->c.crbegin();
+}
+
+template <typename T, typename ContainerType>
+typename MutantStack<T, ContainerType>::const_reverse_iterator MutantStack<T, ContainerType>::crend()
+{
+    return this->c.crend();
 }
 
 // template <typename T, typename ContainerType>
@@ -126,13 +162,7 @@ typename MutantStack<T, ContainerType>::iterator MutantStack<T, ContainerType>::
 // template <typename T, typename ContainerType>
 // T &MutantStack<T, ContainerType>::Iterator::operator*()
 // {
-//     if constexpr (std::is_same<ContainerType, std::list<T>>::value) {
-//         typename ContainerType::iterator it = this->_mutantStack.c.begin();
-//         std::advance(it, this->_idx);
-//         return *it;
-//     } else {
-//         return this->_mutantStack.c.at(this->_idx);
-//     }
+//     return this->_mutantStack.c.at(this->_idx);
 // }
 
 // template <typename T, typename ContainerType>

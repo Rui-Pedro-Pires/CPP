@@ -59,7 +59,6 @@ int main()
         std::cout << *it2 << std::endl;
         ++it2;
     }
-
     std::cout << "-------str_Stack-------" << std::endl;
     MutantStack<std::string, std::list<std::string> > str_Stack;
     str_Stack.push( "cao" );
