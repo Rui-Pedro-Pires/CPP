@@ -23,11 +23,14 @@ int main(int, char **)
     sp.addNumber(11);
     std::cout << sp.shortestSpan() << std::endl;
     std::cout << sp.longestSpan() << std::endl;
+
+    std::cout << "------My Tests-------" << std::endl;
     std::vector<int> vec;
     for (int i = 0; i < 10000; i++)
     {
         vec.push_back(rand() % 10000);
     }
+    std::cout << "First Test:" << std::endl;
     try
     {
         Span sp2 = Span(10000);
@@ -39,5 +42,28 @@ int main(int, char **)
     {
         std::cerr << e.what() << '\n';
     }
+    std::cout << "Second Test:" << std::endl;
+    try
+    {
+        Span sp3 = Span(1);
+        std::cout << sp3.shortestSpan() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+    std::cout << "Third Test:" << std::endl;
+    try
+    {
+        Span sp4 = Span(1);
+        sp4.addNumber(1);
+        sp4.addNumber(2);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
     return 0;
 }
