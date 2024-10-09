@@ -23,16 +23,16 @@ class Span
 private:
     std::vector<int> vec;
     unsigned int maxSize;
+    Span();
 
 public:
-    Span();
     Span(unsigned int N);
     ~Span();
     Span(const Span &other);
     Span &operator=(const Span &other);
 
     void addNumber(int toAdd);
-    void addManyNumbers(int *toAdd, int N);
+    void addManyNumbers(std::vector<int> vec);
     int shortestSpan();
     int longestSpan();
 

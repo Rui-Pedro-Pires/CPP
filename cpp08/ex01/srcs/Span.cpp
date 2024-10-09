@@ -12,11 +12,11 @@
 
 #include "../includes/Span.hpp"
 
-Span::Span() : maxSize( 0 )
+Span::Span() : maxSize(0)
 {
 }
 
-Span::Span( unsigned int N ) : maxSize( N )
+Span::Span(unsigned int N) : maxSize(N)
 {
 }
 
@@ -24,42 +24,33 @@ Span::~Span()
 {
 }
 
-Span::Span( const Span& other ) : maxSize( other.maxSize )
+Span::Span(const Span &other) : maxSize(other.maxSize)
 {
-    int size = other.vec.size();
-    for ( int i = 0; i < size; i++ )
-    {
-        this->vec.push_back( other.vec[i] );
-    }
+    this->vec = other.vec;
 }
 
-Span& Span::operator=( const Span& other )
+Span &Span::operator=(const Span &other)
 {
-    int size = other.vec.size();
-    if ( this != &other )
+    if (this != &other)
     {
         this->maxSize = other.maxSize;
-        this->vec.clear();
-        for ( int i = 0; i < size; i++ )
-        {
-            this->vec.push_back( other.vec[i] );
-        }
+        this->vec = other.vec;
     }
     return *this;
 }
 
-void Span::addNumber( int toAdd )
+void Span::addNumber(int toAdd)
 {
-    if ( this->vec.size() == this->maxSize )
+    if (this->vec.size() == this->maxSize)
         throw SizeOverflowException();
-    this->vec.push_back( toAdd );
+    this->vec.push_back(toAdd);
 }
 
-void Span::addManyNumbers( int* arr, int N )
+void Span::addManyNumbers(std::vector<int> vec)
 {
-    if ( this->vec.size() == this->maxSize || this->vec.size() + N > this->maxSize )
+    if (this->vec.size() == this->maxSize || this->vec.size() + vec.size() > this->maxSize)
         throw SizeOverflowException();
-    this->vec.insert( this->vec.end(), arr, arr + N );
+    this->vec.insert(this->vec.end(), vec.begin(), vec.end());
 }
 
 int Span::shortestSpan()
@@ -67,12 +58,13 @@ int Span::shortestSpan()
     int min_dist = 2147483647;
     int diff;
     int size = this->vec.size();
-    if ( size <= 1 )
+    if (size <= 1)
         throw NoElementsEnoughtException();
-    for ( int i = 0; i < size - 1; i++ )
+    std::sort(this->vec.begin(), this->vec.end());
+    for (int i = 0; i < size - 1; i++)
     {
-        diff = abs( this->vec[i] - this->vec[i + 1] );
-        if ( diff < min_dist )
+        diff = abs(this->vec[i] - this->vec[i + 1]);
+        if (diff < min_dist)
             min_dist = diff;
     }
     return min_dist;
@@ -80,26 +72,19 @@ int Span::shortestSpan()
 
 int Span::longestSpan()
 {
-    int max_dist = -2147483647;
-    int diff;
     int size = this->vec.size();
-    if ( size <= 1 )
+    if (size <= 1)
         throw NoElementsEnoughtException();
-    for ( int i = 0; i < size - 1; i++ )
-    {
-        diff = abs( this->vec[i] - this->vec[i + 1] );
-        if ( diff > max_dist )
-            max_dist = diff;
-    }
-    return max_dist;
+    std::sort(this->vec.begin(), this->vec.end());
+    return abs(this->vec[0] - this->vec[size - 1]);
 }
 
-const char* Span::SizeOverflowException::what() const throw()
+const char *Span::SizeOverflowException::what() const throw()
 {
-    return "No space left to add elements";
+    return "No space enought to add elements";
 }
 
-const char* Span::NoElementsEnoughtException::what() const throw()
+const char *Span::NoElementsEnoughtException::what() const throw()
 {
     return "No elements enought to check";
 }
