@@ -10,36 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/easyfind.hpp"
+#include "../includes/BitcoinExchange.hpp"
 
-int main( int, char** )
+int main(int argc, char **argv)
 {
-    int arr[] = {1, 4, 2, 5, 7, 3, 9, 10};
-    std::vector<int> vec(arr, arr + 8);
-    std::list<int> list(arr, arr + 8);
-    std::deque<int> deque(arr, arr + 8);
-    try
+    if (argc != 2)
+        return (1);
+    std::fstream file(argv[1]);
+    if (!file.is_open())
     {
-        std::cout << easyfind( vec, 10 ) << std::endl;
+        std::cerr << "Error opening file: " << argv[1] << std::endl;
+        return (1);
     }
-    catch ( const std::exception& e )
+
+    BitcoinExchange bitcoin;
+    std::string line;
+
+    while (std::getline(file, line))
     {
-        std::cerr << e.what() << '\n';
+
     }
-    try
-    {
-        std::cout << easyfind( list, 20 ) << std::endl;
-    }
-    catch ( const std::exception& e )
-    {
-        std::cerr << e.what() << '\n';
-    }
-    try
-    {
-        std::cout << easyfind( deque, 4 ) << std::endl;
-    }
-    catch ( const std::exception& e )
-    {
-        std::cerr << e.what() << '\n';
-    }
+    bitcoin.getValues();
+    file.close();
 }
