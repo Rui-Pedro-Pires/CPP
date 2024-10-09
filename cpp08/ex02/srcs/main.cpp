@@ -21,7 +21,6 @@ int main()
     std::cout << mstack.top() << std::endl;
     mstack.pop();
     std::cout << mstack.size() << std::endl;
-    std::cout << mstack.top() << std::endl;
     mstack.push(3);
     mstack.push(5);
     mstack.push(737);
@@ -35,7 +34,7 @@ int main()
         std::cout << *it << std::endl;
         ++it;
     }
-
+    std::stack<int> s(mstack);
     ////////// MY TESTS //////////
     MutantStack<int, std::vector<int> > mstackVec1;
     mstackVec1.push(50);
