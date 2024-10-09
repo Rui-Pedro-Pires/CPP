@@ -24,8 +24,15 @@ int main(int argc, char **argv)
     }
 
     BitcoinExchange bitcoin;
+    std::string line;
 
     bitcoin.readDataBase();
     bitcoin.getValues();
+    std::getline(file, line);
+    while (!file.eof())
+    {
+        std::getline(file, line);
+        bitcoin.checkForValue(line);
+    }
     file.close();
 }

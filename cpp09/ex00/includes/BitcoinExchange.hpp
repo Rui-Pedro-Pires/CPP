@@ -17,6 +17,7 @@
 #include <iostream>
 #include <fstream>
 #include <bits/stdc++.h>
+#include <ctime>
 
 class BitcoinExchange
 {
@@ -32,7 +33,8 @@ public:
     typedef std::map<std::string, float>::iterator iterator;
 
     void readDataBase(void);
-    void getValues();
+    void checkForValue(std::string &line);
+    void getValues(void);
 };
 
 #endif

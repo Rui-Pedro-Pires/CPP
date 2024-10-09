@@ -59,6 +59,23 @@ void BitcoinExchange::readDataBase(void)
     file.close();
 }
 
+void BitcoinExchange::checkForValue(std::string &line)
+{
+    // struct tm tm;
+    std::stringstream ss(line);
+    std::string word;
+    std::vector<std::string> words;
+
+    while (!ss.eof())
+    {
+        std::getline(ss, word, '|');
+        words.push_back(word);
+    }
+    std::cout << "d" << words[0] << "d" << std::endl;
+    // if (!strptime(words[0].c_str(), "%y-%m-%d ", &tm))
+    //     std::cerr << "error" << std::endl;
+}
+
 void BitcoinExchange::getValues()
 {
     for (iterator it = this->_database.begin(); it != this->_database.end(); it++)
