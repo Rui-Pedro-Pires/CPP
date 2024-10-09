@@ -18,7 +18,7 @@
 
 #include <iostream>
 
-template <typename T, typename ContainerType = std::deque<T>>
+template <typename T, typename ContainerType = std::deque<T> >
 class MutantStack : public std::stack<T, ContainerType>
 {
 public:
