@@ -21,7 +21,7 @@
 class BitcoinExchange
 {
 private:
-    std::map<std::string, long> _database;
+    std::map<std::string, float> _database;
 
 public:
     BitcoinExchange();
@@ -29,7 +29,7 @@ public:
     BitcoinExchange(const BitcoinExchange &other);
     BitcoinExchange &operator=(const BitcoinExchange &other);
 
-    typedef std::map<std::string, long>::iterator iterator;
+    typedef std::map<std::string, float>::iterator iterator;
 
     void readDataBase(void);
     void getValues();

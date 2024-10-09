@@ -54,7 +54,7 @@ void BitcoinExchange::readDataBase(void)
             std::getline(ss, word, ',');
             words.push_back(word);
         }
-        this->_database.insert(std::pair<std::string, long>(words[0], strtol(words[1].c_str(), NULL, 10)));
+        this->_database[words[0]] = strtof(words[1].c_str(), NULL);
     }
     file.close();
 }
