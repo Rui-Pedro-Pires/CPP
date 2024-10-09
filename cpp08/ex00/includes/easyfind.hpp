@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #pragma once
-# ifndef EASYFIND_HPP
-# define EASYFIND_HPP
+#ifndef EASYFIND_HPP
+#define EASYFIND_HPP
 
 #include <iostream>
 #include <bits/stdc++.h>
@@ -25,8 +25,8 @@ int easyfind(T container, int to_search)
 
     it = std::find(container.begin(), container.end(), to_search);
     if (it == container.end())
-        throw std::exception(); 
-    return (it - container.begin());
+        throw std::out_of_range("Number not found!");
+    return (std::distance(container.begin(), it));
 }
 
 #endif

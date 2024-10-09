@@ -14,13 +14,29 @@
 
 int main( int, char** )
 {
-    int pos;
     int arr[] = {1, 4, 2, 5, 7, 3, 9, 10};
     std::vector<int> vec(arr, arr + 8);
+    std::list<int> list(arr, arr + 8);
+    std::deque<int> deque(arr, arr + 8);
     try
     {
-        pos = easyfind( vec, 10 );
-        std::cout << pos << std::endl;
+        std::cout << easyfind( vec, 10 ) << std::endl;
+    }
+    catch ( const std::exception& e )
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        std::cout << easyfind( list, 20 ) << std::endl;
+    }
+    catch ( const std::exception& e )
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        std::cout << easyfind( deque, 4 ) << std::endl;
     }
     catch ( const std::exception& e )
     {
