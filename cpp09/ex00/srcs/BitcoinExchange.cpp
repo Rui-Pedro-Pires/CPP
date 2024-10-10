@@ -20,108 +20,106 @@ BitcoinExchange::~BitcoinExchange()
 {
 }
 
-BitcoinExchange::BitcoinExchange( const BitcoinExchange &other )
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 {
     this->_database = other._database;
 }
 
-BitcoinExchange &BitcoinExchange::operator=( const BitcoinExchange &other )
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
-    if ( this != &other )
+    if (this != &other)
     {
         this->_database = other._database;
     }
     return *this;
 }
 
-void BitcoinExchange::readDataBase( void )
+void BitcoinExchange::readDataBase(void)
 {
-    std::fstream file( "data.csv" );
+    std::ifstream file("data.csv");
     std::string line;
     std::string word;
     std::vector<std::string> words;
 
-    if ( !file.is_open() )
+    if (!file.is_open())
         throw std::exception();
-    std::getline( file, line );
-    while ( !file.eof() )
+    std::getline(file, line);
+    while (!file.eof())
     {
-        std::getline( file, line );
-        std::stringstream ss( line );
+        std::getline(file, line);
+        std::stringstream ss(line);
         words.clear();
-        while ( !ss.eof() )
+        while (!ss.eof())
         {
-            std::getline( ss, word, ',' );
-            words.push_back( word );
+            std::getline(ss, word, ',');
+            words.push_back(word);
         }
-        int date = this->castDate( words[0] );
-        this->_database[date] = strtof( words[1].c_str(), NULL );
+        this->_database[words[0]] = strtof(words[1].c_str(), NULL);
     }
     file.close();
 }
 
-void BitcoinExchange::checkForValue( std::string &line )
+void BitcoinExchange::checkForValue(std::string &line)
 {
     struct tm tm;
-    std::stringstream ss( line );
+    float number;
+    std::stringstream ss(line);
     std::string word;
     std::vector<std::string> words;
+    std::map<std::string, float>::iterator it;
 
-    while ( !ss.eof() )
+    while (!ss.eof())
     {
-        std::getline( ss, word, '|' );
-        word.erase( remove( word.begin(), word.end(), ' ' ), word.end() );
-        words.push_back( word );
+        std::getline(ss, word, ' ');
+        if (word != "|")
+            words.push_back(word);
     }
-    if ( strptime( words[0].c_str(), "%Y-%m-%d", &tm ) )
-        std::cerr << words[0] << " => ";
-    else
+    if (!strptime(words[0].c_str(), "%Y-%m-%d", &tm))
+        throw BadDateException(words[0]);
+    number = strtof(words[1].c_str(), NULL);
+    if (number < 0)
+        throw NegativeNumberException();
+    else if (number > 1000)
+        throw NumberToLargeException();
+    it = this->_database.find(words[0]);
+    if (it == this->_database.end())
     {
-        std::cerr << "Error: bad input => " << words[0] << std::endl;
-        return;
+        it = this->_database.lower_bound(words[0]);
+        it--;
+        if (it == this->_database.begin())
+            throw NoDateToTrackException(words[0]);
     }
-    float number = strtof( words[1].c_str(), NULL );
-    if ( number >= 0 && number <= 1000 )
-    {
-        std::cout << number << " = ";
-    }
-    else if ( number < 0 )
-    {
-        std::cerr << "Error: not a positive number." << words[0] << std::endl;
-        return;
-    }
-    else
-    {
-        std::cerr << "Error: too large a number." << words[0] << std::endl;
-        return;
-    }
-    std::map<int, float>::iterator it;
-
-    int date = this->castDate( words[0] );
-
-    while ( date )
-    {
-        it = _database.find( date );
-        if ( it != _database.end() )
-        {
-            std::cout << it->second * number << std::endl;
-            return;
-        }
-        date--;
-    }
-    std::cerr << "date not found" << std::endl;
+    std::cerr << words[0] << " => ";
+    std::cout << number << " = ";
+    std::cout << it->second * number << std::endl;
 }
 
-int BitcoinExchange::castDate( std::string &date )
-{
-    struct tm tm;
+BitcoinExchange::BadDateException::BadDateException(std::string date) : _date(date) {}
 
-    strptime( date.c_str(), "%Y-%m-%d", &tm );
-    return ( 10000 * tm.tm_year + 100 * tm.tm_mon + tm.tm_mday );
+BitcoinExchange::BadDateException::~BadDateException() throw() {}
+
+const char *BitcoinExchange::BadDateException::what() const throw()
+{
+    static std::string temp = "Error: bad input => " + this->_date;
+    return (temp.c_str());
 }
 
-void BitcoinExchange::getValues()
+const char *BitcoinExchange::NegativeNumberException::what() const throw()
 {
-    for ( iterator it = this->_database.begin(); it != this->_database.end(); it++ )
-        std::cout << it->first << ": " << it->second << std::endl;
+    return "Error: not a positive number.";
+}
+
+const char *BitcoinExchange::NumberToLargeException::what() const throw()
+{
+    return "Error: too large a number.";
+}
+
+BitcoinExchange::NoDateToTrackException::NoDateToTrackException(std::string date) : _date(date) {}
+
+BitcoinExchange::NoDateToTrackException::~NoDateToTrackException() throw() {}
+
+const char *BitcoinExchange::NoDateToTrackException::what() const throw()
+{
+    static std::string temp = "Error: no date to check => " + this->_date;
+    return (temp.c_str());
 }

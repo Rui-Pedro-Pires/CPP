@@ -13,14 +13,14 @@ C++ = c++
 CPPFLAGS = -Werror -Wall -Wextra -g -std=c++98
 
 # File-related variables
-NAME = ex01
+NAME = RPN
 RM = rm -rf
 SDIR := srcs
 ODIR := obj
 
 # Source files
 SOURCES := main.cpp\
-			Span.cpp\
+			RPN.cpp\
 
 # Object files
 OBJECTS := $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCES))

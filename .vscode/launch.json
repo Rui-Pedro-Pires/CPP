@@ -8,8 +8,10 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/cpp07/ex02/ex02",
-            "args": ["1212312321312.123123213"],
+            "program": "${workspaceFolder}/cpp09/ex01/RPN",
+            "args": [
+                "2 1 + 2 /"
+            ],
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],

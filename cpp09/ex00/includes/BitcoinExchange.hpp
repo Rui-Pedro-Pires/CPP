@@ -23,20 +23,49 @@
 class BitcoinExchange
 {
 private:
-    std::map<int, float> _database;
+    std::map<std::string, float> _database;
 
 public:
     BitcoinExchange();
     ~BitcoinExchange();
-    BitcoinExchange( const BitcoinExchange &other );
-    BitcoinExchange &operator=( const BitcoinExchange &other );
+    BitcoinExchange(const BitcoinExchange &other);
+    BitcoinExchange &operator=(const BitcoinExchange &other);
 
-    typedef std::map<int, float>::iterator iterator;
+    typedef std::map<std::string, float>::iterator iterator;
 
-    void readDataBase( void );
-    void checkForValue( std::string &line );
-    int castDate( std::string &date );
-    void getValues( void );
+    void readDataBase(void);
+    void checkForValue(std::string &line);
+    class BadDateException : public std::exception
+    {
+    private:
+        std::string _date;
+
+    public:
+        BadDateException(std::string date);
+        virtual ~BadDateException() throw();
+        const char *what() const throw();
+    };
+
+    class NumberToLargeException : public std::exception
+    {
+        const char *what() const throw();
+    };
+
+    class NegativeNumberException : public std::exception
+    {
+        const char *what() const throw();
+    };
+
+    class NoDateToTrackException : public std::exception
+    {
+    private:
+        std::string _date;
+
+    public:
+        NoDateToTrackException(std::string date);
+        virtual ~NoDateToTrackException() throw();
+        const char *what() const throw();
+    };
 };
 
 #endif
