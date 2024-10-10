@@ -14,27 +14,29 @@
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 
-#include <iostream>
-#include <fstream>
 #include <bits/stdc++.h>
+
 #include <ctime>
+#include <fstream>
+#include <iostream>
 
 class BitcoinExchange
 {
 private:
-    std::map<std::string, float> _database;
+    std::map<int, float> _database;
 
 public:
     BitcoinExchange();
     ~BitcoinExchange();
-    BitcoinExchange(const BitcoinExchange &other);
-    BitcoinExchange &operator=(const BitcoinExchange &other);
+    BitcoinExchange( const BitcoinExchange &other );
+    BitcoinExchange &operator=( const BitcoinExchange &other );
 
-    typedef std::map<std::string, float>::iterator iterator;
+    typedef std::map<int, float>::iterator iterator;
 
-    void readDataBase(void);
-    void checkForValue(std::string &line);
-    void getValues(void);
+    void readDataBase( void );
+    void checkForValue( std::string &line );
+    int castDate( std::string &date );
+    void getValues( void );
 };
 
 #endif

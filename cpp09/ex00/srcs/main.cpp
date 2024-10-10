@@ -12,27 +12,30 @@
 
 #include "../includes/BitcoinExchange.hpp"
 
-int main(int argc, char **argv)
+int main( int argc, char **argv )
 {
-    if (argc != 2)
-        return (1);
-    std::fstream file(argv[1]);
-    if (!file.is_open())
+    if ( argc != 2 )
     {
-        std::cerr << "Error opening file: " << argv[1] << std::endl;
-        return (1);
+        std::cerr << "Error: could not open file" << std::endl;
+        return ( 1 );
+    }
+    std::fstream file( argv[1] );
+    if ( !file.is_open() )
+    {
+        std::cerr << "Error: could not open file" << std::endl;
+        return ( 1 );
     }
 
     BitcoinExchange bitcoin;
     std::string line;
 
     bitcoin.readDataBase();
-    bitcoin.getValues();
-    std::getline(file, line);
-    while (!file.eof())
+    // bitcoin.getValues();
+    std::getline( file, line );
+    while ( !file.eof() )
     {
-        std::getline(file, line);
-        bitcoin.checkForValue(line);
+        std::getline( file, line );
+        bitcoin.checkForValue( line );
     }
     file.close();
 }
