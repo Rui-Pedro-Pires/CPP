@@ -44,7 +44,7 @@ public:
 
     void mergeSort( int left, int right );
     void merge( int left, int mid, int right );
-    void inserting( void );
+    void insert( void );
     void binaryInsert( int left, int right, int number );
 
     int getSizeMain() const;

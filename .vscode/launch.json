@@ -10,9 +10,8 @@
             "request": "launch",
             "program": "${workspaceFolder}/cpp09/ex02/PmergeMe",
             "args": [
-                "2 1 + 2 /"
             ],
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,

@@ -16,15 +16,15 @@ int main()
 {
     srand( time( 0 ) );
     std::vector<int> numbers;
-    for ( int i = 0; i < 11; i++ )
+    for ( int i = 0; i < 20000; i++ )
     {
-        numbers.push_back( rand() % 100 );
+        numbers.push_back( rand() % 100000 );
         std::cout << numbers[i] << std::endl;
     }
     PmergeMe num( numbers );
 
     std::cout << "-----------" << std::endl;
     num.mergeSort( 0, num.getSizeMain() - 1 );
-    num.inserting();
+    num.insert();
     num.printList( "main" );
 }

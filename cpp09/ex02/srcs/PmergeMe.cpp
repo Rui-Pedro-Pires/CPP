@@ -187,36 +187,51 @@ int jacobsthal( const int n )
 {
     return ( std::pow( 2, n + 1 ) + std::pow( -1, n ) ) / 3;
 }
-
-void PmergeMe::inserting( void )
+void PmergeMe::insert( void )
 {
-    size_t insertCounter = 1;
-    size_t i = 0;
-    size_t jacobsthal_idx = 1;
-
     this->main.insert( this->main.begin(), this->pend.front() );
-
-    int distance_forward = 2 * jacobsthal( jacobsthal_idx );
-    while ( i + distance_forward >= this->pend.size() )
+    size_t insertCounter = 1;
+    size_t i = 1;
+    while ( i < this->pend.size() )
     {
-        const size_t start = i;
-        i += distance_forward;
-        while ( i > start )
-        {
-            binaryInsert( 0, i + insertCounter - 1, this->pend[i] );
-            ++insertCounter;
-            --i;
-        }
-        i += distance_forward;
-        ++jacobsthal_idx;
-        distance_forward = 2 * jacobsthal( jacobsthal_idx );
-    }
-
-    const size_t start = i;
-    i = this->pend.size() - 1;
-    while ( i > start )
-    {
-        binaryInsert( 0, this->main.size() - 1, pend[i] );
-        --i;
+        if ( i + insertCounter >= this->main.size() )
+            binaryInsert( 0, this->main.size() - 1, this->pend[i] );
+        else
+            binaryInsert( 0, i + insertCounter, this->pend[i] );
+        insertCounter++;
+        i++;
     }
 }
+
+// void PmergeMe::inserting( void )
+// {
+//     size_t insertCounter = 1;
+//     size_t i = 0;
+//     size_t jacobsthal_idx = 1;
+
+//     this->main.insert( this->main.begin(), this->pend.front() );
+
+//     int distance_forward = 2 * jacobsthal( jacobsthal_idx );
+//     while ( i + distance_forward >= this->pend.size() )
+//     {
+//         const size_t start = i;
+//         i += distance_forward;
+//         while ( i > start )
+//         {
+//             binaryInsert( 0, i + insertCounter - 1, this->pend[i] );
+//             ++insertCounter;
+//             --i;
+//         }
+//         i += distance_forward;
+//         ++jacobsthal_idx;
+//         distance_forward = 2 * jacobsthal( jacobsthal_idx );
+//     }
+
+//     const size_t start = i;
+//     i = this->pend.size() - 1;
+//     while ( i > start )
+//     {
+//         binaryInsert( 0, this->main.size() - 1, pend[i] );
+//         --i;
+//     }
+// }
