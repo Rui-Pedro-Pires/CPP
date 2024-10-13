@@ -20,6 +20,7 @@ ODIR := obj
 
 # Source files
 SOURCES := main.cpp\
+			PmergeMe.cpp\
 
 # Object files
 OBJECTS := $(patsubst %.cpp,$(ODIR)/%.o,$(SOURCES))

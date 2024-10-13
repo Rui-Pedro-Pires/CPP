@@ -33,10 +33,23 @@
 class PmergeMe
 {
 private:
-    /* data */
+    std::vector<int> main;
+    std::vector<int> pend;
+
 public:
-    PmergeMe(/* args */);
+    PmergeMe( std::vector<int> numbers );
+    PmergeMe( const PmergeMe& other );
+    PmergeMe& operator=( const PmergeMe& other );
     ~PmergeMe();
+
+    void mergeSort( int left, int right );
+    void merge( int left, int mid, int right );
+    void inserting( void );
+    void binaryInsert( int left, int right, int number );
+
+    int getSizeMain() const;
+    int getSizePend() const;
+    void printList( std::string what );
 };
 
 #endif

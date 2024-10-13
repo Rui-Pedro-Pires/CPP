@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/cpp09/ex01/RPN",
+            "program": "${workspaceFolder}/cpp09/ex02/PmergeMe",
             "args": [
                 "2 1 + 2 /"
             ],
