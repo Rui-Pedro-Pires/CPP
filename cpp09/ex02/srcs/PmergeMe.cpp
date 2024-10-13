@@ -62,7 +62,7 @@ void PmergeMe::printList( std::string what )
     {
         while ( itMain != this->main.end() )
         {
-            std::cout << "main: " << *itMain << std::endl;
+            std::cout << *itMain << " ";
             itMain++;
         }
     }
@@ -183,10 +183,6 @@ void PmergeMe::binaryInsert( int left, int right, int number )
         return binaryInsert( left, mid, number );
 }
 
-int jacobsthal( const int n )
-{
-    return ( std::pow( 2, n + 1 ) + std::pow( -1, n ) ) / 3;
-}
 void PmergeMe::insert( void )
 {
     this->main.insert( this->main.begin(), this->pend.front() );
@@ -202,6 +198,11 @@ void PmergeMe::insert( void )
         i++;
     }
 }
+
+// int jacobsthal( const int n )
+// {
+//     return ( std::pow( 2, n + 1 ) + std::pow( -1, n ) ) / 3;
+// }
 
 // void PmergeMe::inserting( void )
 // {
