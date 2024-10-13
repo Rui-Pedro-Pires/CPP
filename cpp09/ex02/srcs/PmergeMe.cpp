@@ -113,14 +113,10 @@ void PmergeMe::merge( int left, int mid, int right )
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    std::vector<int> LMain( n1 ), RMain( n2 );
-    std::vector<int> LPend( n1 ), RPend( n2 );
-
-    for ( int i = 0; i < n1; i++ ) LMain[i] = this->main[left + i];
-    for ( int j = 0; j < n2; j++ ) RMain[j] = this->main[mid + 1 + j];
-
-    for ( int i = 0; i < n1; i++ ) LPend[i] = this->pend[left + i];
-    for ( int j = 0; j < n2; j++ ) RPend[j] = this->pend[mid + 1 + j];
+    std::vector<int> LMain( this->main.begin() + left, this->main.begin() + mid + 1 );
+    std::vector<int> RMain( this->main.begin() + mid + 1, this->main.begin() + right + 1 );
+    std::vector<int> LPend( this->pend.begin() + left, this->pend.begin() + mid + 1 );
+    std::vector<int> RPend( this->pend.begin() + mid + 1, this->pend.begin() + right + 1 );
 
     int i = 0, j = 0;
     int k = left;

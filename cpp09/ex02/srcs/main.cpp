@@ -17,7 +17,7 @@ int main()
     srand( time( 0 ) );
     std::vector<int> numbers;
     clock_t start, end;
-    for ( int i = 0; i < 200; i++ )
+    for ( int i = 0; i < 10; i++ )
     {
         numbers.push_back( rand() % 100000 );
         std::cout << numbers[i] << std::endl;
