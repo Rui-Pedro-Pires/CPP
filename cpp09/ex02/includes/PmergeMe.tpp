@@ -373,20 +373,41 @@ void PmergeMe<std::deque<int> >::binaryInsert(int left, int right, int number)
 }
 
 template <>
+size_t PmergeMe<std::vector<int> >::jacobthal(size_t n)
+{
+    if (n == 0)
+        return (0);
+    if (n == 1)
+        return (1);
+    return jacobthal(n - 1) + 2 * jacobthal(n - 2);
+}
+
+template <>
+size_t PmergeMe<std::deque<int> >::jacobthal(size_t n)
+{
+    if (n == 0)
+        return (0);
+    if (n == 1)
+        return (1);
+    return jacobthal(n - 1) + 2 * jacobthal(n - 2);
+}
+
+template <>
 void PmergeMe<std::vector<int> >::insert(void)
 {
     if (this->pend.empty())
         return;
     this->main.insert(this->main.begin(), this->pend.front());
-    size_t insertCounter = 1;
     size_t i = 1;
+    size_t indexCounter = 1;
+    size_t jacobIndex;
     while (i < this->pend.size())
     {
-        if (i + insertCounter >= this->main.size())
-            binaryInsert(0, this->main.size() - 1, this->pend[i]);
-        else
-            binaryInsert(0, i + insertCounter, this->pend[i]);
-        insertCounter++;
+        jacobIndex = 0;
+        while (jacobIndex < this->main.size() && jacobIndex < i && this->main[jacobIndex] < this->pend[i])
+            jacobIndex = jacobthal(jacobIndex + 1);
+        binaryInsert(jacobIndex, i + indexCounter, this->pend[i]);
+        indexCounter++;
         i++;
     }
 }
@@ -397,15 +418,19 @@ void PmergeMe<std::deque<int> >::insert(void)
     if (this->pend.empty())
         return;
     this->main.insert(this->main.begin(), this->pend.front());
-    size_t insertCounter = 1;
     size_t i = 1;
+    size_t indexCounter = 1;
+    size_t jacobIndex;
     while (i < this->pend.size())
     {
-        if (i + insertCounter >= this->main.size())
-            binaryInsert(0, this->main.size() - 1, this->pend[i]);
+        jacobIndex = 0;
+        while (jacobIndex < this->main.size() && jacobIndex < i && this->main[jacobIndex] < this->pend[i])
+            jacobIndex = jacobthal(jacobIndex + 1);
+        if (i + indexCounter >= this->main.size())
+            binaryInsert(jacobIndex, this->main.size() - 1, this->pend[i]);
         else
-            binaryInsert(0, i + insertCounter, this->pend[i]);
-        insertCounter++;
+            binaryInsert(jacobIndex, i + indexCounter, this->pend[i]);
+        indexCounter++;
         i++;
     }
 }

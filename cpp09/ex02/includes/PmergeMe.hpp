@@ -42,6 +42,7 @@ public:
 
     std::vector<int> parseNumbers(char **argv);
     void initValues(std::vector<int> numbers);
+    size_t jacobthal(size_t n);
     int getSizeMain() const;
     void printBeforeSort(std::vector<int> numbers);
     void printAfterSort();
