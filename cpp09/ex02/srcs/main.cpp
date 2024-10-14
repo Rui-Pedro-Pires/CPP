@@ -2,26 +2,33 @@
 
 int main(int argc, char **argv)
 {
-    clock_t start, end;
-
     if (argc < 2)
         return (0);
     try
     {
-        PmergeMe num(argv);
+        PmergeMe<std::vector<int> > num(argv);
 
-        start = clock();
+        num.initTime();
         num.mergeSort(0, num.getSizeMain() - 1);
         num.insert();
-        end = clock();
+        num.closeTime();
+        num.printAfterSort();
+        num.getTimeToSort();
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        PmergeMe<std::deque<int> > num(argv);
 
-        std::cout << "After: ";
-        num.printList("main");
-        std::cout << std::endl;
-
-        double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
-        std::cout << "Time to process a range of 200 elements with std::vector : " << std::fixed
-                  << time_taken << std::setprecision(5) << std::endl;
+        num.initTime();
+        num.mergeSort(0, num.getSizeMain() - 1);
+        num.insert();
+        num.closeTime();
+        num.printAfterSort();
+        num.getTimeToSort();
     }
     catch (const std::exception &e)
     {

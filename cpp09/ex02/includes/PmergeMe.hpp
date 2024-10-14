@@ -15,14 +15,16 @@
 #define PMERGEME_HPP
 
 #include <bits/stdc++.h>
-
 #include <iostream>
 
+template <typename T>
 class PmergeMe
 {
 private:
-    std::vector<int> main;
-    std::vector<int> pend;
+    T main;
+    T pend;
+    clock_t start;
+    clock_t end;
 
 public:
     PmergeMe(char **argv);
@@ -35,9 +37,15 @@ public:
     void insert(void);
     void binaryInsert(int left, int right, int number);
 
-    int getSizeMain() const;
+    bool ft_isdigit(std::string str);
     std::vector<int> parseNumbers(char **argv);
-    void printList(std::string what);
+    int getSizeMain() const;
+    void initTime();
+    void closeTime();
+    void printAfterSort();
+    void getTimeToSort();
 };
+
+#include "PmergeMe.tpp"
 
 #endif
