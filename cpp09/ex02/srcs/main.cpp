@@ -6,8 +6,11 @@ int main(int argc, char **argv)
         return (0);
     try
     {
-        PmergeMe<std::vector<int> > num(argv);
+        PmergeMe<std::vector<int> > num;
 
+        std::vector<int> numbers = num.parseNumbers(argv);
+        num.initValues(numbers);
+        num.printBeforeSort(numbers);
         num.initTime();
         num.mergeSort(0, num.getSizeMain() - 1);
         num.insert();
@@ -21,13 +24,14 @@ int main(int argc, char **argv)
     }
     try
     {
-        PmergeMe<std::deque<int> > num(argv);
+        PmergeMe<std::deque<int> > num;
 
+        std::vector<int> numbers = num.parseNumbers(argv);
+        num.initValues(numbers);
         num.initTime();
         num.mergeSort(0, num.getSizeMain() - 1);
         num.insert();
         num.closeTime();
-        num.printAfterSort();
         num.getTimeToSort();
     }
     catch (const std::exception &e)

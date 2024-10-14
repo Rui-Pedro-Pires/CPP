@@ -26,24 +26,34 @@ private:
     clock_t start;
     clock_t end;
 
+private:
+    void merge(int left, int mid, int right);
+    void binaryInsert(int left, int right, int number);
+    bool ft_isdigit(std::string str);
+
 public:
-    PmergeMe(char **argv);
+    PmergeMe();
     PmergeMe(const PmergeMe &other);
     PmergeMe &operator=(const PmergeMe &other);
     ~PmergeMe();
 
     void mergeSort(int left, int right);
-    void merge(int left, int mid, int right);
     void insert(void);
-    void binaryInsert(int left, int right, int number);
 
-    bool ft_isdigit(std::string str);
     std::vector<int> parseNumbers(char **argv);
+    void initValues(std::vector<int> numbers);
     int getSizeMain() const;
+    void printBeforeSort(std::vector<int> numbers);
+    void printAfterSort();
     void initTime();
     void closeTime();
-    void printAfterSort();
     void getTimeToSort();
+
+    class BadNumbersException : public std::exception
+    {
+    public:
+        const char *what() const throw();
+    };
 };
 
 #include "PmergeMe.tpp"

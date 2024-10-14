@@ -11,6 +11,16 @@
 /* ************************************************************************** */
 
 template <>
+PmergeMe<std::vector<int> >::PmergeMe()
+{
+}
+
+template <>
+PmergeMe<std::deque<int> >::PmergeMe()
+{
+}
+
+template <>
 bool PmergeMe<std::vector<int> >::ft_isdigit(std::string str)
 {
     std::string::iterator itr;
@@ -43,10 +53,10 @@ std::vector<int> PmergeMe<std::vector<int> >::parseNumbers(char **argv)
     while (argv[i])
     {
         if (!ft_isdigit(argv[i]))
-            throw std::exception();
+            throw BadNumbersException();
         num = strtol(argv[i], NULL, 10);
         if (num < -INT_MAX || num > INT_MAX)
-            throw std::exception();
+            throw BadNumbersException();
         numbers.push_back(num);
         i++;
     }
@@ -62,29 +72,24 @@ std::vector<int> PmergeMe<std::deque<int> >::parseNumbers(char **argv)
     while (argv[i])
     {
         if (!ft_isdigit(argv[i]))
-            throw std::exception();
+            throw BadNumbersException();
         num = strtol(argv[i], NULL, 10);
         if (num < -INT_MAX || num > INT_MAX)
-            throw std::exception();
+            throw BadNumbersException();
         numbers.push_back(num);
         i++;
     }
     return numbers;
 }
 
-
 template <>
-PmergeMe<std::vector<int> >::PmergeMe(char **argv)
+void PmergeMe<std::vector<int> >::initValues(std::vector<int> numbers)
 {
-    std::vector<int> numbers = parseNumbers(argv);
-    std::cout << "Before: ";
     for (size_t i = 0; i < numbers.size(); i += 2)
     {
         if (i == numbers.size() - 1)
         {
             this->pend.push_back(numbers[i]);
-            std::cout << numbers[i] << " ";
-            std::cout << std::endl;
             return;
         }
         if (numbers[i] >= numbers[i + 1])
@@ -97,24 +102,18 @@ PmergeMe<std::vector<int> >::PmergeMe(char **argv)
             this->main.push_back(numbers[i + 1]);
             this->pend.push_back(numbers[i]);
         }
-        std::cout << numbers[i] << " ";
-        std::cout << numbers[i + 1] << " ";
     }
-    std::cout << std::endl;
 }
 
+
 template <>
-PmergeMe<std::deque<int> >::PmergeMe(char **argv)
+void PmergeMe<std::deque<int> >::initValues(std::vector<int> numbers)
 {
-    std::vector<int> numbers = parseNumbers(argv);
-    std::cout << "Before: ";
     for (size_t i = 0; i < numbers.size(); i += 2)
     {
         if (i == numbers.size() - 1)
         {
             this->pend.push_back(numbers[i]);
-            std::cout << numbers[i] << " ";
-            std::cout << std::endl;
             return;
         }
         if (numbers[i] >= numbers[i + 1])
@@ -127,10 +126,7 @@ PmergeMe<std::deque<int> >::PmergeMe(char **argv)
             this->main.push_back(numbers[i + 1]);
             this->pend.push_back(numbers[i]);
         }
-        std::cout << numbers[i] << " ";
-        std::cout << numbers[i + 1] << " ";
     }
-    std::cout << std::endl;
 }
 
 template <>
@@ -414,9 +410,26 @@ void PmergeMe<std::deque<int> >::insert(void)
 }
 
 template <>
+void PmergeMe<std::vector<int> >::printBeforeSort(std::vector<int> numbers)
+{
+    std::cout << "Before: ";
+    for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+}
+
+template <>
+void PmergeMe<std::deque<int> >::printBeforeSort(std::vector<int> numbers)
+{
+    std::cout << "Before: ";
+    for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+}
+
+template <>
 void PmergeMe<std::vector<int> >::printAfterSort()
 {
-    this->end = clock();
     std::cout << "After: ";
     for (std::vector<int>::iterator it = this->main.begin(); it != this->main.end(); it++)
         std::cout << *it << " ";
@@ -470,4 +483,17 @@ void PmergeMe<std::deque<int> >::getTimeToSort()
     double time_taken = double(this->end - this->start);
         std::cout << "Time to process a range of " << this->main.size() << " elements with std::deque : " << std::fixed
                   << time_taken << std::setprecision(5) << " us" << std::endl;
+}
+
+template <>
+const char* PmergeMe<std::vector<int> >::BadNumbersException::what() const throw()
+{
+    return "Error";
+}
+
+
+template <>
+const char* PmergeMe<std::deque<int> >::BadNumbersException::what() const throw()
+{
+    return "Error";
 }
