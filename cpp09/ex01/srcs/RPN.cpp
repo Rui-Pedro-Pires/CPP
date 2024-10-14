@@ -59,7 +59,7 @@ void RPN::doRPN(std::string input)
         if (word == "+" || word == "-" || word == "*" || word == "/")
         {
             if (this->stack.size() < 2)
-                throw BadOrderException();
+                throw BadCharactersException();
             int second = this->stack.top();
             this->stack.pop();
             int first = this->stack.top();
@@ -80,7 +80,7 @@ void RPN::doRPN(std::string input)
             if (num > -10 && num < 10)
                 this->stack.push(num);
             else
-                throw BadNumberException();
+                throw BadCharactersException();
         }
         else
         {
@@ -95,15 +95,5 @@ void RPN::doRPN(std::string input)
 
 const char *RPN::BadCharactersException::what() const throw()
 {
-    return "Wrong characters input!";
-}
-
-const char *RPN::BadOrderException::what() const throw()
-{
-    return "Wrong order character input!";
-}
-
-const char *RPN::BadNumberException::what() const throw()
-{
-    return "Wrong number character input!";
+    return "Error";
 }

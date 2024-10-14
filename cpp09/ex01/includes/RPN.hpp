@@ -35,16 +35,6 @@ public:
     {
         const char *what() const throw();
     };
-
-    class BadOrderException : public std::exception
-    {
-        const char *what() const throw();
-    };
-
-    class BadNumberException : public std::exception
-    {
-        const char *what() const throw();
-    };
 };
 
 #endif
