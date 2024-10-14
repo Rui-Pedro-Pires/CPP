@@ -37,12 +37,7 @@ public:
     void checkForValue(std::string &line);
     class BadDateException : public std::exception
     {
-    private:
-        std::string _date;
-
     public:
-        BadDateException(std::string date);
-        virtual ~BadDateException() throw();
         const char *what() const throw();
     };
 
@@ -58,12 +53,7 @@ public:
 
     class NoDateToTrackException : public std::exception
     {
-    private:
-        std::string _date;
-
     public:
-        NoDateToTrackException(std::string date);
-        virtual ~NoDateToTrackException() throw();
         const char *what() const throw();
     };
 };

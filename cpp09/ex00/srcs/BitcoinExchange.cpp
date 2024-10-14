@@ -75,7 +75,7 @@ void BitcoinExchange::checkForValue(std::string &line)
             words.push_back(word);
     }
     if (!strptime(words[0].c_str(), "%Y-%m-%d", &tm))
-        throw BadDateException(words[0]);
+        throw BadDateException();
     number = strtof(words[1].c_str(), NULL);
     if (number < 0)
         throw NegativeNumberException();
@@ -87,21 +87,16 @@ void BitcoinExchange::checkForValue(std::string &line)
         it = this->_database.lower_bound(words[0]);
         it--;
         if (it == this->_database.begin())
-            throw NoDateToTrackException(words[0]);
+            throw NoDateToTrackException();
     }
     std::cerr << words[0] << " => ";
     std::cout << number << " = ";
     std::cout << it->second * number << std::endl;
 }
 
-BitcoinExchange::BadDateException::BadDateException(std::string date) : _date(date) {}
-
-BitcoinExchange::BadDateException::~BadDateException() throw() {}
-
 const char *BitcoinExchange::BadDateException::what() const throw()
 {
-    static std::string temp = "Error: bad input => " + this->_date;
-    return (temp.c_str());
+    return "Error: bad input => ";
 }
 
 const char *BitcoinExchange::NegativeNumberException::what() const throw()
@@ -114,12 +109,7 @@ const char *BitcoinExchange::NumberToLargeException::what() const throw()
     return "Error: too large a number.";
 }
 
-BitcoinExchange::NoDateToTrackException::NoDateToTrackException(std::string date) : _date(date) {}
-
-BitcoinExchange::NoDateToTrackException::~NoDateToTrackException() throw() {}
-
 const char *BitcoinExchange::NoDateToTrackException::what() const throw()
 {
-    static std::string temp = "Error: no date to check => " + this->_date;
-    return (temp.c_str());
+    return "Error: no date to check => ";
 }
