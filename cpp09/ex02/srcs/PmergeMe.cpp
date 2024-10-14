@@ -140,48 +140,56 @@ void PmergeMe::mergeSort(int left, int right)
 
 void PmergeMe::merge(int left, int mid, int right)
 {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-
     std::vector<int> LMain(this->main.begin() + left, this->main.begin() + mid + 1);
     std::vector<int> RMain(this->main.begin() + mid + 1, this->main.begin() + right + 1);
     std::vector<int> LPend(this->pend.begin() + left, this->pend.begin() + mid + 1);
     std::vector<int> RPend(this->pend.begin() + mid + 1, this->pend.begin() + right + 1);
 
-    int i = 0, j = 0;
-    int k = left;
+    std::vector<int>::iterator itBeginMain = this->main.begin() + left;
+    std::vector<int>::iterator itBeginPend = this->pend.begin() + left;
+    std::vector<int>::iterator itLMain = LMain.begin();
+    std::vector<int>::iterator itLPend = LPend.begin();
+    std::vector<int>::iterator itRMain = RMain.begin();
+    std::vector<int>::iterator itRPend = RPend.begin();
 
-    while (i < n1 && j < n2)
+    while (itLMain != LMain.end() && itRMain != RMain.end() && itLPend != LPend.end() && itRPend != RPend.end())
     {
-        if (LMain[i] <= RMain[j])
+        if (*itLMain <= *itRMain)
         {
-            this->main[k] = LMain[i];
-            this->pend[k] = LPend[i];
-            i++;
+            *itBeginMain = *itLMain;
+            *itBeginPend = *itLPend;
+            itLMain++;
+            itLPend++;
         }
         else
         {
-            this->main[k] = RMain[j];
-            this->pend[k] = RPend[j];
-            j++;
+            *itBeginMain = *itRMain;
+            *itBeginPend = *itRPend;
+            itRMain++;
+            itRPend++;
         }
-        k++;
+        itBeginMain++;
+        itBeginPend++;
     }
 
-    while (i < n1)
+    while (itLMain != LMain.end() && itLPend != LPend.end())
     {
-        this->main[k] = LMain[i];
-        this->pend[k] = LPend[i];
-        i++;
-        k++;
+        *itBeginMain = *itLMain;
+        *itBeginPend = *itLPend;
+        itLMain++;
+        itLPend++;
+        itBeginMain++;
+        itBeginPend++;
     }
 
-    while (j < n2)
+    while (itRMain != RMain.end() && itRPend != RPend.end())
     {
-        this->main[k] = RMain[j];
-        this->pend[k] = RPend[j];
-        j++;
-        k++;
+        *itBeginMain = *itRMain;
+        *itBeginPend = *itRPend;
+        itRMain++;
+        itRPend++;
+        itBeginMain++;
+        itBeginPend++;
     }
 }
 
