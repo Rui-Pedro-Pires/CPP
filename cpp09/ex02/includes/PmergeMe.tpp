@@ -20,7 +20,6 @@ PmergeMe<std::deque<int> >::PmergeMe()
 {
 }
 
-
 template <>
 PmergeMe<std::vector<int> >::~PmergeMe()
 {
@@ -32,23 +31,23 @@ PmergeMe<std::deque<int> >::~PmergeMe()
 }
 
 template <>
-PmergeMe<std::vector<int> >::PmergeMe(const PmergeMe &other)
+PmergeMe<std::vector<int> >::PmergeMe( const PmergeMe &other )
 {
     this->main = other.main;
     this->pend = other.pend;
 }
 
 template <>
-PmergeMe<std::deque<int> >::PmergeMe(const PmergeMe &other)
+PmergeMe<std::deque<int> >::PmergeMe( const PmergeMe &other )
 {
     this->main = other.main;
     this->pend = other.pend;
 }
 
 template <>
-PmergeMe<std::vector<int> > &PmergeMe<std::vector<int> >::operator=(const PmergeMe &other)
+PmergeMe<std::vector<int> > &PmergeMe<std::vector<int> >::operator=( const PmergeMe &other )
 {
-    if (this != &other)
+    if ( this != &other )
     {
         this->main = other.main;
         this->pend = other.pend;
@@ -57,9 +56,9 @@ PmergeMe<std::vector<int> > &PmergeMe<std::vector<int> >::operator=(const Pmerge
 }
 
 template <>
-PmergeMe<std::deque<int> > &PmergeMe<std::deque<int> >::operator=(const PmergeMe &other)
+PmergeMe<std::deque<int> > &PmergeMe<std::deque<int> >::operator=( const PmergeMe &other )
 {
-    if (this != &other)
+    if ( this != &other )
     {
         this->main = other.main;
         this->pend = other.pend;
@@ -67,112 +66,110 @@ PmergeMe<std::deque<int> > &PmergeMe<std::deque<int> >::operator=(const PmergeMe
     return *this;
 }
 
-
 template <>
-bool PmergeMe<std::vector<int> >::ft_isdigit(std::string str)
+bool PmergeMe<std::vector<int> >::ft_isdigit( std::string str )
 {
     std::string::iterator itr;
-    for (itr = str.begin(); itr < str.end(); itr++)
+    for ( itr = str.begin(); itr < str.end(); itr++ )
     {
-        if (!isdigit(*itr))
-            return (false);
+        if ( !isdigit( *itr ) )
+            return ( false );
     }
-    return (true);
+    return ( true );
 }
 
 template <>
-bool PmergeMe<std::deque<int> >::ft_isdigit(std::string str)
+bool PmergeMe<std::deque<int> >::ft_isdigit( std::string str )
 {
     std::string::iterator itr;
-    for (itr = str.begin(); itr < str.end(); itr++)
+    for ( itr = str.begin(); itr < str.end(); itr++ )
     {
-        if (!isdigit(*itr))
-            return (false);
+        if ( !isdigit( *itr ) )
+            return ( false );
     }
-    return (true);
+    return ( true );
 }
 
 template <>
-std::vector<int> PmergeMe<std::vector<int> >::parseNumbers(char **argv)
+std::vector<int> PmergeMe<std::vector<int> >::parseNumbers( char **argv )
 {
     int i = 1;
     long num;
     std::vector<int> numbers;
-    while (argv[i])
+    while ( argv[i] )
     {
-        if (!ft_isdigit(argv[i]))
+        if ( !ft_isdigit( argv[i] ) )
             throw BadNumbersException();
-        num = strtol(argv[i], NULL, 10);
-        if (num < -INT_MAX || num > INT_MAX)
+        num = strtol( argv[i], NULL, 10 );
+        if ( num < -INT_MAX || num > INT_MAX )
             throw BadNumbersException();
-        numbers.push_back(num);
+        numbers.push_back( num );
         i++;
     }
     return numbers;
 }
 
 template <>
-std::vector<int> PmergeMe<std::deque<int> >::parseNumbers(char **argv)
+std::vector<int> PmergeMe<std::deque<int> >::parseNumbers( char **argv )
 {
     int i = 1;
     long num;
     std::vector<int> numbers;
-    while (argv[i])
+    while ( argv[i] )
     {
-        if (!ft_isdigit(argv[i]))
+        if ( !ft_isdigit( argv[i] ) )
             throw BadNumbersException();
-        num = strtol(argv[i], NULL, 10);
-        if (num < -INT_MAX || num > INT_MAX)
+        num = strtol( argv[i], NULL, 10 );
+        if ( num < -INT_MAX || num > INT_MAX )
             throw BadNumbersException();
-        numbers.push_back(num);
+        numbers.push_back( num );
         i++;
     }
     return numbers;
 }
 
 template <>
-void PmergeMe<std::vector<int> >::initValues(std::vector<int> numbers)
+void PmergeMe<std::vector<int> >::initValues( std::vector<int> numbers )
 {
-    for (size_t i = 0; i < numbers.size(); i += 2)
+    for ( size_t i = 0; i < numbers.size(); i += 2 )
     {
-        if (i == numbers.size() - 1)
+        if ( i == numbers.size() - 1 )
         {
-            this->pend.push_back(numbers[i]);
+            this->pend.push_back( numbers[i] );
             return;
         }
-        if (numbers[i] >= numbers[i + 1])
+        if ( numbers[i] >= numbers[i + 1] )
         {
-            this->main.push_back(numbers[i]);
-            this->pend.push_back(numbers[i + 1]);
+            this->main.push_back( numbers[i] );
+            this->pend.push_back( numbers[i + 1] );
         }
         else
         {
-            this->main.push_back(numbers[i + 1]);
-            this->pend.push_back(numbers[i]);
+            this->main.push_back( numbers[i + 1] );
+            this->pend.push_back( numbers[i] );
         }
     }
 }
 
-
 template <>
-void PmergeMe<std::deque<int> >::initValues(std::vector<int> numbers)
+void PmergeMe<std::deque<int> >::initValues( std::vector<int> numbers )
 {
-    for (size_t i = 0; i < numbers.size(); i += 2)
+    for ( size_t i = 0; i < numbers.size(); i += 2 )
     {
-        if (i == numbers.size() - 1)
+        if ( i == numbers.size() - 1 )
         {
-            this->pend.push_back(numbers[i]);
+            this->pend.push_back( numbers[i] );
             return;
         }
-        if (numbers[i] >= numbers[i + 1])
+        if ( numbers[i] >= numbers[i + 1] )
         {
-            this->main.push_back(numbers[i]);
-            this->pend.push_back(numbers[i + 1]);
+            this->main.push_back( numbers[i] );
+            this->pend.push_back( numbers[i + 1] );
         }
         else
         {
-            this->main.push_back(numbers[i + 1]);
-            this->pend.push_back(numbers[i]);
+            this->main.push_back( numbers[i + 1] );
+            this->pend.push_back( numbers[i] );
         }
     }
 }
@@ -189,12 +186,12 @@ int PmergeMe<std::deque<int> >::getSizeMain() const
 }
 
 template <>
-void PmergeMe<std::vector<int> >::merge(int left, int mid, int right)
+void PmergeMe<std::vector<int> >::merge( int left, int mid, int right )
 {
-    std::vector<int> LMain(this->main.begin() + left, this->main.begin() + mid + 1);
-    std::vector<int> RMain(this->main.begin() + mid + 1, this->main.begin() + right + 1);
-    std::vector<int> LPend(this->pend.begin() + left, this->pend.begin() + mid + 1);
-    std::vector<int> RPend(this->pend.begin() + mid + 1, this->pend.begin() + right + 1);
+    std::vector<int> LMain( this->main.begin() + left, this->main.begin() + mid + 1 );
+    std::vector<int> RMain( this->main.begin() + mid + 1, this->main.begin() + right + 1 );
+    std::vector<int> LPend( this->pend.begin() + left, this->pend.begin() + mid + 1 );
+    std::vector<int> RPend( this->pend.begin() + mid + 1, this->pend.begin() + right + 1 );
 
     std::vector<int>::iterator itBeginMain = this->main.begin() + left;
     std::vector<int>::iterator itBeginPend = this->pend.begin() + left;
@@ -203,9 +200,10 @@ void PmergeMe<std::vector<int> >::merge(int left, int mid, int right)
     std::vector<int>::iterator itRMain = RMain.begin();
     std::vector<int>::iterator itRPend = RPend.begin();
 
-    while (itLMain != LMain.end() && itRMain != RMain.end() && itLPend != LPend.end() && itRPend != RPend.end())
+    while ( itLMain != LMain.end() && itRMain != RMain.end() && itLPend != LPend.end() &&
+            itRPend != RPend.end() )
     {
-        if (*itLMain <= *itRMain)
+        if ( *itLMain <= *itRMain )
         {
             *itBeginMain = *itLMain;
             *itBeginPend = *itLPend;
@@ -223,7 +221,7 @@ void PmergeMe<std::vector<int> >::merge(int left, int mid, int right)
         itBeginPend++;
     }
 
-    while (itLMain != LMain.end() && itLPend != LPend.end())
+    while ( itLMain != LMain.end() && itLPend != LPend.end() )
     {
         *itBeginMain = *itLMain;
         *itBeginPend = *itLPend;
@@ -233,7 +231,7 @@ void PmergeMe<std::vector<int> >::merge(int left, int mid, int right)
         itBeginPend++;
     }
 
-    while (itRMain != RMain.end() && itRPend != RPend.end())
+    while ( itRMain != RMain.end() && itRPend != RPend.end() )
     {
         *itBeginMain = *itRMain;
         *itBeginPend = *itRPend;
@@ -245,12 +243,12 @@ void PmergeMe<std::vector<int> >::merge(int left, int mid, int right)
 }
 
 template <>
-void PmergeMe<std::deque<int> >::merge(int left, int mid, int right)
+void PmergeMe<std::deque<int> >::merge( int left, int mid, int right )
 {
-    std::deque<int> LMain(this->main.begin() + left, this->main.begin() + mid + 1);
-    std::deque<int> RMain(this->main.begin() + mid + 1, this->main.begin() + right + 1);
-    std::deque<int> LPend(this->pend.begin() + left, this->pend.begin() + mid + 1);
-    std::deque<int> RPend(this->pend.begin() + mid + 1, this->pend.begin() + right + 1);
+    std::deque<int> LMain( this->main.begin() + left, this->main.begin() + mid + 1 );
+    std::deque<int> RMain( this->main.begin() + mid + 1, this->main.begin() + right + 1 );
+    std::deque<int> LPend( this->pend.begin() + left, this->pend.begin() + mid + 1 );
+    std::deque<int> RPend( this->pend.begin() + mid + 1, this->pend.begin() + right + 1 );
 
     std::deque<int>::iterator itBeginMain = this->main.begin() + left;
     std::deque<int>::iterator itBeginPend = this->pend.begin() + left;
@@ -259,9 +257,10 @@ void PmergeMe<std::deque<int> >::merge(int left, int mid, int right)
     std::deque<int>::iterator itRMain = RMain.begin();
     std::deque<int>::iterator itRPend = RPend.begin();
 
-    while (itLMain != LMain.end() && itRMain != RMain.end() && itLPend != LPend.end() && itRPend != RPend.end())
+    while ( itLMain != LMain.end() && itRMain != RMain.end() && itLPend != LPend.end() &&
+            itRPend != RPend.end() )
     {
-        if (*itLMain <= *itRMain)
+        if ( *itLMain <= *itRMain )
         {
             *itBeginMain = *itLMain;
             *itBeginPend = *itLPend;
@@ -279,7 +278,7 @@ void PmergeMe<std::deque<int> >::merge(int left, int mid, int right)
         itBeginPend++;
     }
 
-    while (itLMain != LMain.end() && itLPend != LPend.end())
+    while ( itLMain != LMain.end() && itLPend != LPend.end() )
     {
         *itBeginMain = *itLMain;
         *itBeginPend = *itLPend;
@@ -289,7 +288,7 @@ void PmergeMe<std::deque<int> >::merge(int left, int mid, int right)
         itBeginPend++;
     }
 
-    while (itRMain != RMain.end() && itRPend != RPend.end())
+    while ( itRMain != RMain.end() && itRPend != RPend.end() )
     {
         *itBeginMain = *itRMain;
         *itBeginPend = *itRPend;
@@ -301,154 +300,159 @@ void PmergeMe<std::deque<int> >::merge(int left, int mid, int right)
 }
 
 template <>
-void PmergeMe<std::vector<int> >::mergeSort(int left, int right)
+void PmergeMe<std::vector<int> >::mergeSort( int left, int right )
 {
-    if (left >= right)
+    if ( left >= right )
         return;
-    int mid = left + (right - left) / 2;
-    mergeSort(left, mid);
-    mergeSort(mid + 1, right);
-    merge(left, mid, right);
+    int mid = left + ( right - left ) / 2;
+    mergeSort( left, mid );
+    mergeSort( mid + 1, right );
+    merge( left, mid, right );
 }
 
 template <>
-void PmergeMe<std::deque<int> >::mergeSort(int left, int right)
+void PmergeMe<std::deque<int> >::mergeSort( int left, int right )
 {
-    if (left >= right)
+    if ( left >= right )
         return;
-    int mid = left + (right - left) / 2;
-    mergeSort(left, mid);
-    mergeSort(mid + 1, right);
-    merge(left, mid, right);
+    int mid = left + ( right - left ) / 2;
+    mergeSort( left, mid );
+    mergeSort( mid + 1, right );
+    merge( left, mid, right );
 }
 
 template <>
-void PmergeMe<std::vector<int> >::binaryInsert(int left, int right, int number)
+void PmergeMe<std::vector<int> >::binaryInsert( int left, int right, int number )
 {
-    if (left >= right)
+    if ( left >= right )
     {
-        if (this->main[left] > number)
-            this->main.insert(this->main.begin() + left, number);
+        if ( this->main[left] > number )
+            this->main.insert( this->main.begin() + left, number );
         else
-            this->main.insert(this->main.begin() + left + 1, number);
+            this->main.insert( this->main.begin() + left + 1, number );
         return;
     }
 
-    int mid = left + (right - left) / 2;
+    int mid = left + ( right - left ) / 2;
 
-    if (this->main[mid] == number)
+    if ( this->main[mid] == number )
     {
-        this->main.insert(this->main.begin() + mid, number);
+        this->main.insert( this->main.begin() + mid, number );
         return;
     }
-    else if (number > this->main[mid])
-        return binaryInsert(mid + 1, right, number);
+    else if ( number > this->main[mid] )
+        return binaryInsert( mid + 1, right, number );
     else
-        return binaryInsert(left, mid, number);
+        return binaryInsert( left, mid, number );
 }
 
 template <>
-void PmergeMe<std::deque<int> >::binaryInsert(int left, int right, int number)
+void PmergeMe<std::deque<int> >::binaryInsert( int left, int right, int number )
 {
-    if (left >= right)
+    if ( left >= right )
     {
-        if (this->main[left] > number)
-            this->main.insert(this->main.begin() + left, number);
+        if ( this->main[left] > number )
+            this->main.insert( this->main.begin() + left, number );
         else
-            this->main.insert(this->main.begin() + left + 1, number);
+            this->main.insert( this->main.begin() + left + 1, number );
         return;
     }
 
-    int mid = left + (right - left) / 2;
+    int mid = left + ( right - left ) / 2;
 
-    if (this->main[mid] == number)
+    if ( this->main[mid] == number )
     {
-        this->main.insert(this->main.begin() + mid, number);
+        this->main.insert( this->main.begin() + mid, number );
         return;
     }
-    else if (number > this->main[mid])
-        return binaryInsert(mid + 1, right, number);
+    else if ( number > this->main[mid] )
+        return binaryInsert( mid + 1, right, number );
     else
-        return binaryInsert(left, mid, number);
+        return binaryInsert( left, mid, number );
 }
 
 template <>
-size_t PmergeMe<std::vector<int> >::jacobthal(size_t n)
+size_t PmergeMe<std::vector<int> >::jacobthal( size_t n )
 {
-    if (n == 0)
-        return (0);
-    if (n == 1)
-        return (1);
-    return jacobthal(n - 1) + 2 * jacobthal(n - 2);
+    if ( n == 0 )
+        return ( 0 );
+    if ( n == 1 )
+        return ( 1 );
+    return jacobthal( n - 1 ) + 2 * jacobthal( n - 2 );
 }
 
 template <>
-size_t PmergeMe<std::deque<int> >::jacobthal(size_t n)
+size_t PmergeMe<std::deque<int> >::jacobthal( size_t n )
 {
-    if (n == 0)
-        return (0);
-    if (n == 1)
-        return (1);
-    return jacobthal(n - 1) + 2 * jacobthal(n - 2);
+    if ( n == 0 )
+        return ( 0 );
+    if ( n == 1 )
+        return ( 1 );
+    return jacobthal( n - 1 ) + 2 * jacobthal( n - 2 );
 }
 
 template <>
-void PmergeMe<std::vector<int> >::insert(void)
+void PmergeMe<std::vector<int> >::insert( void )
 {
-    if (this->pend.empty())
+    if ( this->pend.empty() )
         return;
-    this->main.insert(this->main.begin(), this->pend.front());
+    this->main.insert( this->main.begin(), this->pend.front() );
     size_t i = 1;
-    size_t indexCounter = 1;
-    size_t jacobIndex;
-    while (i < this->pend.size())
+    size_t jump = 1;
+    size_t jacobIndex = 1;
+    size_t start = 0;
+    while ( i < this->pend.size() )
     {
-        jacobIndex = 0;
-        while (jacobIndex < this->main.size() && jacobIndex < i && this->main[jacobIndex] < this->pend[i])
-            jacobIndex = jacobthal(jacobIndex + 1);
-        binaryInsert(jacobIndex, i + indexCounter, this->pend[i]);
-        indexCounter++;
+        while ( jump < this->main.size() && jump < i &&
+                this->main[jump] < this->pend[i] )
+        {
+            start = jump;
+            jacobIndex++;
+            jump = jacobthal( jacobIndex );
+        }
+        binaryInsert( start, this->main.size() - 1, this->pend[i] );
         i++;
     }
 }
 
 template <>
-void PmergeMe<std::deque<int> >::insert(void)
+void PmergeMe<std::deque<int> >::insert( void )
 {
-    if (this->pend.empty())
+    if ( this->pend.empty() )
         return;
-    this->main.insert(this->main.begin(), this->pend.front());
+    this->main.insert( this->main.begin(), this->pend.front() );
     size_t i = 1;
-    size_t indexCounter = 1;
-    size_t jacobIndex;
-    while (i < this->pend.size())
+    size_t jump = 1;
+    size_t jacobIndex = 1;
+    size_t start = 0;
+    while ( i < this->pend.size() )
     {
-        jacobIndex = 0;
-        while (jacobIndex < this->main.size() && jacobIndex < i && this->main[jacobIndex] < this->pend[i])
-            jacobIndex = jacobthal(jacobIndex + 1);
-        if (i + indexCounter >= this->main.size())
-            binaryInsert(jacobIndex, this->main.size() - 1, this->pend[i]);
-        else
-            binaryInsert(jacobIndex, i + indexCounter, this->pend[i]);
-        indexCounter++;
+        while ( jump < this->main.size() && jump < i &&
+                this->main[jump] < this->pend[i] )
+        {
+            start = jump;
+            jacobIndex++;
+            jump = jacobthal( jacobIndex );
+        }
+        binaryInsert( start, this->main.size() - 1, this->pend[i] );
         i++;
     }
 }
 
 template <>
-void PmergeMe<std::vector<int> >::printBeforeSort(std::vector<int> numbers)
+void PmergeMe<std::vector<int> >::printBeforeSort( std::vector<int> numbers )
 {
     std::cout << "Before: ";
-    for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); it++)
+    for ( std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); it++ )
         std::cout << *it << " ";
     std::cout << std::endl;
 }
 
 template <>
-void PmergeMe<std::deque<int> >::printBeforeSort(std::vector<int> numbers)
+void PmergeMe<std::deque<int> >::printBeforeSort( std::vector<int> numbers )
 {
     std::cout << "Before: ";
-    for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); it++)
+    for ( std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); it++ )
         std::cout << *it << " ";
     std::cout << std::endl;
 }
@@ -457,7 +461,7 @@ template <>
 void PmergeMe<std::vector<int> >::printAfterSort()
 {
     std::cout << "After: ";
-    for (std::vector<int>::iterator it = this->main.begin(); it != this->main.end(); it++)
+    for ( std::vector<int>::iterator it = this->main.begin(); it != this->main.end(); it++ )
         std::cout << *it << " ";
     std::cout << std::endl;
 }
@@ -466,7 +470,7 @@ template <>
 void PmergeMe<std::deque<int> >::printAfterSort()
 {
     std::cout << "After: ";
-    for (std::deque<int>::iterator it = this->main.begin(); it != this->main.end(); it++)
+    for ( std::deque<int>::iterator it = this->main.begin(); it != this->main.end(); it++ )
         std::cout << *it << " ";
     std::cout << std::endl;
 }
@@ -498,28 +502,29 @@ void PmergeMe<std::deque<int> >::closeTime()
 template <>
 void PmergeMe<std::vector<int> >::getTimeToSort()
 {
-    double time_taken = double(this->end - this->start);
-        std::cout << "Time to process a range of " << this->main.size() << " elements with std::vector : " << std::fixed
-                  << time_taken << std::setprecision(5) << " us" << std::endl;
+    double time_taken = double( this->end - this->start );
+    std::cout << "Time to process a range of " << this->main.size()
+              << " elements with std::vector : " << std::fixed << time_taken
+              << std::setprecision( 5 ) << " us" << std::endl;
 }
 
 template <>
 void PmergeMe<std::deque<int> >::getTimeToSort()
 {
-    double time_taken = double(this->end - this->start);
-        std::cout << "Time to process a range of " << this->main.size() << " elements with std::deque : " << std::fixed
-                  << time_taken << std::setprecision(5) << " us" << std::endl;
+    double time_taken = double( this->end - this->start );
+    std::cout << "Time to process a range of " << this->main.size()
+              << " elements with std::deque : " << std::fixed << time_taken
+              << std::setprecision( 5 ) << " us" << std::endl;
 }
 
 template <>
-const char* PmergeMe<std::vector<int> >::BadNumbersException::what() const throw()
+const char *PmergeMe<std::vector<int> >::BadNumbersException::what() const throw()
 {
     return "Error";
 }
 
-
 template <>
-const char* PmergeMe<std::deque<int> >::BadNumbersException::what() const throw()
+const char *PmergeMe<std::deque<int> >::BadNumbersException::what() const throw()
 {
     return "Error";
 }
