@@ -74,6 +74,8 @@ void BitcoinExchange::checkForValue(std::string &line)
         if (word != "|")
             words.push_back(word);
     }
+    if (words.size() != 2)
+        throw BadDateException();
     if (!strptime(words[0].c_str(), "%Y-%m-%d", &tm))
         throw BadDateException();
     number = strtof(words[1].c_str(), NULL);
