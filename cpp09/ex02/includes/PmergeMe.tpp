@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMe.cpp                                       :+:      :+:    :+:   */
+/*   PmergeMe.tpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -19,6 +19,54 @@ template <>
 PmergeMe<std::deque<int> >::PmergeMe()
 {
 }
+
+
+template <>
+PmergeMe<std::vector<int> >::~PmergeMe()
+{
+}
+
+template <>
+PmergeMe<std::deque<int> >::~PmergeMe()
+{
+}
+
+template <>
+PmergeMe<std::vector<int> >::PmergeMe(const PmergeMe &other)
+{
+    this->main = other.main;
+    this->pend = other.pend;
+}
+
+template <>
+PmergeMe<std::deque<int> >::PmergeMe(const PmergeMe &other)
+{
+    this->main = other.main;
+    this->pend = other.pend;
+}
+
+template <>
+PmergeMe<std::vector<int> > &PmergeMe<std::vector<int> >::operator=(const PmergeMe &other)
+{
+    if (this != &other)
+    {
+        this->main = other.main;
+        this->pend = other.pend;
+    }
+    return *this;
+}
+
+template <>
+PmergeMe<std::deque<int> > &PmergeMe<std::deque<int> >::operator=(const PmergeMe &other)
+{
+    if (this != &other)
+    {
+        this->main = other.main;
+        this->pend = other.pend;
+    }
+    return *this;
+}
+
 
 template <>
 bool PmergeMe<std::vector<int> >::ft_isdigit(std::string str)
@@ -128,53 +176,6 @@ void PmergeMe<std::deque<int> >::initValues(std::vector<int> numbers)
         }
     }
 }
-
-template <>
-PmergeMe<std::vector<int> >::~PmergeMe()
-{
-}
-
-template <>
-PmergeMe<std::deque<int> >::~PmergeMe()
-{
-}
-
-template <>
-PmergeMe<std::vector<int> >::PmergeMe(const PmergeMe &other)
-{
-    this->main = other.main;
-    this->pend = other.pend;
-}
-
-template <>
-PmergeMe<std::deque<int> >::PmergeMe(const PmergeMe &other)
-{
-    this->main = other.main;
-    this->pend = other.pend;
-}
-
-template <>
-PmergeMe<std::vector<int> > &PmergeMe<std::vector<int> >::operator=(const PmergeMe &other)
-{
-    if (this != &other)
-    {
-        this->main = other.main;
-        this->pend = other.pend;
-    }
-    return *this;
-}
-
-template <>
-PmergeMe<std::deque<int> > &PmergeMe<std::deque<int> >::operator=(const PmergeMe &other)
-{
-    if (this != &other)
-    {
-        this->main = other.main;
-        this->pend = other.pend;
-    }
-    return *this;
-}
-
 template <>
 int PmergeMe<std::vector<int> >::getSizeMain() const
 {
