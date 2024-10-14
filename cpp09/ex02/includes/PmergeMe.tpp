@@ -397,21 +397,32 @@ void PmergeMe<std::vector<int> >::insert( void )
     if ( this->pend.empty() )
         return;
     this->main.insert( this->main.begin(), this->pend.front() );
-    size_t i = 1;
-    size_t jump = 1;
+    size_t i = 0;
     size_t jacobIndex = 1;
-    size_t start = 0;
-    while ( i < this->pend.size() )
+    size_t distanceIndex = jacobthal( jacobIndex ) * 2;
+    size_t numberInsert = 1;
+    while ( i + distanceIndex < this->pend.size() )
     {
-        while ( jump < this->main.size() && jump < i &&
-                this->main[jump] < this->pend[i] )
+        size_t start = i;
+        i += distanceIndex;
+        while ( i > start )
         {
-            start = jump;
-            jacobIndex++;
-            jump = jacobthal( jacobIndex );
+            binaryInsert( 0, i + numberInsert - 1, this->pend[i] );
+            numberInsert++;
+            i--;
         }
-        binaryInsert( start, this->main.size() - 1, this->pend[i] );
-        i++;
+        i += distanceIndex;
+        jacobIndex++;
+        distanceIndex = jacobthal( jacobIndex ) * 2;
+    }
+
+    size_t start = i;
+    i = this->pend.size() - 1;
+    while ( i > start )
+    {
+        binaryInsert( 0, i + numberInsert - 1, this->pend[i] );
+        numberInsert++;
+        i--;
     }
 }
 
@@ -421,21 +432,32 @@ void PmergeMe<std::deque<int> >::insert( void )
     if ( this->pend.empty() )
         return;
     this->main.insert( this->main.begin(), this->pend.front() );
-    size_t i = 1;
-    size_t jump = 1;
+    size_t i = 0;
     size_t jacobIndex = 1;
-    size_t start = 0;
-    while ( i < this->pend.size() )
+    size_t distanceIndex = jacobthal( jacobIndex ) * 2;
+    size_t numberInsert = 1;
+    while ( i + distanceIndex < this->pend.size() )
     {
-        while ( jump < this->main.size() && jump < i &&
-                this->main[jump] < this->pend[i] )
+        size_t start = i;
+        i += distanceIndex;
+        while ( i > start )
         {
-            start = jump;
-            jacobIndex++;
-            jump = jacobthal( jacobIndex );
+            binaryInsert( 0, i + numberInsert - 1, this->pend[i] );
+            numberInsert++;
+            i--;
         }
-        binaryInsert( start, this->main.size() - 1, this->pend[i] );
-        i++;
+        i += distanceIndex;
+        jacobIndex++;
+        distanceIndex = jacobthal( jacobIndex ) * 2;
+    }
+
+    size_t start = i;
+    i = this->pend.size() - 1;
+    while ( i > start )
+    {
+        binaryInsert( 0, i + numberInsert - 1, this->pend[i] );
+        numberInsert++;
+        i--;
     }
 }
 
