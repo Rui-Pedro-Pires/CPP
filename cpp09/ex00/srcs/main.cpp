@@ -42,6 +42,8 @@ int main(int argc, char **argv)
     while (!file.eof())
     {
         std::getline(file, line);
+        if (line.empty())
+            continue;
         try
         {
             bitcoin.checkForValue(line);
