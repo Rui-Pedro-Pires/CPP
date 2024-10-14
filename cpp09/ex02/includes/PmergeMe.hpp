@@ -10,18 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PmergeMe.hpp                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 21:31:01 by ruiolive          #+#    #+#             */
-/*   Updated: 2024/10/07 21:31:01 by ruiolive         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #pragma once
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
@@ -37,19 +25,19 @@ private:
     std::vector<int> pend;
 
 public:
-    PmergeMe( std::vector<int> numbers );
-    PmergeMe( const PmergeMe& other );
-    PmergeMe& operator=( const PmergeMe& other );
+    PmergeMe(char **argv);
+    PmergeMe(const PmergeMe &other);
+    PmergeMe &operator=(const PmergeMe &other);
     ~PmergeMe();
 
-    void mergeSort( int left, int right );
-    void merge( int left, int mid, int right );
-    void insert( void );
-    void binaryInsert( int left, int right, int number );
+    void mergeSort(int left, int right);
+    void merge(int left, int mid, int right);
+    void insert(void);
+    void binaryInsert(int left, int right, int number);
 
     int getSizeMain() const;
-    int getSizePend() const;
-    void printList( std::string what );
+    std::vector<int> parseNumbers(char **argv);
+    void printList(std::string what);
 };
 
 #endif
