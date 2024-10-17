@@ -29,7 +29,6 @@ private:
 private:
     void merge(int left, int mid, int right);
     void binaryInsert(int left, int right, int number);
-    bool ft_isdigit(std::string str);
 
 public:
     PmergeMe();
@@ -40,11 +39,10 @@ public:
     void mergeSort(int left, int right);
     void insert(void);
 
-    std::vector<int> parseNumbers(char **argv);
-    void initValues(std::vector<int> numbers);
-    size_t jacobthal(size_t n);
+    T parseNumbers(char **argv);
+    void initValues(T numbers);
     int getSizeMain() const;
-    void printBeforeSort(std::vector<int> numbers);
+    void printBeforeSort(T numbers);
     void printAfterSort();
     void initTime();
     void closeTime();
@@ -56,6 +54,9 @@ public:
         const char *what() const throw();
     };
 };
+
+size_t jacobthal(size_t n);
+bool ft_isdigit(std::string str);
 
 #include "PmergeMe.tpp"
 

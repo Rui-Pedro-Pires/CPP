@@ -52,7 +52,7 @@ void RPN::doRPN(std::string input)
 {
     std::stringstream ss(input);
     std::string word;
-    int result;
+    double result;
     while (!ss.eof())
     {
         std::getline(ss, word, ' ');
@@ -60,9 +60,9 @@ void RPN::doRPN(std::string input)
         {
             if (this->stack.size() < 2)
                 throw BadCharactersException();
-            int second = this->stack.top();
+            double second = this->stack.top();
             this->stack.pop();
-            int first = this->stack.top();
+            double first = this->stack.top();
             this->stack.pop();
             if (word == "+")
                 result = first + second;
@@ -76,7 +76,7 @@ void RPN::doRPN(std::string input)
         }
         else if (ft_isdigit(word))
         {
-            long num = strtol(word.c_str(), NULL, 10);
+            double num = strtol(word.c_str(), NULL, 10);
             if (num > -10 && num < 10)
                 this->stack.push(num);
             else

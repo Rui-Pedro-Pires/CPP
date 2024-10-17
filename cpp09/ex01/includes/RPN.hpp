@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruiolive  <ruiolive@student.42.fr   >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/12 11:49:49 by ruiolive          #+#    #+#             */
-/*   Updated: 2024/10/12 11:49:49 by ruiolive         ###   ########.fr       */
+/*   Created: 2024/10/14 14:01:50 by ruiolive          #+#    #+#             */
+/*   Updated: 2024/10/14 14:01:50 by ruiolive         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 class RPN
 {
 private:
-    std::stack<int> stack;
+    std::stack<double> stack;
 
 public:
     RPN();
